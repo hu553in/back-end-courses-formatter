@@ -12,7 +12,7 @@ public class Formatter {
         String singleIndent = "    ";
         StringBuilder resultIndent = new StringBuilder();
 
-        for (int iterator = 0; iterator < nestingLevel; iterator++) {
+        for (short iterator = 0; iterator < nestingLevel; iterator++) {
             resultIndent.append(singleIndent);
         }
 
