@@ -57,7 +57,7 @@ public class Formatter {
                     }
 
                     while (true) {
-                        if (!textIterator.hasNext() || textIterator.next() != ' ') {  // TODO: how about 'unless' stream of whitespaces?
+                        if (!textIterator.hasNext() || textIterator.next() != ' ') {  // TODO: how about 'endless' stream of whitespaces?
                             textIterator.previous();
                             break;
                         }
