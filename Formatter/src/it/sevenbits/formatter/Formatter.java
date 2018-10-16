@@ -1,6 +1,7 @@
 package it.sevenbits.formatter;
 
 import java.util.List;
+import java.util.ListIterator;
 
 public class Formatter {
     private String getIndent(short nestingLevel) {
@@ -21,22 +22,20 @@ public class Formatter {
     public String format(List<Character> text) {
         StringBuilder formattedText = new StringBuilder();
         short nestingLevel = 0;
-        boolean isNewLine = true;
-        int iterator = 0;
+        ListIterator<Character> textIterator = text.listIterator();
 
-        while (iterator < text.size()) {
-            switch (text.get(iterator)) {
+        while (textIterator.hasNext()) {
+            Character character = textIterator.next();
+
+            switch (character) {
                 case '{':
                     nestingLevel++;
 
-                    if (!formattedText.toString().endsWith(" ")) {
+                    if (!formattedText.toString().endsWith(" ") && !formattedText.toString().endsWith("\n")) {
                         formattedText.append(' ');
                     }
 
-                    formattedText.append(text.get(iterator)).append('\n');
-
-                    isNewLine = true;
-                    iterator++;
+                    formattedText.append(character).append('\n');
                     break;
                 case '}':
                     nestingLevel--;
@@ -45,38 +44,32 @@ public class Formatter {
                         formattedText.append('\n');
                     }
 
-                    formattedText.append(getIndent(nestingLevel)).append(text.get(iterator)).append('\n');
-
-                    isNewLine = true;
-                    iterator++;
+                    formattedText.append(getIndent(nestingLevel)).append(character).append('\n');
                     break;
                 case ';':
-                    formattedText.append(text.get(iterator)).append('\n');
-
-                    isNewLine = true;
-                    iterator++;
+                    formattedText.append(character).append('\n');
                     break;
                 case '\n':
-                    iterator++;
                     break;
                 case ' ':
-                    if (!isNewLine) {
-                        formattedText.append(text.get(iterator));
+                    if (!formattedText.toString().endsWith("\n")) {
+                        formattedText.append(character);
                     }
 
-                    while (iterator < text.size() && text.get(iterator) == ' ') {
-                        iterator++;
+                    while (true) {
+                        if (!textIterator.hasNext() || textIterator.next() != ' ') {  // TODO: how about 'unless' stream of whitespaces?
+                            textIterator.previous();
+                            break;
+                        }
                     }
+
                     break;
                 default:
                     if (formattedText.toString().endsWith("\n")) {
                         formattedText.append(getIndent(nestingLevel));
                     }
 
-                    formattedText.append(text.get(iterator));
-                    isNewLine = false;
-
-                    iterator++;
+                    formattedText.append(character);
                     break;
             }
         }
