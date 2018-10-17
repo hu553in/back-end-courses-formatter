@@ -22,8 +22,9 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        if (args.length == 0) {
-            System.err.println("Not enough arguments (expected 1).");
+        if (args.length != 1) {
+            System.err.println("Error: incorrect number of arguments.");
+            return;
         }
 
         List<Character> text;
@@ -31,7 +32,7 @@ public class Main {
         try {
             text = readTextFromFile(args[0]);
         } catch (IOException e) {
-            System.err.println("An instance of IOException was thrown.");
+            System.err.println("There was an I/O error while reading text from file.");
             return;
         }
 
