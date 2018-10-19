@@ -1,8 +1,5 @@
 package it.sevenbits.formatter;
 
-import java.util.List;
-import java.util.ListIterator;
-
 public class Formatter {
     private String getIndent(short nestingLevel) {
         if (nestingLevel == 0) {
@@ -19,13 +16,13 @@ public class Formatter {
         return resultIndent.toString();
     }
 
-    public String format(List<Character> text) {
+    public String format(String text) {
         StringBuilder formattedText = new StringBuilder();
         short nestingLevel = 0;
-        ListIterator<Character> textIterator = text.listIterator();
+        int textIterator = 0;
 
-        while (textIterator.hasNext()) {
-            Character character = textIterator.next();
+        while (textIterator < text.length()) {
+            Character character = text.charAt(textIterator);
 
             switch (character) {
                 case '{':
@@ -57,8 +54,14 @@ public class Formatter {
                     }
 
                     while (true) {
-                        if (!textIterator.hasNext() || textIterator.next() != ' ') {  // TODO: how about 'endless' stream of whitespaces?
-                            textIterator.previous();
+                        textIterator++;
+
+                        if (textIterator >= text.length()) {
+                            break;
+                        }
+
+                        if (text.charAt(textIterator) != ' ') {
+                            textIterator--;
                             break;
                         }
                     }
@@ -72,6 +75,8 @@ public class Formatter {
                     formattedText.append(character);
                     break;
             }
+
+            textIterator++;
         }
 
         return formattedText.toString();

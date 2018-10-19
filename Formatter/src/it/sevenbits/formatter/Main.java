@@ -3,30 +3,28 @@ package it.sevenbits.formatter;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
-    private static List<Character> readTextFromFile (String path) throws IOException {
+    private static String readTextFromFile (String path) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
-        List<Character> text = new ArrayList<>();
+        StringBuilder stringBuilder = new StringBuilder();
 
         int character = bufferedReader.read();
         while (character != -1) {
-            text.add((char)character);
+            stringBuilder.append((char) character);
             character = bufferedReader.read();
         }
 
         bufferedReader.close();
-        return text;
+        return stringBuilder.toString();
     }
 
     public static void main(String[] args) {
-        if (args.length == 0) {
-            System.err.println("Not enough arguments (expected 1).");
+        if (args.length != 1) {
+            System.err.println("Incorrect number of arguments (expected: 1).");
         }
 
-        List<Character> text;
+        String text;
 
         try {
             text = readTextFromFile(args[0]);
