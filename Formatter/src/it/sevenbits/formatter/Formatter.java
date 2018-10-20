@@ -21,47 +21,47 @@ public class Formatter {
         short nestingLevel = 0;
         int textIterator = 0;
 
-        final Character SEMICOLON = ';',
-                        WHITESPACE = ' ',
-                        OPENING_CURVE_BRACE = '{',
-                        CLOSING_CURVE_BRACE = '}',
-                        NEW_LINE = '\n';
+        final Character CHAR_SEMICOLON = ';',
+                        CHAR_WHITESPACE = ' ',
+                        CHAR_OPENING_CURLY_BRACE = '{',
+                        CHAR_CLOSING_CURLY_BRACE = '}',
+                        CHAR_NEW_LINE = '\n';
 
         while (textIterator < text.length()) {
             Character character = text.charAt(textIterator);
 
-            if (character == OPENING_CURVE_BRACE) {
+            if (character == CHAR_OPENING_CURLY_BRACE) {
                 nestingLevel++;
 
-                if (!formattedText.toString().endsWith(WHITESPACE.toString()) &&
-                    !formattedText.toString().endsWith(NEW_LINE.toString())) {
-                    formattedText.append(WHITESPACE);
+                if (!formattedText.toString().endsWith(CHAR_WHITESPACE.toString()) &&
+                    !formattedText.toString().endsWith(CHAR_NEW_LINE.toString())) {
+                    formattedText.append(CHAR_WHITESPACE);
                 }
 
-                formattedText.append(character).append(NEW_LINE);
-            } else if (character == CLOSING_CURVE_BRACE) {
+                formattedText.append(character).append(CHAR_NEW_LINE);
+            } else if (character == CHAR_CLOSING_CURLY_BRACE) {
                 nestingLevel--;
 
-                if (!formattedText.toString().endsWith(NEW_LINE.toString())) {
-                    formattedText.append(NEW_LINE);
+                if (!formattedText.toString().endsWith(CHAR_NEW_LINE.toString())) {
+                    formattedText.append(CHAR_NEW_LINE);
                 }
 
-                formattedText.append(getIndent(nestingLevel)).append(character).append(NEW_LINE);
-            } else if (character == SEMICOLON) {
-                formattedText.append(character).append(NEW_LINE);
-            } else if (character == WHITESPACE) {
-                if (!formattedText.toString().endsWith(NEW_LINE.toString())) {
+                formattedText.append(getIndent(nestingLevel)).append(character).append(CHAR_NEW_LINE);
+            } else if (character == CHAR_SEMICOLON) {
+                formattedText.append(character).append(CHAR_NEW_LINE);
+            } else if (character == CHAR_WHITESPACE) {
+                if (!formattedText.toString().endsWith(CHAR_NEW_LINE.toString())) {
                     formattedText.append(character);
                 }
 
                 while (++textIterator < text.length()) {
-                    if (text.charAt(textIterator) != WHITESPACE) {
+                    if (text.charAt(textIterator) != CHAR_WHITESPACE) {
                         textIterator--;
                         break;
                     }
                 }
-            } else if (character != NEW_LINE) {
-                if (formattedText.toString().endsWith(NEW_LINE.toString())) {
+            } else if (character != CHAR_NEW_LINE) {
+                if (formattedText.toString().endsWith(CHAR_NEW_LINE.toString())) {
                     formattedText.append(getIndent(nestingLevel));
                 }
 
