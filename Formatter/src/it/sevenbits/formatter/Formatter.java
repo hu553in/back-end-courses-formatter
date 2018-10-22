@@ -6,7 +6,7 @@ public class Formatter {
             return "";
         }
 
-        String singleIndent = "    ";
+        final String singleIndent = "    ";
         StringBuilder resultIndent = new StringBuilder();
 
         for (short iterator = 0; iterator < nestingLevel; iterator++) {
@@ -28,7 +28,7 @@ public class Formatter {
                         CHAR_NEW_LINE = '\n';
 
         while (textIterator < text.length()) {
-            Character character = text.charAt(textIterator);
+            final Character character = text.charAt(textIterator);
 
             if (character == CHAR_OPENING_CURLY_BRACE) {
                 nestingLevel++;
