@@ -21,7 +21,7 @@ public class FormatterTest {
     }
 
     @Test
-    public void shouldFormatCorrectly1() throws IOException {
+    public void shouldFormatCorrectlyAtFirst() throws IOException {
         String testString = "try{\n                formatter.format(stringReader, stringWriter);\n" +
                             "                }                       catch (IOException e) {\n" +
                             "                System.err.println(\"An instance             of IOException was " +
@@ -47,7 +47,7 @@ public class FormatterTest {
     }
 
     @Test
-    public void shouldFormatCorrectly2() throws IOException {
+    public void shouldFormatCorrectlyAtSecond() throws IOException {
         String testString = "{{{{}}}}";
 
         stringReader = new StringReader(testString);
@@ -71,7 +71,7 @@ public class FormatterTest {
     }
 
     @Test
-    public void shouldNotChangeAnything1() throws IOException {
+    public void shouldNotChangeAnythingAtFirst() throws IOException {
         String testString = "try {\n" +
                             "    formatter.format(stringReader, stringWriter);\n" +
                             "}\n" +
@@ -93,7 +93,7 @@ public class FormatterTest {
     }
 
     @Test
-    public void shouldNotChangeAnything2() throws IOException {
+    public void shouldNotChangeAnythingAtSecond() throws IOException {
         String testString = "{\n{\n{\n{\n            }\n        }\n    }\n}";
 
         stringReader = new StringReader(testString);
@@ -109,7 +109,7 @@ public class FormatterTest {
     }
 
     @Test
-    public void shouldNotChangeAnything3() throws IOException {
+    public void shouldNotChangeAnythingAtThird() throws IOException {
         String testString = "public interface IWriter {\n" +
                             "    void write(int character) throws IOException;\n" +
                             "    void write(String string) throws IOException;\n" +
@@ -128,7 +128,7 @@ public class FormatterTest {
     }
 
     @Test
-    public void shouldNotChangeAnything4() throws IOException {
+    public void shouldNotChangeAnythingAtFourth() throws IOException {
         String testString = "while (true) {\n" +
                             "    while (!false) {\n" +
                             "        int oldValue = result.get(j + i);\n" +
