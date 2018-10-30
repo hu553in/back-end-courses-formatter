@@ -4,6 +4,10 @@ import it.sevenbits.formatter.io.IReader;
 import it.sevenbits.formatter.io.IWriter;
 import java.io.IOException;
 
+/**
+ * A class that formats Java source code. Reading and writing are performed
+ * using the it.sevenbits.formatter.io.IReader and it.sevenbits.formatter.io.IWriter interfaces.
+ */
 public class Formatter {
     private static final char CHAR_SEMICOLON = ';',
                               CHAR_WHITESPACE = ' ',
@@ -15,6 +19,13 @@ public class Formatter {
 
     private static final String SINGLE_INDENT = "    ";
 
+    /**
+     * Private method that return instance of String that contains required indent according to nesting level.
+     *
+     * @param nestingLevel Level of nesting in source code.
+     *
+     * @return Instance of String that contains (4 * nesting level) spaces.
+     */
     private String getIndent(final short nestingLevel) {
         if (nestingLevel == 0) {
             return "";
@@ -29,6 +40,15 @@ public class Formatter {
         return resultIndent.toString();
     }
 
+    /**
+     * Method that performs formatting of Java source code.
+     *
+     * @param reader Instance of IReader interface by which the data is read.
+     * @param writer Instance of IWriter interface by which the data is written.
+     *
+     * @throws IOException Input/output exception that can be thrown by methods of instances of
+     *         IReader and IWriter interfaces.
+     */
     public void format(final IReader reader, final IWriter writer) throws IOException {
         short nestingLevel = 0;
         boolean shouldRead = true;
