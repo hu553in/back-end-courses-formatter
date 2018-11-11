@@ -64,15 +64,15 @@ public class Formatter {
             }
 
             if (lastReadChar == CHAR_OPENING_CURLY_BRACE) {
-                nestingLevel++;
-
-                if (lastWrittenChar != CHAR_WHITESPACE &&
-                    lastWrittenChar != CHAR_NEWLINE &&
-                    lastWrittenChar != CHAR_NULL) {
+                if (lastWrittenChar == CHAR_NEWLINE ||
+                        lastWrittenChar == CHAR_NULL) {
+                    writer.write(getIndent(nestingLevel));
+                } else if (lastWrittenChar != CHAR_WHITESPACE) {
                     writer.write(CHAR_WHITESPACE);
                 }
 
                 writer.write(lastReadChar);
+                nestingLevel++;
 
                 if (reader.hasNext()) {
                     lastWrittenChar = CHAR_NEWLINE;

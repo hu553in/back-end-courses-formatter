@@ -59,14 +59,7 @@ public class FormatterTest {
         stringWriter = null;
         stringReader = null;
 
-        Assert.assertEquals("{\n" +
-                            "{\n" +
-                            "{\n" +
-                            "{\n" +
-                            "            }\n" +
-                            "        }\n" +
-                            "    }\n" +
-                            "}",
+        Assert.assertEquals("{\n    {\n        {\n            {\n            }\n        }\n    }\n}",
                             stringBuilder.toString());
     }
 
@@ -94,7 +87,7 @@ public class FormatterTest {
 
     @Test
     public void shouldNotChangeAnythingAtSecond() throws IOException {
-        String testString = "{\n{\n{\n{\n            }\n        }\n    }\n}";
+        String testString = "{\n    {\n        {\n            {\n            }\n        }\n    }\n}";
 
         stringReader = new StringReader(testString);
         StringBuilder stringBuilder = new StringBuilder();
