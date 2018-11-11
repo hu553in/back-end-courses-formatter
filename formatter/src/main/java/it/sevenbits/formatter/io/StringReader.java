@@ -26,7 +26,7 @@ public class StringReader implements IReader {
      */
     @Override
     public boolean hasNext() {
-        return currentIndex <= string.length() - 1;
+        return currentIndex < string.length();
     }
 
     /**
