@@ -9,18 +9,16 @@ public class StringWriter implements IWriter {
     private StringBuilder stringBuilder;
 
     /**
-     * Class constructor that initializes private StringBuilder field with an external instance of StringBuilder.
-     *
-     * @param stringBuilder External instance of StringBuilder that serves as the destination of writing.
+     * Class constructor that initializes private StringBuilder field with a new instance of StringBuilder.
      */
-    public StringWriter(final StringBuilder stringBuilder) {
-        this.stringBuilder = stringBuilder;
+    public StringWriter() {
+        this.stringBuilder = new StringBuilder();
     }
 
     /**
      * Overload of method that writes a single character represented by Unicode code to StringBuilder instance.
      *
-     * @param character Unicode character code to be written to StringBuilder instance.
+     * @param character Unicode character code to be written to private StringBuilder instance.
      *
      * @throws IOException Input/output exception that may be thrown during the method work.
      */
@@ -30,7 +28,7 @@ public class StringWriter implements IWriter {
     }
 
     /**
-     * Overload of method that writes String instance to StringBuilder instance.
+     * Overload of method that writes String instance to private StringBuilder instance.
      *
      * @param string String to be written to destination.
      *
@@ -39,5 +37,17 @@ public class StringWriter implements IWriter {
     @Override
     public void write(final String string) throws IOException {
         stringBuilder.append(string);
+    }
+
+    /**
+     * Method that returns a result of class work and resets private StringBuilder instance.
+     *
+     * @return String that represents a result of class work.
+     */
+    @Override
+    public String toString() {
+        String result = stringBuilder.toString();
+        stringBuilder = new StringBuilder();
+        return result;
     }
 }
