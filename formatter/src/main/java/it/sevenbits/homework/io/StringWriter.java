@@ -1,7 +1,5 @@
 package it.sevenbits.homework.io;
 
-import java.io.IOException;
-
 /**
  * String implementation of IWriter interface that performs writing to external StringBuilder instance.
  */
@@ -20,10 +18,10 @@ public class StringWriter implements IWriter {
      *
      * @param character Unicode character code to be written to private StringBuilder instance.
      *
-     * @throws IOException Input/output exception that may be thrown during the method work.
+     * @throws WriterException Exception that may be thrown during the method work.
      */
     @Override
-    public void write(final int character) throws IOException {
+    public void write(final int character) throws WriterException {
         stringBuilder.append((char) character);
     }
 
@@ -32,10 +30,10 @@ public class StringWriter implements IWriter {
      *
      * @param string String to be written to destination.
      *
-     * @throws IOException Input/output exception that may be thrown during the method work.
+     * @throws WriterException Exception that may be thrown during the method work.
      */
     @Override
-    public void write(final String string) throws IOException {
+    public void write(final String string) throws WriterException {
         stringBuilder.append(string);
     }
 

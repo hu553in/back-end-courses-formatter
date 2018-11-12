@@ -1,7 +1,5 @@
 package it.sevenbits.homework.io;
 
-import java.io.EOFException;
-
 /**
  * String implementation of IReader interface that performs reading from String instance.
  */
@@ -34,13 +32,13 @@ public class StringReader implements IReader {
      *
      * @return Unicode code of read character.
      *
-     * @throws EOFException End-of-file exception that can be thrown if a read attempt is made
+     * @throws ReaderException Exception that can be thrown if a read attempt is made
      *         despite the lack of data available for reading.
      */
     @Override
-    public int read() throws EOFException {
+    public int read() throws ReaderException {
         if (!hasNext()) {
-            throw new EOFException("There are no more characters to read in the input line.");
+            throw new ReaderException("There are no more characters to read in the input line.");
         }
 
         char result = string.charAt(currentIndex);

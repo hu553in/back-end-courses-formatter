@@ -1,7 +1,5 @@
 package it.sevenbits.homework.io;
 
-import java.io.IOException;
-
 /**
  * Interface that describes a functionality for writing data to an abstract destination.
  */
@@ -11,16 +9,16 @@ public interface IWriter {
      *
      * @param character Unicode character code to be written to destination.
      *
-     * @throws IOException Input/output exception that may be thrown during the method work.
+     * @throws WriterException Exception that may be thrown during the method work.
      */
-    void write(int character) throws IOException;
+    void write(int character) throws WriterException;
 
     /**
      * Overload of method that writes String instance to a destination.
      *
      * @param string String to be written to destination.
      *
-     * @throws IOException Input/output exception that may be thrown during the method work.
+     * @throws WriterException Exception that may be thrown during the method work.
      */
-    void write(String string) throws IOException;
+    void write(String string) throws WriterException;
 }

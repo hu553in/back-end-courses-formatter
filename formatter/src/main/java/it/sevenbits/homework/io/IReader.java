@@ -1,7 +1,5 @@
 package it.sevenbits.homework.io;
 
-import java.io.IOException;
-
 /**
  * Interface that describes a functionality for reading data from an abstract data source.
  */
@@ -18,7 +16,7 @@ public interface IReader {
      *
      * @return Unicode code of read character.
      *
-     * @throws IOException Input/output exception that may be thrown during the method work.
+     * @throws ReaderException Exception that may be thrown during the method work.
      */
-    int read() throws IOException;
+    int read() throws ReaderException;
 }
