@@ -2,7 +2,8 @@ package it.sevenbits.homework.formatter;
 
 import it.sevenbits.homework.io.IReader;
 import it.sevenbits.homework.io.IWriter;
-import java.io.IOException;
+import it.sevenbits.homework.io.ReaderException;
+import it.sevenbits.homework.io.WriterException;
 
 /**
  * A class that formats Java source code. Reading and writing are performed
@@ -46,10 +47,10 @@ public class Formatter {
      * @param reader Instance of IReader interface by which the data is read.
      * @param writer Instance of IWriter interface by which the data is written.
      *
-     * @throws IOException Input/output exception that can be thrown by methods of instances of
-     *         IReader and IWriter interfaces.
+     * @throws ReaderException Exception that can be thrown by methods of instances of IReader interfaces.
+     * @throws WriterException Exception that can be thrown by methods of instances of IWriter interfaces.
      */
-    public void format(final IReader reader, final IWriter writer) throws IOException {
+    public void format(final IReader reader, final IWriter writer) throws ReaderException, WriterException {
         short nestingLevel = 0;
         boolean shouldRead = true;
 
