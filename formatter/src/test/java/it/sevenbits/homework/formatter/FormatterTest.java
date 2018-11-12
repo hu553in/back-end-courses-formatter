@@ -1,11 +1,11 @@
 package it.sevenbits.homework.formatter;
 
-import it.sevenbits.homework.io.IReader;
-import it.sevenbits.homework.io.IWriter;
-import it.sevenbits.homework.io.StringReader;
-import it.sevenbits.homework.io.StringWriter;
-import it.sevenbits.homework.io.ReaderException;
-import it.sevenbits.homework.io.WriterException;
+import it.sevenbits.homework.io.reader.IReader;
+import it.sevenbits.homework.io.writer.IWriter;
+import it.sevenbits.homework.io.reader.StringReader;
+import it.sevenbits.homework.io.writer.StringWriter;
+import it.sevenbits.homework.io.reader.ReaderException;
+import it.sevenbits.homework.io.writer.WriterException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;

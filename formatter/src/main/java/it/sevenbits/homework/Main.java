@@ -1,10 +1,10 @@
 package it.sevenbits.homework;
 
 import it.sevenbits.homework.formatter.Formatter;
-import it.sevenbits.homework.io.IReader;
-import it.sevenbits.homework.io.IWriter;
-import it.sevenbits.homework.io.StringReader;
-import it.sevenbits.homework.io.StringWriter;
+import it.sevenbits.homework.io.reader.IReader;
+import it.sevenbits.homework.io.writer.IWriter;
+import it.sevenbits.homework.io.reader.StringReader;
+import it.sevenbits.homework.io.writer.StringWriter;
 import java.io.IOException;
 
 /**

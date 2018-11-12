@@ -1,4 +1,4 @@
-package it.sevenbits.homework.io;
+package it.sevenbits.homework.io.writer;
 
 /**
  * Interface that describes a functionality for writing data to an abstract destination.

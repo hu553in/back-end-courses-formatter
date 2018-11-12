@@ -1,4 +1,4 @@
-package it.sevenbits.homework.io;
+package it.sevenbits.homework.io.reader;
 
 /**
  * Interface that describes a functionality for reading data from an abstract data source.

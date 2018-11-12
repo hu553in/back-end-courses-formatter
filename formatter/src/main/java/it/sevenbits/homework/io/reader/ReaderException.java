@@ -1,4 +1,4 @@
-package it.sevenbits.homework.io;
+package it.sevenbits.homework.io.reader;
 
 import java.io.IOException;
 

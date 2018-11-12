@@ -1,4 +1,4 @@
-package it.sevenbits.homework.io;
+package it.sevenbits.homework.io.reader;
 
 /**
  * String implementation of IReader interface that performs reading from String instance.
