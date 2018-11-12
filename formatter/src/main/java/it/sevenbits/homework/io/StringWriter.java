@@ -38,14 +38,12 @@ public class StringWriter implements IWriter {
     }
 
     /**
-     * Method that returns a result of class work and resets private StringBuilder instance.
+     * Method that returns a result of class work.
      *
      * @return String that represents a result of class work.
      */
     @Override
     public String toString() {
-        String result = stringBuilder.toString();
-        stringBuilder = new StringBuilder();
-        return result;
+        return stringBuilder.toString();
     }
 }
