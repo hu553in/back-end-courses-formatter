@@ -53,7 +53,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>it.sevenbits.formatter.Main</mainClass>
+                            <mainClass>it.sevenbits.homework.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

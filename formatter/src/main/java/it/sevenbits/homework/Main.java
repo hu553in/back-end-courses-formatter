@@ -1,9 +1,10 @@
-package it.sevenbits.formatter;
+package it.sevenbits.homework;
 
-import it.sevenbits.formatter.io.IReader;
-import it.sevenbits.formatter.io.IWriter;
-import it.sevenbits.formatter.io.StringReader;
-import it.sevenbits.formatter.io.StringWriter;
+import it.sevenbits.homework.formatter.Formatter;
+import it.sevenbits.homework.io.IReader;
+import it.sevenbits.homework.io.IWriter;
+import it.sevenbits.homework.io.StringReader;
+import it.sevenbits.homework.io.StringWriter;
 import java.io.IOException;
 
 /**
@@ -18,10 +19,7 @@ public final class Main {
     public static void main(final String[] args) {
         IReader stringReader = new StringReader("class HelloWorld{public static void main(String[] " +
                                                 "args){System.out.println(\"Hello World!\");}}");
-
-        StringBuilder resultStringBuilder = new StringBuilder();
-        IWriter stringWriter = new StringWriter(resultStringBuilder);
-
+        IWriter stringWriter = new StringWriter();
         Formatter formatter = new Formatter();
 
         try {
@@ -31,7 +29,7 @@ public final class Main {
             return;
         }
 
-        System.out.println(resultStringBuilder.toString());
+        System.out.println(stringWriter.toString());
     }
 
     /**

@@ -1,4 +1,4 @@
-package it.sevenbits.formatter.io;
+package it.sevenbits.homework.io;
 
 import java.io.EOFException;
 
@@ -40,7 +40,7 @@ public class StringReader implements IReader {
     @Override
     public int read() throws EOFException {
         if (!hasNext()) {
-            throw new EOFException("Reached the end of string.");
+            throw new EOFException("There are no more characters to read in the input line.");
         }
 
         char result = string.charAt(currentIndex);

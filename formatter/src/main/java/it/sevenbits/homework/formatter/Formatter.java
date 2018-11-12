@@ -1,12 +1,12 @@
-package it.sevenbits.formatter;
+package it.sevenbits.homework.formatter;
 
-import it.sevenbits.formatter.io.IReader;
-import it.sevenbits.formatter.io.IWriter;
+import it.sevenbits.homework.io.IReader;
+import it.sevenbits.homework.io.IWriter;
 import java.io.IOException;
 
 /**
  * A class that formats Java source code. Reading and writing are performed
- * using the it.sevenbits.formatter.io.IReader and it.sevenbits.formatter.io.IWriter interfaces.
+ * using the it.sevenbits.homework.io.IReader and it.sevenbits.homework.io.IWriter interfaces.
  */
 public class Formatter {
     private static final char CHAR_SEMICOLON = ';',

@@ -1,9 +1,9 @@
-package it.sevenbits.formatter;
+package it.sevenbits.homework.formatter;
 
-import it.sevenbits.formatter.io.IReader;
-import it.sevenbits.formatter.io.IWriter;
-import it.sevenbits.formatter.io.StringReader;
-import it.sevenbits.formatter.io.StringWriter;
+import it.sevenbits.homework.io.IReader;
+import it.sevenbits.homework.io.IWriter;
+import it.sevenbits.homework.io.StringReader;
+import it.sevenbits.homework.io.StringWriter;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;
@@ -28,13 +28,9 @@ public class FormatterTest {
                             "thrown.\");\n                return;\n\n\n\n\n                }";
 
         stringReader = new StringReader(testString);
-        StringBuilder stringBuilder = new StringBuilder();
-        stringWriter = new StringWriter(stringBuilder);
+        stringWriter = new StringWriter();
 
         formatter.format(stringReader, stringWriter);
-
-        stringWriter = null;
-        stringReader = null;
 
         Assert.assertEquals("try {\n" +
                             "    formatter.format(stringReader, stringWriter);\n" +
@@ -43,7 +39,10 @@ public class FormatterTest {
                             "    System.err.println(\"An instance of IOException was thrown.\");\n" +
                             "    return;\n" +
                             "}",
-                            stringBuilder.toString());
+                            stringWriter.toString());
+
+        stringWriter = null;
+        stringReader = null;
     }
 
     @Test
@@ -51,16 +50,15 @@ public class FormatterTest {
         String testString = "{{{{}}}}";
 
         stringReader = new StringReader(testString);
-        StringBuilder stringBuilder = new StringBuilder();
-        stringWriter = new StringWriter(stringBuilder);
+        stringWriter = new StringWriter();
 
         formatter.format(stringReader, stringWriter);
 
+        Assert.assertEquals("{\n    {\n        {\n            {\n            }\n        }\n    }\n}",
+                            stringWriter.toString());
+
         stringWriter = null;
         stringReader = null;
-
-        Assert.assertEquals("{\n    {\n        {\n            {\n            }\n        }\n    }\n}",
-                            stringBuilder.toString());
     }
 
     @Test
@@ -74,15 +72,14 @@ public class FormatterTest {
                             "}";
 
         stringReader = new StringReader(testString);
-        StringBuilder stringBuilder = new StringBuilder();
-        stringWriter = new StringWriter(stringBuilder);
+        stringWriter = new StringWriter();
 
         formatter.format(stringReader, stringWriter);
 
+        Assert.assertEquals(testString, stringWriter.toString());
+
         stringWriter = null;
         stringReader = null;
-
-        Assert.assertEquals(testString, stringBuilder.toString());
     }
 
     @Test
@@ -90,15 +87,14 @@ public class FormatterTest {
         String testString = "{\n    {\n        {\n            {\n            }\n        }\n    }\n}";
 
         stringReader = new StringReader(testString);
-        StringBuilder stringBuilder = new StringBuilder();
-        stringWriter = new StringWriter(stringBuilder);
+        stringWriter = new StringWriter();
 
         formatter.format(stringReader, stringWriter);
 
+        Assert.assertEquals(testString, stringWriter.toString());
+
         stringWriter = null;
         stringReader = null;
-
-        Assert.assertEquals(testString, stringBuilder.toString());
     }
 
     @Test
@@ -109,15 +105,14 @@ public class FormatterTest {
                             "}";
 
         stringReader = new StringReader(testString);
-        StringBuilder stringBuilder = new StringBuilder();
-        stringWriter = new StringWriter(stringBuilder);
+        stringWriter = new StringWriter();
 
         formatter.format(stringReader, stringWriter);
 
+        Assert.assertEquals(testString, stringWriter.toString());
+
         stringWriter = null;
         stringReader = null;
-
-        Assert.assertEquals(testString, stringBuilder.toString());
     }
 
     @Test
@@ -131,14 +126,13 @@ public class FormatterTest {
                             "}";
 
         stringReader = new StringReader(testString);
-        StringBuilder stringBuilder = new StringBuilder();
-        stringWriter = new StringWriter(stringBuilder);
+        stringWriter = new StringWriter();
 
         formatter.format(stringReader, stringWriter);
 
+        Assert.assertEquals(testString, stringWriter.toString());
+
         stringWriter = null;
         stringReader = null;
-
-        Assert.assertEquals(testString, stringBuilder.toString());
     }
 }
