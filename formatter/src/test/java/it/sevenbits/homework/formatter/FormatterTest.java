@@ -4,11 +4,11 @@ import it.sevenbits.homework.io.IReader;
 import it.sevenbits.homework.io.IWriter;
 import it.sevenbits.homework.io.StringReader;
 import it.sevenbits.homework.io.StringWriter;
+import it.sevenbits.homework.io.ReaderException;
+import it.sevenbits.homework.io.WriterException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;
-
-import java.io.IOException;
 
 public class FormatterTest {
     private Formatter formatter;
@@ -21,7 +21,7 @@ public class FormatterTest {
     }
 
     @Test
-    public void shouldFormatCorrectlyAtFirst() throws IOException {
+    public void shouldFormatCorrectlyAtFirst() throws ReaderException, WriterException {
         String testString = "try{\n                formatter.format(stringReader, stringWriter);\n" +
                             "                }                       catch (IOException e) {\n" +
                             "                System.err.println(\"An instance             of IOException was " +
@@ -46,7 +46,7 @@ public class FormatterTest {
     }
 
     @Test
-    public void shouldFormatCorrectlyAtSecond() throws IOException {
+    public void shouldFormatCorrectlyAtSecond() throws ReaderException, WriterException {
         String testString = "{{{{}}}}";
 
         stringReader = new StringReader(testString);
@@ -62,7 +62,7 @@ public class FormatterTest {
     }
 
     @Test
-    public void shouldNotChangeAnythingAtFirst() throws IOException {
+    public void shouldNotChangeAnythingAtFirst() throws ReaderException, WriterException {
         String testString = "try {\n" +
                             "    formatter.format(stringReader, stringWriter);\n" +
                             "}\n" +
@@ -83,7 +83,7 @@ public class FormatterTest {
     }
 
     @Test
-    public void shouldNotChangeAnythingAtSecond() throws IOException {
+    public void shouldNotChangeAnythingAtSecond() throws ReaderException, WriterException {
         String testString = "{\n    {\n        {\n            {\n            }\n        }\n    }\n}";
 
         stringReader = new StringReader(testString);
@@ -98,7 +98,7 @@ public class FormatterTest {
     }
 
     @Test
-    public void shouldNotChangeAnythingAtThird() throws IOException {
+    public void shouldNotChangeAnythingAtThird() throws ReaderException, WriterException {
         String testString = "public interface IWriter {\n" +
                             "    void write(int character) throws IOException;\n" +
                             "    void write(String string) throws IOException;\n" +
@@ -116,7 +116,7 @@ public class FormatterTest {
     }
 
     @Test
-    public void shouldNotChangeAnythingAtFourth() throws IOException {
+    public void shouldNotChangeAnythingAtFourth() throws ReaderException, WriterException {
         String testString = "while (true) {\n" +
                             "    while (!false) {\n" +
                             "        int oldValue = result.get(j + i);\n" +

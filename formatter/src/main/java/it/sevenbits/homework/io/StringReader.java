@@ -32,13 +32,12 @@ public class StringReader implements IReader {
      *
      * @return Unicode code of read character.
      *
-     * @throws ReaderException Exception that can be thrown if a read attempt is made
-     *         despite the lack of data available for reading.
+     * @throws ReaderException Exception that can be thrown during the method work.
      */
     @Override
     public int read() throws ReaderException {
         if (!hasNext()) {
-            throw new ReaderException("There are no more characters to read in the input line.");
+            return -1;
         }
 
         char result = string.charAt(currentIndex);
