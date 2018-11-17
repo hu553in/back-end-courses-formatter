@@ -7,9 +7,9 @@ import it.sevenbits.homework.io.writer.WriterException;
 
 /**
  * A class that formats Java source code. Reading and writing are performed
- * using the it.sevenbits.homework.io.reader.IReader and it.sevenbits.homework.io.writer.IWriter interfaces.
+ * using it.sevenbits.homework.io.reader.IReader and it.sevenbits.homework.io.writer.IWriter interfaces.
  */
-public class Formatter {
+public class Formatter implements IFormatter {
     private static final char CHAR_SEMICOLON = ';',
                               CHAR_WHITESPACE = ' ',
                               CHAR_OPENING_CURLY_BRACE = '{',
@@ -44,22 +44,23 @@ public class Formatter {
     /**
      * Method that performs formatting of Java source code.
      *
-     * @param reader Instance of IReader interface by which the data is read.
-     * @param writer Instance of IWriter interface by which the data is written.
+     * @param in Instance of IReader interface by which the data is read.
+     * @param out Instance of IWriter interface by which the data is written.
      *
      * @throws ReaderException Exception that can be thrown by methods of instances of IReader interfaces.
      * @throws WriterException Exception that can be thrown by methods of instances of IWriter interfaces.
      */
-    public void format(final IReader reader, final IWriter writer) throws ReaderException, WriterException {
+    @Override
+    public void format(final IReader in, final IWriter out) throws ReaderException, WriterException {
         short nestingLevel = 0;
         boolean shouldRead = true;
 
         char lastWrittenChar = CHAR_NULL,
              lastReadChar = CHAR_NULL;
 
-        while (reader.hasNext() || !shouldRead) {
+        while (in.hasNext() || !shouldRead) {
             if (shouldRead) {
-                lastReadChar = (char) reader.read();
+                lastReadChar = (char) in.read();
             } else {
                 shouldRead = true;
             }
@@ -67,47 +68,47 @@ public class Formatter {
             if (lastReadChar == CHAR_OPENING_CURLY_BRACE) {
                 if (lastWrittenChar == CHAR_NEWLINE ||
                         lastWrittenChar == CHAR_NULL) {
-                    writer.write(getIndent(nestingLevel));
+                    out.write(getIndent(nestingLevel));
                 } else if (lastWrittenChar != CHAR_WHITESPACE) {
-                    writer.write(CHAR_WHITESPACE);
+                    out.write(CHAR_WHITESPACE);
                 }
 
-                writer.write(lastReadChar);
+                out.write(lastReadChar);
                 nestingLevel++;
 
-                if (reader.hasNext()) {
+                if (in.hasNext()) {
                     lastWrittenChar = CHAR_NEWLINE;
-                    writer.write(lastWrittenChar);
+                    out.write(lastWrittenChar);
                 }
             } else if (lastReadChar == CHAR_CLOSING_CURLY_BRACE) {
                 nestingLevel--;
 
                 if (lastWrittenChar != CHAR_NEWLINE && lastWrittenChar != CHAR_NULL) {
-                    writer.write(CHAR_NEWLINE);
+                    out.write(CHAR_NEWLINE);
                 }
 
-                writer.write(getIndent(nestingLevel));
-                writer.write(lastReadChar);
+                out.write(getIndent(nestingLevel));
+                out.write(lastReadChar);
 
-                if (reader.hasNext()) {
+                if (in.hasNext()) {
                     lastWrittenChar = CHAR_NEWLINE;
-                    writer.write(lastWrittenChar);
+                    out.write(lastWrittenChar);
                 }
             } else if (lastReadChar == CHAR_SEMICOLON) {
-                writer.write(lastReadChar);
+                out.write(lastReadChar);
 
-                if (reader.hasNext()) {
+                if (in.hasNext()) {
                     lastWrittenChar = CHAR_NEWLINE;
-                    writer.write(lastWrittenChar);
+                    out.write(lastWrittenChar);
                 }
             } else if (lastReadChar == CHAR_WHITESPACE) {
-                if (lastWrittenChar != CHAR_NEWLINE && lastWrittenChar != CHAR_NULL && reader.hasNext()) {
-                    writer.write(lastReadChar);
+                if (lastWrittenChar != CHAR_NEWLINE && lastWrittenChar != CHAR_NULL && in.hasNext()) {
+                    out.write(lastReadChar);
                     lastWrittenChar = lastReadChar;
                 }
 
-                while (reader.hasNext()) {
-                    lastReadChar = (char) reader.read();
+                while (in.hasNext()) {
+                    lastReadChar = (char) in.read();
 
                     if (lastReadChar != CHAR_WHITESPACE) {
                         shouldRead = false;
@@ -116,10 +117,10 @@ public class Formatter {
                 }
             } else if (lastReadChar != CHAR_NEWLINE && lastReadChar != CHAR_TAB) {
                 if (lastWrittenChar == CHAR_NEWLINE) {
-                    writer.write(getIndent(nestingLevel));
+                    out.write(getIndent(nestingLevel));
                 }
 
-                writer.write(lastReadChar);
+                out.write(lastReadChar);
                 lastWrittenChar = lastReadChar;
             }
         }
