@@ -4,8 +4,6 @@ import it.sevenbits.homework.io.reader.IReader;
 import it.sevenbits.homework.io.writer.IWriter;
 import it.sevenbits.homework.io.reader.StringReader;
 import it.sevenbits.homework.io.writer.StringWriter;
-import it.sevenbits.homework.io.reader.ReaderException;
-import it.sevenbits.homework.io.writer.WriterException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;

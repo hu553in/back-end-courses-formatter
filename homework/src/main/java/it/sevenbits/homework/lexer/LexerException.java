@@ -7,13 +7,6 @@ import java.io.IOException;
  */
 public class LexerException extends IOException {
     /**
-     * LexerException class constructor without any arguments.
-     */
-    public LexerException() {
-        super();
-    }
-
-    /**
      * LexerException class constructor with specifying of an error message.
      *
      * @param message Text that will be contained in the thrown instance of exception.

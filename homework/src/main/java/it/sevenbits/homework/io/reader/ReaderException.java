@@ -7,13 +7,6 @@ import java.io.IOException;
  */
 public class ReaderException extends IOException {
     /**
-     * ReaderException class constructor without any arguments.
-     */
-    public ReaderException() {
-        super();
-    }
-
-    /**
      * ReaderException class constructor with specifying of an error message.
      *
      * @param message Text that will be contained in the thrown instance of exception.
