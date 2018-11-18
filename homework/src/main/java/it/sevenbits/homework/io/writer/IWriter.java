@@ -1,9 +1,11 @@
 package it.sevenbits.homework.io.writer;
 
+import java.io.Closeable;
+
 /**
  * Interface that describes a functionality for writing data to an abstract destination.
  */
-public interface IWriter {
+public interface IWriter extends Closeable {
     /**
      * Overload of method that writes a single character represented by Unicode code to an abstract destination.
      *

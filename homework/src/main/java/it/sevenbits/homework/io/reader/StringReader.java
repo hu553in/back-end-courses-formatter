@@ -28,7 +28,7 @@ public class StringReader implements IReader {
     }
 
     /**
-     * A method that reads a single character represented by Unicode code.
+     * Method that reads a single character represented by Unicode code.
      *
      * @return Unicode code of read character.
      *
@@ -43,5 +43,17 @@ public class StringReader implements IReader {
         char result = string.charAt(currentIndex);
         currentIndex++;
         return result;
+    }
+
+    /**
+     * Method that performs closing of StringReader.
+     * It's a simple implementation of Closeable interface.
+     *
+     * @throws ReaderException Exception that can be thrown during the method work.
+     */
+    @Override
+    public void close() throws ReaderException {
+        string = null;
+        currentIndex = 0;
     }
 }

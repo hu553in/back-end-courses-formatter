@@ -1,9 +1,11 @@
 package it.sevenbits.homework.io.reader;
 
+import java.io.Closeable;
+
 /**
  * Interface that describes a functionality for reading data from an abstract data source.
  */
-public interface IReader {
+public interface IReader extends Closeable {
     /**
      * Method that reports whether data is available for reading.
      *
