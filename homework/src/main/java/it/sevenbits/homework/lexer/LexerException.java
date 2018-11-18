@@ -1,26 +1,23 @@
 package it.sevenbits.homework.lexer;
 
-import java.io.IOException;
-
 /**
- * Exception which is used by ILexer interface and classes derived from it.
+ * This exception is used by ILexer interface and classes that implement it.
  */
-public class LexerException extends IOException {
+public class LexerException extends Exception {
     /**
-     * LexerException class constructor with specifying of an error message.
+     * Class constructor with specifying of an error message.
      *
-     * @param message Text that will be contained in the thrown instance of exception.
+     * @param message Message that will be contained in the thrown instance of exception.
      */
     public LexerException(final String message) {
         super(message);
     }
 
     /**
-     * LexerException class constructor with specifying of an error message and Throwable cause
-     * of LexerException throwing.
+     * Class constructor with specifying of an error message and Throwable cause of exception throwing.
      *
-     * @param message Text that will be contained in the thrown instance of exception.
-     * @param cause An instance of Throwable that caused the situation in which LexerException was thrown.
+     * @param message Message that will be contained in the thrown instance of exception.
+     * @param cause An instance of Throwable that caused the situation in which exception was thrown.
      */
     public LexerException(final String message, final Throwable cause) {
         super(message, cause);

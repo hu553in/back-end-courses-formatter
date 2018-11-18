@@ -1,8 +1,10 @@
 /**
  * This package contains various components of module that provides lexical analysis of Java source code.
  *
- * Lexical analysis is the process of converting a sequence of characters into a sequence of tokens (strings with an
- * assigned and thus identified meaning).
+ * Lexical analysis is the process of converting a sequence of characters into a sequence of
+ * {@link it.sevenbits.homework.lexer.token.IToken}.
+ *
+ * @see <a href="https://en.wikipedia.org/wiki/Lexical_analysis">Lexical analysis - Wikipedia</a>
  *
  * @author hu553in
  */

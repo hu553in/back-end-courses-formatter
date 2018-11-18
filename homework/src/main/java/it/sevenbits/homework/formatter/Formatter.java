@@ -6,8 +6,8 @@ import it.sevenbits.homework.io.reader.ReaderException;
 import it.sevenbits.homework.io.writer.WriterException;
 
 /**
- * A class that formats Java source code. Reading and writing are performed
- * using it.sevenbits.homework.io.reader.IReader and it.sevenbits.homework.io.writer.IWriter interfaces.
+ * Class that formats Java source code. Reading and writing are performed
+ * using {@link it.sevenbits.homework.io.reader.IReader} and {@link it.sevenbits.homework.io.writer.IWriter} interfaces.
  */
 public class Formatter implements IFormatter {
     private static final char CHAR_SEMICOLON = ';',
@@ -21,11 +21,11 @@ public class Formatter implements IFormatter {
     private static final String SINGLE_INDENT = "    ";
 
     /**
-     * Private method that return instance of String that contains required indent according to nesting level.
+     * Method that returns string which contains required indent in accordance with nesting level.
      *
      * @param nestingLevel Level of nesting in source code.
      *
-     * @return String that contains (4 * nestingLevel) spaces.
+     * @return String that contains (4 * nesting level) spaces.
      */
     private String getIndent(final short nestingLevel) {
         if (nestingLevel == 0) {
@@ -44,10 +44,10 @@ public class Formatter implements IFormatter {
     /**
      * Method that performs formatting of Java source code.
      *
-     * @param reader Instance of IReader interface by which the data is read.
-     * @param writer Instance of IWriter interface by which the data is written.
+     * @param reader Instance of {@link it.sevenbits.homework.io.reader.IReader} interface by which the data is read.
+     * @param writer Instance of {@link it.sevenbits.homework.io.writer.IWriter} interface by which the data is written.
      *
-     * @throws FormatterException Exception that may be thrown during the method work.
+     * @throws FormatterException Exception that can be thrown during the method work.
      */
     @Override
     public void format(final IReader reader, final IWriter writer) throws FormatterException {
@@ -124,9 +124,9 @@ public class Formatter implements IFormatter {
                     lastWrittenChar = lastReadChar;
                 }
             } catch (ReaderException e) {
-                throw new FormatterException("Can't read from IReader instance!", e);
+                throw new FormatterException("Can't read from IReader instance: " + e.getMessage(), e);
             } catch (WriterException e) {
-                throw new FormatterException("Can't write to IWriter instance!", e);
+                throw new FormatterException("Can't write to IWriter instance: " + e.getMessage(), e);
             }
         }
     }

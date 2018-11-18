@@ -1,6 +1,6 @@
 /**
- * This package contains interfaces and their implementations
- * created to organize output processes in the application.
+ * This package contains interfaces and their implementations that are designed
+ * to organize output processes in the application.
  *
  * @author hu553in
  */

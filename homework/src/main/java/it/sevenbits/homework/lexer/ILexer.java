@@ -3,7 +3,7 @@ package it.sevenbits.homework.lexer;
 import it.sevenbits.homework.lexer.token.IToken;
 
 /**
- * Interface that describes a functionality for providing lexical analysis of some data.
+ * Interface that declares a functionality for providing lexical analysis of some data.
  */
 public interface ILexer {
     /**

@@ -3,24 +3,32 @@ package it.sevenbits.homework.io.writer;
 import java.io.Closeable;
 
 /**
- * Interface that describes a functionality for writing data to an abstract destination.
+ * Interface that declares a functionality for output character stream.
  */
 public interface IWriter extends Closeable {
     /**
-     * Overload of method that writes a single character represented by Unicode code to an abstract destination.
+     * Overload of method that writes to stream a single character represented by Unicode code.
      *
-     * @param character Unicode character code to be written to destination.
+     * @param character Unicode character code to be written.
      *
      * @throws WriterException Exception that may be thrown during the method work.
      */
     void write(int character) throws WriterException;
 
     /**
-     * Overload of method that writes String instance to a destination.
+     * Overload of method that writes to stream a String instance.
      *
-     * @param string String to be written to destination.
+     * @param string String to be written.
      *
      * @throws WriterException Exception that may be thrown during the method work.
      */
     void write(String string) throws WriterException;
+
+    /**
+     * Method that performs closing of stream.
+     *
+     * @throws WriterException Exception that may be thrown during the method work.
+     */
+    @Override
+    void close() throws WriterException;
 }

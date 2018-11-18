@@ -1,24 +1,23 @@
 package it.sevenbits.homework.formatter;
 
 /**
- * Exception which is used by IFormatter interface and classes derived from it.
+ * This exception is used by {@link it.sevenbits.homework.formatter.IFormatter} interface and classes that implement it.
  */
 public class FormatterException extends Exception {
     /**
-     * FormatterException class constructor with specifying of an error message.
+     * Class constructor with specifying of an error message.
      *
-     * @param message Text that will be contained in the thrown instance of exception.
+     * @param message Message that will be contained in the thrown instance of exception.
      */
     public FormatterException(final String message) {
         super(message);
     }
 
     /**
-     * FormatterException class constructor with specifying of an error message and Throwable cause
-     * of FormatterException throwing.
+     * Class constructor with specifying of an error message and Throwable cause of exception throwing.
      *
-     * @param message Text that will be contained in the thrown instance of exception.
-     * @param cause An instance of Throwable that caused the situation in which FormatterException was thrown.
+     * @param message Message that will be contained in the thrown instance of exception.
+     * @param cause An instance of Throwable that caused the situation in which exception was thrown.
      */
     public FormatterException(final String message, final Throwable cause) {
         super(message, cause);

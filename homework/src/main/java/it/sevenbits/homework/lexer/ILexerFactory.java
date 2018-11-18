@@ -3,7 +3,7 @@ package it.sevenbits.homework.lexer;
 import it.sevenbits.homework.io.reader.IReader;
 
 /**
- * Interface that describes a functionality for creating of ILexer instances using "Factory method" pattern.
+ * Interface that declares a functionality for creating of ILexer instances using "Factory method" pattern.
  */
 public interface ILexerFactory {
     /**
