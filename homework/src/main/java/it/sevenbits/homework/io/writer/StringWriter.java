@@ -1,21 +1,21 @@
 package it.sevenbits.homework.io.writer;
 
 /**
- * Implementation of {@link it.sevenbits.homework.io.writer.IWriter} interface that performs writing
- * to internal {@link StringWriter#buffer} represented by {@link java.lang.StringBuffer} instance.
+ * Implementation of {@link IWriter} interface that performs writing to internal {@link #buffer}
+ * represented by {@link StringBuffer} instance.
  */
 public class StringWriter implements IWriter {
     private StringBuffer buffer;
 
     /**
-     * Class constructor that initializes buffer with a new {@link java.lang.StringBuffer} instance.
+     * Class constructor that initializes buffer with a new {@link StringBuffer} instance.
      */
     public StringWriter() {
         this.buffer = new StringBuffer();
     }
 
     /**
-     * Overload of method that writes a single character represented by Unicode code to {@link StringWriter#buffer}.
+     * Overload of method that writes a single character represented by Unicode code to {@link #buffer}.
      *
      * @param character Unicode character code to be written.
      *
@@ -31,9 +31,9 @@ public class StringWriter implements IWriter {
     }
 
     /**
-     * Overload of method that writes a {@link java.lang.String} instance to {@link StringWriter#buffer}.
+     * Overload of method that writes a {@link String} instance to {@link #buffer}.
      *
-     * @param string {@link java.lang.String} instance to be written.
+     * @param string {@link String} instance to be written.
      *
      * @throws WriterException Exception that may be thrown during the method work.
      */
@@ -47,7 +47,7 @@ public class StringWriter implements IWriter {
     }
 
     /**
-     * Overload of method that writes an array of characters to {@link StringWriter#buffer}.
+     * Overload of method that writes an array of characters to {@link #buffer}.
      *
      * @param charArray Array of characters to be written.
      *
@@ -64,9 +64,9 @@ public class StringWriter implements IWriter {
 
 
     /**
-     * Method that returns {@link java.lang.String} instance which contains all written data.
+     * Method that returns {@link String} instance which contains all written data.
      *
-     * @return {@link java.lang.String} instance which contains all written data.
+     * @return {@link String} instance which contains all written data.
      */
     @Override
     public String toString() {
@@ -78,12 +78,14 @@ public class StringWriter implements IWriter {
     }
 
     /**
-     * Method that performs closing of {@link StringWriter}.
+     * Method that performs {@link StringWriter} closing.
      *
      * @throws WriterException Exception that may be thrown during the method work.
      */
     @Override
     public void close() throws WriterException {
-        buffer = null;
+        if (buffer != null) {
+            buffer = null;
+        }
     }
 }

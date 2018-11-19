@@ -5,14 +5,14 @@ import it.sevenbits.homework.io.writer.IWriter;
 
 /**
  * An interface that declares functionality for Java source code formatting. Reading and writing are performed
- * using {@link it.sevenbits.homework.io.reader.IReader} and {@link it.sevenbits.homework.io.writer.IWriter} interfaces.
+ * using {@link IReader} and {@link IWriter} interfaces.
  */
 public interface IFormatter {
     /**
      * Method that performs formatting of Java source code.
      *
-     * @param reader Instance of {@link it.sevenbits.homework.io.reader.IReader} interface by which the data is read.
-     * @param writer Instance of {@link it.sevenbits.homework.io.writer.IWriter} interface by which the data is written.
+     * @param reader {@link IReader} instance that provides data reading.
+     * @param writer {@link IWriter} instance that provides data writing.
      *
      * @throws FormatterException Exception that can be thrown during the method work.
      */

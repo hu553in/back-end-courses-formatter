@@ -5,9 +5,14 @@ import it.sevenbits.homework.formatter.FormatterException;
 import it.sevenbits.homework.io.reader.FileReader;
 import it.sevenbits.homework.io.reader.IReader;
 import it.sevenbits.homework.io.reader.ReaderException;
+import it.sevenbits.homework.io.reader.StringReader;
 import it.sevenbits.homework.io.writer.FileWriter;
 import it.sevenbits.homework.io.writer.IWriter;
 import it.sevenbits.homework.io.writer.WriterException;
+import it.sevenbits.homework.lexer.ILexer;
+import it.sevenbits.homework.lexer.factory.ILexerFactory;
+import it.sevenbits.homework.lexer.factory.LexerFactory;
+import it.sevenbits.homework.lexer.factory.LexerFactoryException;
 
 /**
  * Main class of application.

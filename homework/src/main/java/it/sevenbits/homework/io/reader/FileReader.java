@@ -8,18 +8,17 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * Implementation of {@link it.sevenbits.homework.io.reader.IReader} interface
- * that performs reading from file that is encoded with UTF-8.
+ * Implementation of {@link IReader} interface that performs reading from file that is encoded with UTF-8.
  */
 public class FileReader implements IReader {
     private BufferedReader bufferedReader;
     private int charBuffer;
 
     /**
-     * Overload of constructor that initializes {@link FileReader#bufferedReader} using
-     * {@link java.nio.file.Path} instance and then calls {@link FileReader#prepareCharBuffer()} method.
+     * Overload of constructor that initializes {@link #bufferedReader} using {@link Path} instance
+     * and then calls {@link #prepareCharBuffer()} method.
      *
-     * @param filePath {@link java.nio.file.Path} instance that represents a path to input file.
+     * @param filePath {@link Path} instance that represents a path to input file.
      *
      * @throws ReaderException Exception that can be thrown during the method work.
      */
@@ -34,10 +33,10 @@ public class FileReader implements IReader {
     }
 
     /**
-     * Overload of constructor that initializes {@link FileReader#bufferedReader}
-     * using return value of {@link java.nio.file.Paths#get(String, String...)} method.
+     * Overload of constructor that initializes {@link #bufferedReader}
+     * using return value of {@link Paths#get(String, String...)} method.
      *
-     * @param filePath {@link java.lang.String} instance that represents a path to input file.
+     * @param filePath {@link String} instance that represents a path to input file.
      *
      * @throws ReaderException Exception that can be thrown during the method work.
      */
@@ -46,8 +45,7 @@ public class FileReader implements IReader {
     }
 
     /**
-     * Method that reads Unicode code of character from {@link FileReader#bufferedReader}
-     * and then puts it to {@link FileReader#charBuffer}.
+     * Method that reads Unicode code of character from {@link #bufferedReader} and then puts it to {@link #charBuffer}.
      *
      * @throws ReaderException Exception that can be thrown during the method work.
      */
@@ -74,8 +72,8 @@ public class FileReader implements IReader {
     }
 
     /**
-     * Method that remembers a single character represented by Unicode code from {@link FileReader#charBuffer},
-     * calls {@link FileReader#prepareCharBuffer()} method and then returns memorized character code.
+     * Method that remembers a single character represented by Unicode code from {@link #charBuffer},
+     * calls {@link #prepareCharBuffer()} method and then returns memorized character code.
      *
      * @return Unicode code of read character.
      *
@@ -97,12 +95,16 @@ public class FileReader implements IReader {
     }
 
     /**
-     * Method that performs closing of {@link FileReader}.
+     * Method that performs {@link FileReader} closing.
      *
      * @throws ReaderException Exception that can be thrown during the method work.
      */
     @Override
     public void close() throws ReaderException {
+        if (charBuffer != -1) {
+            charBuffer = -1;
+        }
+
         if (bufferedReader != null) {
             try {
                 bufferedReader.close();
@@ -110,7 +112,6 @@ public class FileReader implements IReader {
                 throw new ReaderException("Unable to close the stream.", e);
             } finally {
                 bufferedReader = null;
-                charBuffer = -1;
             }
         }
     }

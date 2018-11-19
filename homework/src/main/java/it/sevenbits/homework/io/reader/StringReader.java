@@ -1,18 +1,17 @@
 package it.sevenbits.homework.io.reader;
 
 /**
- * Implementation of {@link it.sevenbits.homework.io.reader.IReader} interface
- * that performs reading from {@link java.lang.String} instance.
+ * Implementation of {@link IReader} interface that performs reading from {@link String} instance.
  */
 public class StringReader implements IReader {
     private String sourceString;
     private int currentIndex;
 
     /**
-     * Class constructor that initializes private {@link java.lang.String} field with
-     * an external {@link java.lang.String} instance passed as argument.
+     * Class constructor that initializes {@link #sourceString}
+     * with an external {@link String} instance passed as argument.
      *
-     * @param sourceString {@link java.lang.String} instance that represents the data source for reading.
+     * @param sourceString {@link String} instance that represents the data source for reading.
      */
     public StringReader(final String sourceString) {
         this.sourceString = sourceString;
@@ -34,7 +33,7 @@ public class StringReader implements IReader {
     }
 
     /**
-     * Method that reads a single character represented by Unicode code from {@link java.lang.String} instance.
+     * Method that reads a single character represented by Unicode code from {@link #sourceString}.
      *
      * @return Unicode code of read character.
      *
@@ -56,13 +55,18 @@ public class StringReader implements IReader {
     }
 
     /**
-     * Method that performs closing of {@link StringReader}.
+     * Method that performs {@link StringReader} closing.
      *
      * @throws ReaderException Exception that can be thrown during the method work.
      */
     @Override
     public void close() throws ReaderException {
-        sourceString = null;
-        currentIndex = 0;
+        if (currentIndex != 0) {
+            currentIndex = 0;
+        }
+
+        if (sourceString != null) {
+            sourceString = null;
+        }
     }
 }

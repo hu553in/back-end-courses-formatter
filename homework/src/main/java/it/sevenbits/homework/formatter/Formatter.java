@@ -6,8 +6,7 @@ import it.sevenbits.homework.io.reader.ReaderException;
 import it.sevenbits.homework.io.writer.WriterException;
 
 /**
- * Class that formats Java source code. Reading and writing are performed using
- * {@link it.sevenbits.homework.io.reader.IReader} and {@link it.sevenbits.homework.io.writer.IWriter} interfaces.
+ * Class that formats Java source code. I/O is performed using {@link IReader} and {@link IWriter} instances.
  */
 public class Formatter implements IFormatter {
     private static final char CHAR_SEMICOLON = ';',
@@ -21,12 +20,12 @@ public class Formatter implements IFormatter {
     private static final String SINGLE_INDENT = "    ";
 
     /**
-     * Method that returns {@link java.lang.String} instance which contains
-     * required indent in accordance with nesting level.
+     * Method that returns {@link String} instance which contains required indent
+     * in accordance with current nesting level.
      *
      * @param nestingLevel Level of nesting in source code.
      *
-     * @return {@link java.lang.String} instance that contains (4 * nesting level) spaces.
+     * @return {@link String} instance that contains (4 * nesting level) spaces.
      */
     private String getIndent(final short nestingLevel) {
         if (nestingLevel == 0) {
@@ -45,8 +44,8 @@ public class Formatter implements IFormatter {
     /**
      * Method that performs formatting of Java source code.
      *
-     * @param reader Instance of {@link it.sevenbits.homework.io.reader.IReader} interface by which the data is read.
-     * @param writer Instance of {@link it.sevenbits.homework.io.writer.IWriter} interface by which the data is written.
+     * @param reader {@link IReader} instance that provides data reading.
+     * @param writer {@link IWriter} instance that provides data writing.
      *
      * @throws FormatterException Exception that can be thrown during the method work.
      */

@@ -16,9 +16,9 @@ public interface IWriter extends Closeable {
     void write(int character) throws WriterException;
 
     /**
-     * Overload of method that writes to stream a {@link java.lang.String} instance.
+     * Overload of method that writes to stream a {@link String} instance.
      *
-     * @param string {@link java.lang.String} instance to be written.
+     * @param string {@link String} instance to be written.
      *
      * @throws WriterException Exception that can be thrown during the method work.
      */
@@ -34,7 +34,7 @@ public interface IWriter extends Closeable {
     void write(char[] charArray) throws WriterException;
 
     /**
-     * Method that performs closing of {@link IWriter}.
+     * Method that performs {@link IWriter} closing.
      *
      * @throws WriterException Exception that can be thrown during the method work.
      */

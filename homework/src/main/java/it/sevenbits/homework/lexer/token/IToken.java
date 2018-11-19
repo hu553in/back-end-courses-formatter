@@ -7,14 +7,14 @@ public interface IToken {
     /**
      * Method that returns token name.
      *
-     * @return {@link java.lang.String} instance that represents name of token.
+     * @return {@link String} instance that represents name of token.
      */
     String getName();
 
     /**
      * Method that returns lexeme.
      *
-     * @return {@link java.lang.String} instance that represents lexeme.
+     * @return {@link String} instance that represents lexeme.
      */
     String getLexeme();
 }

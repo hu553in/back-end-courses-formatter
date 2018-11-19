@@ -23,7 +23,7 @@ public interface IReader extends Closeable {
     int read() throws ReaderException;
 
     /**
-     * Method that performs closing of {@link IReader}.
+     * Method that performs {@link IReader} closing.
      *
      * @throws ReaderException Exception that can be thrown during the method work.
      */

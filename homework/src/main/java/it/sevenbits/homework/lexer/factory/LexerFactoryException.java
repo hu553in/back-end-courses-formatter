@@ -1,17 +1,15 @@
-package it.sevenbits.homework.io.reader;
-
-import java.io.IOException;
+package it.sevenbits.homework.lexer.factory;
 
 /**
- * This exception is used by {@link IReader} interface and classes that implement it.
+ * This exception is used by {@link ILexerFactory} interface and classes that implement it.
  */
-public class ReaderException extends IOException {
+public class LexerFactoryException extends Exception {
     /**
      * Class constructor with specifying of an error message.
      *
      * @param message {@link String} instance that will be contained in the thrown instance of exception.
      */
-    public ReaderException(final String message) {
+    public LexerFactoryException(final String message) {
         super(message);
     }
 
@@ -21,7 +19,7 @@ public class ReaderException extends IOException {
      * @param message {@link String} instance that will be contained in the thrown instance of exception.
      * @param cause An instance of {@link Throwable} that caused the situation in which exception was thrown.
      */
-    public ReaderException(final String message, final Throwable cause) {
+    public LexerFactoryException(final String message, final Throwable cause) {
         super(message, cause);
     }
 }

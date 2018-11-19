@@ -8,17 +8,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * Implementation of {@link it.sevenbits.homework.io.writer.IWriter} interface
- * that performs writing to file in UTF-8 encoding.
+ * Implementation of {@link IWriter} interface that performs writing to file in UTF-8 encoding.
  */
 public class FileWriter implements IWriter {
     private BufferedWriter bufferedWriter;
 
     /**
-     * Overload of constructor that initializes {@link FileWriter#bufferedWriter} using
-     * {@link java.nio.file.Path} instance.
+     * Overload of constructor that initializes {@link #bufferedWriter} using {@link Path} instance.
      *
-     * @param filePath {@link java.nio.file.Path} instance that represents a path to output file.
+     * @param filePath {@link Path} instance that represents a path to output file.
      *
      * @throws WriterException Exception that can be thrown during the method work.
      */
@@ -31,10 +29,10 @@ public class FileWriter implements IWriter {
     }
 
     /**
-     * Overload of constructor that initializes {@link FileWriter#bufferedWriter}
-     * using return value of {@link java.nio.file.Paths#get(String, String...)} method.
+     * Overload of constructor that initializes {@link #bufferedWriter}
+     * using return value of {@link Paths#get(String, String...)} method.
      *
-     * @param filePath {@link java.lang.String} instance that represents a path to input file.
+     * @param filePath {@link String} instance that represents a path to input file.
      *
      * @throws WriterException Exception that can be thrown during the method work.
      */
@@ -43,8 +41,7 @@ public class FileWriter implements IWriter {
     }
 
     /**
-     * Overload of method that writes to {@link FileWriter#bufferedWriter} a single character
-     * represented by Unicode code.
+     * Overload of method that writes to {@link #bufferedWriter} a single character represented by Unicode code.
      *
      * @param character Unicode character code to be written.
      *
@@ -64,9 +61,9 @@ public class FileWriter implements IWriter {
     }
 
     /**
-     * Overload of method that writes to {@link FileWriter#bufferedWriter} a {@link java.lang.String} instance.
+     * Overload of method that writes to {@link #bufferedWriter} a {@link String} instance.
      *
-     * @param string {@link java.lang.String} instance to be written.
+     * @param string {@link String} instance to be written.
      *
      * @throws WriterException Exception that can be thrown during the method work.
      */
@@ -84,7 +81,7 @@ public class FileWriter implements IWriter {
     }
 
     /**
-     * Overload of method that writes to {@link FileWriter#bufferedWriter} an array of characters.
+     * Overload of method that writes to {@link #bufferedWriter} an array of characters.
      *
      * @param charArray Array of characters to be written.
      *
@@ -104,7 +101,7 @@ public class FileWriter implements IWriter {
     }
 
     /**
-     * Method that performs closing of {@link FileWriter}.
+     * Method that performs {@link FileWriter} closing.
      *
      * @throws WriterException Exception that can be thrown during the method work.
      */
