@@ -14,6 +14,8 @@ public interface ILexerFactory {
      * @param reader Instance of {@link IReader} which is used to select, create,
      *               and initialize one of the implementations of {@link ILexer} interface.
      *
+     * @throws LexerFactoryException Exception that can be thrown during the method work.
+     *
      * @return New {@link ILexer} instance.
      */
     ILexer createLexer(IReader reader) throws LexerFactoryException;

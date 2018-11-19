@@ -4,7 +4,7 @@ import it.sevenbits.homework.io.reader.FileReader;
 import it.sevenbits.homework.io.reader.IReader;
 import it.sevenbits.homework.io.reader.StringReader;
 import it.sevenbits.homework.lexer.ILexer;
-import it.sevenbits.homework.lexer.SimpleLexer;
+import it.sevenbits.homework.lexer.CommonLexer;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +14,7 @@ import java.util.Map;
  * using "Factory method" design pattern.
  */
 public class LexerFactory implements ILexerFactory {
-    private Map<Class<? extends IReader>, Class<? extends ILexer>> lexerForReader;
+    private final Map<Class<? extends IReader>, Class<? extends ILexer>> lexerForReader;
 
     /**
      * Class constructor that initializes {@link #lexerForReader} and puts in it all known pairs of
@@ -22,8 +22,8 @@ public class LexerFactory implements ILexerFactory {
      */
     public LexerFactory() {
         lexerForReader = new HashMap<>();
-        lexerForReader.put(StringReader.class, SimpleLexer.class);
-        lexerForReader.put(FileReader.class, SimpleLexer.class);
+        lexerForReader.put(StringReader.class, CommonLexer.class);
+        lexerForReader.put(FileReader.class, CommonLexer.class);
     }
 
     /**

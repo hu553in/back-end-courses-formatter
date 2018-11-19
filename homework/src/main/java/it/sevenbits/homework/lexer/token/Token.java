@@ -4,8 +4,8 @@ package it.sevenbits.homework.lexer.token;
  * Implementation of {@link IToken} interface that represents a lexical token.
  */
 public class Token implements IToken {
-    private String name;
-    private String lexeme;
+    private final String name;
+    private final String lexeme;
 
     /**
      * Class constructor.

@@ -49,9 +49,9 @@ public class StringReader implements IReader {
             return -1;
         }
 
-        char result = sourceString.charAt(currentIndex);
+        final char currentChar = sourceString.charAt(currentIndex);
         currentIndex++;
-        return result;
+        return currentChar;
     }
 
     /**

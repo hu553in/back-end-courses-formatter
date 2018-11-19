@@ -7,15 +7,15 @@ import it.sevenbits.homework.lexer.token.Token;
 /**
  * {@link ILexer} interface implementation that provides lexical analysis of Java source code.
  */
-public class SimpleLexer implements ILexer {
-    private IReader reader;
+public class CommonLexer implements ILexer {
+    private final IReader reader;
 
     /**
      * Class constructor.
      *
      * @param reader {@link IReader} instance that provides data input process.
      */
-    public SimpleLexer(final IReader reader) {
+    public CommonLexer(final IReader reader) {
         this.reader = reader;
     }
 
