@@ -2,6 +2,7 @@ package it.sevenbits.homework.io.writer;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -23,7 +24,7 @@ public class FileWriter implements IWriter {
      */
     public FileWriter(final Path filePath) throws WriterException {
         try {
-            bufferedWriter = Files.newBufferedWriter(filePath);
+            bufferedWriter = Files.newBufferedWriter(filePath, StandardCharsets.UTF_8);
         } catch (IOException e) {
             throw new WriterException("Unable to open the stream.", e);
         }
