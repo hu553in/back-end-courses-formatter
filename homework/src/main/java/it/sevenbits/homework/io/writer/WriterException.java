@@ -16,10 +16,11 @@ public class WriterException extends IOException {
     }
 
     /**
-     * Class constructor with specifying of an error message and Throwable cause of exception throwing.
+     * Class constructor with specifying of an error message and
+     * {@link java.lang.Throwable} cause of exception throwing.
      *
      * @param message Message that will be contained in the thrown instance of exception.
-     * @param cause An instance of Throwable that caused the situation in which exception was thrown.
+     * @param cause An instance of {@link java.lang.Throwable} that caused the situation in which exception was thrown.
      */
     public WriterException(final String message, final Throwable cause) {
         super(message, cause);

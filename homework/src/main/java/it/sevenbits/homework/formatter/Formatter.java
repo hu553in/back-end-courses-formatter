@@ -6,8 +6,8 @@ import it.sevenbits.homework.io.reader.ReaderException;
 import it.sevenbits.homework.io.writer.WriterException;
 
 /**
- * Class that formats Java source code. Reading and writing are performed
- * using {@link it.sevenbits.homework.io.reader.IReader} and {@link it.sevenbits.homework.io.writer.IWriter} interfaces.
+ * Class that formats Java source code. Reading and writing are performed using
+ * {@link it.sevenbits.homework.io.reader.IReader} and {@link it.sevenbits.homework.io.writer.IWriter} interfaces.
  */
 public class Formatter implements IFormatter {
     private static final char CHAR_SEMICOLON = ';',
@@ -21,11 +21,12 @@ public class Formatter implements IFormatter {
     private static final String SINGLE_INDENT = "    ";
 
     /**
-     * Method that returns string which contains required indent in accordance with nesting level.
+     * Method that returns {@link java.lang.String} instance which contains
+     * required indent in accordance with nesting level.
      *
      * @param nestingLevel Level of nesting in source code.
      *
-     * @return String that contains (4 * nesting level) spaces.
+     * @return {@link java.lang.String} instance that contains (4 * nesting level) spaces.
      */
     private String getIndent(final short nestingLevel) {
         if (nestingLevel == 0) {
@@ -124,9 +125,9 @@ public class Formatter implements IFormatter {
                     lastWrittenChar = lastReadChar;
                 }
             } catch (ReaderException e) {
-                throw new FormatterException("Can't read from IReader instance: " + e.getMessage(), e);
+                throw new FormatterException("Unable to read from IReader instance - " + e.getMessage(), e);
             } catch (WriterException e) {
-                throw new FormatterException("Can't write to IWriter instance: " + e.getMessage(), e);
+                throw new FormatterException("Unable to write to IWriter instance - " + e.getMessage(), e);
             }
         }
     }

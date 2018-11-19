@@ -4,7 +4,7 @@ import it.sevenbits.homework.io.reader.IReader;
 import it.sevenbits.homework.io.writer.IWriter;
 
 /**
- * An interface that declares functionality of class that formats Java source code. Reading and writing are performed
+ * An interface that declares functionality for Java source code formatting. Reading and writing are performed
  * using {@link it.sevenbits.homework.io.reader.IReader} and {@link it.sevenbits.homework.io.writer.IWriter} interfaces.
  */
 public interface IFormatter {

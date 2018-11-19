@@ -11,23 +11,32 @@ public interface IWriter extends Closeable {
      *
      * @param character Unicode character code to be written.
      *
-     * @throws WriterException Exception that may be thrown during the method work.
+     * @throws WriterException Exception that can be thrown during the method work.
      */
     void write(int character) throws WriterException;
 
     /**
-     * Overload of method that writes to stream a String instance.
+     * Overload of method that writes to stream a {@link java.lang.String} instance.
      *
-     * @param string String to be written.
+     * @param string {@link java.lang.String} instance to be written.
      *
-     * @throws WriterException Exception that may be thrown during the method work.
+     * @throws WriterException Exception that can be thrown during the method work.
      */
     void write(String string) throws WriterException;
 
     /**
-     * Method that performs closing of stream.
+     * Overload of method that writes to stream an array of characters.
      *
-     * @throws WriterException Exception that may be thrown during the method work.
+     * @param charArray Array of characters to be written.
+     *
+     * @throws WriterException Exception that can be thrown during the method work.
+     */
+    void write(char[] charArray) throws WriterException;
+
+    /**
+     * Method that performs closing of {@link IWriter}.
+     *
+     * @throws WriterException Exception that can be thrown during the method work.
      */
     @Override
     void close() throws WriterException;

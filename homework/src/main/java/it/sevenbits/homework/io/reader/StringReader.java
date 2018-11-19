@@ -2,16 +2,17 @@ package it.sevenbits.homework.io.reader;
 
 /**
  * Implementation of {@link it.sevenbits.homework.io.reader.IReader} interface
- * that performs reading from String instance.
+ * that performs reading from {@link java.lang.String} instance.
  */
 public class StringReader implements IReader {
     private String sourceString;
     private int currentIndex;
 
     /**
-     * Class constructor that initializes private String field with an external String instance passed as argument.
+     * Class constructor that initializes private {@link java.lang.String} field with
+     * an external {@link java.lang.String} instance passed as argument.
      *
-     * @param sourceString String that represents the data source for reading.
+     * @param sourceString {@link java.lang.String} instance that represents the data source for reading.
      */
     public StringReader(final String sourceString) {
         this.sourceString = sourceString;
@@ -19,7 +20,7 @@ public class StringReader implements IReader {
     }
 
     /**
-     * Method that reports whether data is available for reading.
+     * Method that reports whether character is available for reading.
      *
      * @return Boolean value that indicates result of the method work.
      */
@@ -33,7 +34,7 @@ public class StringReader implements IReader {
     }
 
     /**
-     * Method that reads a single character represented by Unicode code from String instance.
+     * Method that reads a single character represented by Unicode code from {@link java.lang.String} instance.
      *
      * @return Unicode code of read character.
      *
@@ -42,7 +43,7 @@ public class StringReader implements IReader {
     @Override
     public int read() throws ReaderException {
         if (sourceString == null) {
-            throw new ReaderException("IReader instance is closed or null is passed to constructor as an argument.");
+            throw new ReaderException("Stream is closed or null is passed to constructor as an argument.");
         }
 
         if (!hasNext()) {
@@ -55,7 +56,7 @@ public class StringReader implements IReader {
     }
 
     /**
-     * Method that performs closing of stream.
+     * Method that performs closing of {@link StringReader}.
      *
      * @throws ReaderException Exception that can be thrown during the method work.
      */

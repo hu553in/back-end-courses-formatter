@@ -7,7 +7,7 @@ import java.io.Closeable;
  */
 public interface IReader extends Closeable {
     /**
-     * Method that reports whether data is available for reading.
+     * Method that reports whether character is available for reading.
      *
      * @return Boolean value that indicates result of the method work.
      */
@@ -23,7 +23,7 @@ public interface IReader extends Closeable {
     int read() throws ReaderException;
 
     /**
-     * Method that performs closing of stream.
+     * Method that performs closing of {@link IReader}.
      *
      * @throws ReaderException Exception that can be thrown during the method work.
      */

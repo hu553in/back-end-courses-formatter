@@ -1,5 +1,5 @@
 /**
- * This package contains IToken interface.
+ * This package contains {@link it.sevenbits.homework.lexer.token.IToken} interface.
  *
  * Lexical token is a string with an assigned and thus identified meaning.
  * It is structured as a pair consisting of token name and lexeme.
