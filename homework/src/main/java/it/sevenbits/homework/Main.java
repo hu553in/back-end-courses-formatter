@@ -2,6 +2,7 @@ package it.sevenbits.homework;
 
 import it.sevenbits.homework.formatter.Formatter;
 import it.sevenbits.homework.formatter.FormatterException;
+import it.sevenbits.homework.formatter.IFormatter;
 import it.sevenbits.homework.io.reader.FileReader;
 import it.sevenbits.homework.io.reader.IReader;
 import it.sevenbits.homework.io.reader.ReaderException;
@@ -27,7 +28,7 @@ public final class Main {
             return;
         }
 
-        final Formatter formatter = new Formatter();
+        final IFormatter formatter = new Formatter();
 
         try (
                 IReader reader = new FileReader(args[0]);
