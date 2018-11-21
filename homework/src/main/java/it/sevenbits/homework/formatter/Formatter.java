@@ -2,22 +2,29 @@ package it.sevenbits.homework.formatter;
 
 import it.sevenbits.homework.io.reader.IReader;
 import it.sevenbits.homework.io.writer.IWriter;
-import it.sevenbits.homework.io.reader.ReaderException;
 import it.sevenbits.homework.io.writer.WriterException;
+import it.sevenbits.homework.lexer.ILexer;
+import it.sevenbits.homework.lexer.LexerException;
+import it.sevenbits.homework.lexer.factory.ILexerFactory;
+import it.sevenbits.homework.lexer.factory.LexerFactory;
+import it.sevenbits.homework.lexer.factory.LexerFactoryException;
+import it.sevenbits.homework.lexer.token.IToken;
+import java.util.Objects;
 
 /**
- * Class that formats Java source code. I/O is performed using {@link IReader} and {@link IWriter} instances.
+ * Class that formats Java source code. Input is performed using {@link IWriter} and {@link ILexer} instances,
+ * output is performed using {@link IWriter} instance.
  */
 public class Formatter implements IFormatter {
-    private static final char CHAR_SEMICOLON = ';',
-                              CHAR_WHITESPACE = ' ',
-                              CHAR_OPENING_CURLY_BRACE = '{',
-                              CHAR_CLOSING_CURLY_BRACE = '}',
-                              CHAR_NEWLINE = '\n',
-                              CHAR_TAB = '\t',
-                              CHAR_NULL = '\u0000';
-
     private static final String SINGLE_INDENT = "    ";
+    private final ILexerFactory lexerFactory;
+
+    /**
+     * Class constructor that initializes {@link #lexerFactory} with new {@link LexerFactory} instance.
+     */
+    public Formatter() {
+        lexerFactory = new LexerFactory();
+    }
 
     /**
      * Method that returns {@link String} instance which contains required indent
@@ -42,91 +49,98 @@ public class Formatter implements IFormatter {
     }
 
     /**
-     * Method that performs formatting of Java source code.
+     * Method that performs formatting of Java source code that is stored in lexical tokens
+     * which are provided by ILexer instance.
      *
-     * @param reader {@link IReader} instance that provides data reading.
+     * @param reader {@link IReader} instance that is passed to {@link #lexerFactory}
+     *               as an argument for ILexer instance creation.
      * @param writer {@link IWriter} instance that provides data writing.
      *
      * @throws FormatterException Exception that can be thrown during the method work.
      */
     @Override
     public void format(final IReader reader, final IWriter writer) throws FormatterException {
+        ILexer lexer;
+        try {
+            lexer = lexerFactory.createLexer(reader);
+        } catch (LexerFactoryException e) {
+            throw new FormatterException("Unable to create ILexer instance", e);
+        }
+
         short nestingLevel = 0;
-        boolean shouldRead = true;
+        String lastWrittenLexeme = null;
 
-        char lastWrittenChar = CHAR_NULL,
-             lastReadChar = CHAR_NULL;
-
-        while (reader.hasNext() || !shouldRead) {
+        while (lexer.hasMoreTokens()) {
+            IToken token;
             try {
-                if (shouldRead) {
-                    lastReadChar = (char) reader.read();
-                } else {
-                    shouldRead = true;
-                }
+                token = lexer.readToken();
+            } catch (LexerException e) {
+                throw new FormatterException("Unable to read token from ILexer instance", e);
+            }
 
-                if (lastReadChar == CHAR_OPENING_CURLY_BRACE) {
-                    if (lastWrittenChar == CHAR_NEWLINE ||
-                            lastWrittenChar == CHAR_NULL) {
+            try {
+                if (Objects.equals(token.getName(), "OPENING_CURLY_BRACE")) {
+                    if (Objects.equals(lastWrittenLexeme, "\n") || lastWrittenLexeme == null) {
                         writer.write(getIndent(nestingLevel));
-                    } else if (lastWrittenChar != CHAR_WHITESPACE) {
-                        writer.write(CHAR_WHITESPACE);
+                    } else if (!Objects.equals(lastWrittenLexeme, " ")) {
+                        writer.write(" ");
                     }
 
-                    writer.write(lastReadChar);
                     nestingLevel++;
 
-                    if (reader.hasNext()) {
-                        lastWrittenChar = CHAR_NEWLINE;
-                        writer.write(lastWrittenChar);
+                    writer.write(token.getLexeme());
+                    lastWrittenLexeme = token.getLexeme();
+
+                    if (lexer.hasMoreTokens()) {
+                        writer.write("\n");
+                        lastWrittenLexeme = "\n";
                     }
-                } else if (lastReadChar == CHAR_CLOSING_CURLY_BRACE) {
+                } else if (Objects.equals(token.getName(), "CLOSING_CURLY_BRACE")) {
                     nestingLevel--;
 
-                    if (lastWrittenChar != CHAR_NEWLINE && lastWrittenChar != CHAR_NULL) {
-                        writer.write(CHAR_NEWLINE);
+                    if (!Objects.equals(lastWrittenLexeme, "\n") && lastWrittenLexeme != null) {
+                        writer.write("\n");
                     }
 
                     writer.write(getIndent(nestingLevel));
-                    writer.write(lastReadChar);
+                    writer.write(token.getLexeme());
+                    lastWrittenLexeme = token.getLexeme();
 
-                    if (reader.hasNext()) {
-                        lastWrittenChar = CHAR_NEWLINE;
-                        writer.write(lastWrittenChar);
+                    if (lexer.hasMoreTokens()) {
+                        writer.write("\n");
+                        lastWrittenLexeme = "\n";
                     }
-                } else if (lastReadChar == CHAR_SEMICOLON) {
-                    writer.write(lastReadChar);
+                } else if (Objects.equals(token.getName(), "SEMICOLON")) {
+                    writer.write(token.getLexeme());
+                    lastWrittenLexeme = token.getLexeme();
 
-                    if (reader.hasNext()) {
-                        lastWrittenChar = CHAR_NEWLINE;
-                        writer.write(lastWrittenChar);
+                    if (lexer.hasMoreTokens()) {
+                        writer.write("\n");
+                        lastWrittenLexeme = "\n";
                     }
-                } else if (lastReadChar == CHAR_WHITESPACE) {
-                    if (lastWrittenChar != CHAR_NEWLINE && lastWrittenChar != CHAR_NULL && reader.hasNext()) {
-                        writer.write(lastReadChar);
-                        lastWrittenChar = lastReadChar;
+                } else if (Objects.equals(token.getName(), "NEWLINE")) {
+                    if (!Objects.equals(lastWrittenLexeme, token.getLexeme())) {
+                        writer.write(token.getLexeme());
+                        lastWrittenLexeme = token.getLexeme();
                     }
-
-                    while (reader.hasNext()) {
-                        lastReadChar = (char) reader.read();
-
-                        if (lastReadChar != CHAR_WHITESPACE) {
-                            shouldRead = false;
-                            break;
-                        }
+                } else if (Objects.equals(token.getName(), "WHITESPACE")) {
+                    if (!Objects.equals(lastWrittenLexeme, token.getLexeme()) &&
+                        !Objects.equals(lastWrittenLexeme, "\n") &&
+                        lastWrittenLexeme != null &&
+                        !lastWrittenLexeme.endsWith(token.getLexeme())) {
+                        writer.write(token.getLexeme());
+                        lastWrittenLexeme = token.getLexeme();
                     }
-                } else if (lastReadChar != CHAR_NEWLINE && lastReadChar != CHAR_TAB) {
-                    if (lastWrittenChar == CHAR_NEWLINE) {
+                } else if (Objects.equals(token.getName(), "OTHER")) {
+                    if (Objects.equals(lastWrittenLexeme, "\n")) {
                         writer.write(getIndent(nestingLevel));
                     }
 
-                    writer.write(lastReadChar);
-                    lastWrittenChar = lastReadChar;
+                    writer.write(token.getLexeme());
+                    lastWrittenLexeme = token.getLexeme();
                 }
-            } catch (ReaderException e) {
-                throw new FormatterException("Unable to read from IReader instance - " + e.getMessage(), e);
             } catch (WriterException e) {
-                throw new FormatterException("Unable to write to IWriter instance - " + e.getMessage(), e);
+                throw new FormatterException("Unable to write to IWriter instance", e);
             }
         }
     }

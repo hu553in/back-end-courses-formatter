@@ -8,7 +8,7 @@ public class Token implements IToken {
     private final String lexeme;
 
     /**
-     * Class constructor.
+     * Overload of constructor that initializes {@link #lexeme} with passed {@link String} instance.
      *
      * @param name {@link String} instance that represents name of token.
      * @param lexeme {@link String} instance that represents lexeme.
@@ -16,6 +16,17 @@ public class Token implements IToken {
     public Token(final String name, final String lexeme) {
         this.name = name;
         this.lexeme = lexeme;
+    }
+
+    /**
+     * Overload of constructor that initializes {@link #lexeme} with passed single character
+     * using {@link Character#toString()} method call.
+     *
+     * @param name {@link String} instance that represents name of token.
+     * @param lexeme Single character that represents lexeme.
+     */
+    public Token(final String name, final char lexeme) {
+        this(name, Character.toString(lexeme));
     }
 
     /**
