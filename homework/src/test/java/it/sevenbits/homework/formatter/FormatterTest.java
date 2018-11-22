@@ -12,6 +12,8 @@ import org.junit.Assert;
 
 public class FormatterTest {
     private IFormatter formatter;
+    private IReader reader;
+    private IWriter writer;
 
     @Before
     public void setUp() {
@@ -20,11 +22,8 @@ public class FormatterTest {
 
     @Test
     public void shouldFormatCorrectlyAtFirst() throws FormatterException, ReaderException, WriterException {
-        IReader reader = new StringReader(
-                "{{{}}}"
-        );
-
-        IWriter writer = new StringWriter();
+        reader = new StringReader("{{{}}}");
+        writer = new StringWriter();
 
         formatter.format(reader, writer);
 
@@ -36,13 +35,12 @@ public class FormatterTest {
 
     @Test
     public void shouldFormatCorrectlyAtSecond() throws FormatterException, ReaderException, WriterException {
-        IReader reader = new StringReader(
-                "public class HelloWorld { public static void main(String[] " +
-                        "args) { System.out.println(\"Hello, World\"); } }"
+        reader = new StringReader(
+                "public class     HelloWorld{public static void main(String[] " +
+                        "args){System.out.println(\"Hello, World\");}}"
         );
 
-        IWriter writer = new StringWriter();
-
+        writer = new StringWriter();
         formatter.format(reader, writer);
 
         Assert.assertEquals(
@@ -56,5 +54,10 @@ public class FormatterTest {
 
         reader.close();
         writer.close();
+    }
+
+    @Test (expected = FormatterException.class)
+    public void shouldThrowException() throws FormatterException {
+        formatter.format(null, null);
     }
 }

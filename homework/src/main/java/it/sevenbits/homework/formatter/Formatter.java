@@ -60,6 +60,14 @@ public class Formatter implements IFormatter {
      */
     @Override
     public void format(final IReader reader, final IWriter writer) throws FormatterException {
+        if (reader == null) {
+            throw new FormatterException("\"reader\" argument is null");
+        }
+
+        if (writer == null) {
+            throw new FormatterException("\"writer\" argument is null");
+        }
+
         ILexer lexer;
         try {
             lexer = lexerFactory.createLexer(reader);

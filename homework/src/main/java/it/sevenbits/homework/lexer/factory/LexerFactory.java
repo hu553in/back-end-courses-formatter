@@ -40,6 +40,10 @@ public class LexerFactory implements ILexerFactory {
      */
     @Override
     public ILexer createLexer(final IReader reader) throws LexerFactoryException {
+        if (reader == null) {
+            throw new LexerFactoryException("Null passed as argument");
+        }
+
         final Class<? extends ILexer> lexerClass = lexerForReader.get(reader.getClass());
         if (lexerClass == null) {
             throw new LexerFactoryException("There are no ILexer interface implementations that " +

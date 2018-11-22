@@ -1,5 +1,6 @@
 package it.sevenbits.homework.lexer.factory;
 
+import it.sevenbits.homework.io.reader.FileReader;
 import it.sevenbits.homework.io.reader.IReader;
 import it.sevenbits.homework.io.reader.ReaderException;
 import it.sevenbits.homework.io.reader.StringReader;
@@ -19,18 +20,20 @@ public class LexerFactoryTest {
     }
 
     @Test
-    public void shouldReturnCommonLexer() throws LexerFactoryException {
-        ILexer lexer = lexerFactory.createLexer(new StringReader(""));
-        Assert.assertEquals(lexer.getClass(), CommonLexer.class);
+    public void shouldReturnCommonLexerAtFirst() throws LexerFactoryException {
+        Assert.assertEquals(lexerFactory.createLexer(new StringReader("")).getClass(),
+                            CommonLexer.class);
+    }
+
+    @Test
+    public void shouldReturnCommonLexerAtSecond() throws LexerFactoryException, ReaderException {
+
+        Assert.assertEquals(lexerFactory.createLexer(new FileReader("/dev/null")).getClass(),
+                            CommonLexer.class);
     }
 
     @Test (expected = LexerFactoryException.class)
-    public void shouldThrowLexerFactoryExceptionAtFirst() throws LexerFactoryException {
-        lexerFactory.createLexer(mock(IReader.class));
-    }
-
-    @Test (expected = LexerFactoryException.class)
-    public void shouldThrowLexerFactoryExceptionAtSecond() throws LexerFactoryException {
+    public void shouldThrowExceptionAtFirst() throws LexerFactoryException {
         lexerFactory.createLexer(new IReader() {
             @Override
             public boolean hasNext() {
@@ -46,5 +49,10 @@ public class LexerFactoryTest {
             public void close() throws ReaderException {
             }
         });
+    }
+
+    @Test (expected = LexerFactoryException.class)
+    public void shouldThrowExceptionAtSecond() throws LexerFactoryException {
+        lexerFactory.createLexer(null);
     }
 }

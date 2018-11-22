@@ -17,10 +17,7 @@ public class CommonLexerTest {
 
     @Test
     public void shouldWorkCorrectlyAtFirst() throws LexerException {
-        reader = new StringReader(
-                "class{ \n{{\nprivate}))\n"
-        );
-
+        reader = new StringReader("class{ \n{{\nprivate}))\n");
         lexer = new CommonLexer(reader);
 
         Assert.assertTrue(lexer.hasMoreTokens());
@@ -87,7 +84,7 @@ public class CommonLexerTest {
     }
 
     @Test (expected = LexerException.class)
-    public void shouldThrowLexerException() throws ReaderException, LexerException {
+    public void shouldThrowException() throws ReaderException, LexerException {
         reader = mock(StringReader.class);
         doReturn(true).when(reader).hasNext();
         doThrow(new ReaderException("ReaderException", new IOException())).when(reader).read();
