@@ -24,7 +24,7 @@ public class FileWriter implements IWriter {
         try {
             bufferedWriter = Files.newBufferedWriter(filePath, StandardCharsets.UTF_8);
         } catch (IOException e) {
-            throw new WriterException("Unable to open the stream.", e);
+            throw new WriterException("Unable to open stream", e);
         }
     }
 
@@ -41,6 +41,17 @@ public class FileWriter implements IWriter {
     }
 
     /**
+     * Private method that performs ensuring that stream is open.
+     *
+     * @throws WriterException Exception that can be thrown during the method work.
+     */
+    private void ensureOpen() throws WriterException {
+        if (bufferedWriter == null) {
+            throw new WriterException("Stream is closed");
+        }
+    }
+
+    /**
      * Overload of method that writes to {@link #bufferedWriter} a single character represented by Unicode code.
      *
      * @param character Unicode character code to be written.
@@ -49,14 +60,12 @@ public class FileWriter implements IWriter {
      */
     @Override
     public void write(final int character) throws WriterException {
-        if (bufferedWriter == null) {
-            throw new WriterException("Stream is closed.");
-        }
+        ensureOpen();
 
         try {
             bufferedWriter.write(character);
         } catch (IOException e) {
-            throw new WriterException("Unable to write to the stream.", e);
+            throw new WriterException("Unable to write to stream", e);
         }
     }
 
@@ -69,14 +78,12 @@ public class FileWriter implements IWriter {
      */
     @Override
     public void write(final String string) throws WriterException {
-        if (bufferedWriter == null) {
-            throw new WriterException("Stream is closed.");
-        }
+        ensureOpen();
 
         try {
             bufferedWriter.write(string);
         } catch (IOException e) {
-            throw new WriterException("Unable to write to the stream.", e);
+            throw new WriterException("Unable to write to stream", e);
         }
     }
 
@@ -89,14 +96,12 @@ public class FileWriter implements IWriter {
      */
     @Override
     public void write(final char[] charArray) throws WriterException {
-        if (bufferedWriter == null) {
-            throw new WriterException("Stream is closed.");
-        }
+        ensureOpen();
 
         try {
             bufferedWriter.write(charArray);
         } catch (IOException e) {
-            throw new WriterException("Unable to write to the stream.", e);
+            throw new WriterException("Unable to write to stream", e);
         }
     }
 

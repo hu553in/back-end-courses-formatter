@@ -26,7 +26,7 @@ public class FileReader implements IReader {
         try {
             bufferedReader = Files.newBufferedReader(filePath, StandardCharsets.UTF_8);
         } catch (IOException e) {
-            throw new ReaderException("Unable to open the stream.", e);
+            throw new ReaderException("Unable to open stream", e);
         }
 
         prepareCharBuffer();
@@ -53,7 +53,7 @@ public class FileReader implements IReader {
         try {
             charBuffer = bufferedReader.read();
         } catch (IOException e) {
-            throw new ReaderException("Unable to read from the stream.", e);
+            throw new ReaderException("Unable to read from stream", e);
         }
     }
 
@@ -82,7 +82,7 @@ public class FileReader implements IReader {
     @Override
     public int read() throws ReaderException {
         if (bufferedReader == null) {
-            throw new ReaderException("Stream is closed.");
+            throw new ReaderException("Stream is closed");
         }
 
         int currentChar = charBuffer;
@@ -109,7 +109,7 @@ public class FileReader implements IReader {
             try {
                 bufferedReader.close();
             } catch (IOException e) {
-                throw new ReaderException("Unable to close the stream.", e);
+                throw new ReaderException("Unable to close stream", e);
             } finally {
                 bufferedReader = null;
             }

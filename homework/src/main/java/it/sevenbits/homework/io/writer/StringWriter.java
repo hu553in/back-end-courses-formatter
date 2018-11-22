@@ -15,6 +15,17 @@ public class StringWriter implements IWriter {
     }
 
     /**
+     * Private method that performs ensuring that stream is open.
+     *
+     * @throws WriterException Exception that can be thrown during the method work.
+     */
+    private void ensureOpen() throws WriterException {
+        if (buffer == null) {
+            throw new WriterException("Stream is closed");
+        }
+    }
+
+    /**
      * Overload of method that writes a single character represented by Unicode code to {@link #buffer}.
      *
      * @param character Unicode character code to be written.
@@ -23,10 +34,7 @@ public class StringWriter implements IWriter {
      */
     @Override
     public void write(final int character) throws WriterException {
-        if (buffer == null) {
-            throw new WriterException("Stream is closed.");
-        }
-
+        ensureOpen();
         buffer.append((char) character);
     }
 
@@ -39,10 +47,7 @@ public class StringWriter implements IWriter {
      */
     @Override
     public void write(final String string) throws WriterException {
-        if (buffer == null) {
-            throw new WriterException("Stream is closed.");
-        }
-
+        ensureOpen();
         buffer.append(string);
     }
 
@@ -55,10 +60,7 @@ public class StringWriter implements IWriter {
      */
     @Override
     public void write(final char[] charArray) throws WriterException {
-        if (buffer == null) {
-            throw new WriterException("Stream is closed.");
-        }
-
+        ensureOpen();
         buffer.append(charArray);
     }
 

@@ -43,7 +43,7 @@ public class LexerFactory implements ILexerFactory {
         final Class<? extends ILexer> lexerClass = lexerForReader.get(reader.getClass());
         if (lexerClass == null) {
             throw new LexerFactoryException("There are no ILexer interface implementations that " +
-                                            "match the passed IReader interface implementation.");
+                                            "match the passed IReader interface implementation");
         }
 
         final Constructor<? extends ILexer> lexerConstructor;
@@ -51,7 +51,7 @@ public class LexerFactory implements ILexerFactory {
             lexerConstructor = lexerClass.getDeclaredConstructor(IReader.class);
         } catch (NoSuchMethodException e) {
             throw new LexerFactoryException("Invoked " + lexerClass.getSimpleName() +
-                                            " constructor does not exist.", e);
+                                            " constructor does not exist", e);
         }
 
         try {
@@ -60,10 +60,10 @@ public class LexerFactory implements ILexerFactory {
             throw new LexerFactoryException("An exception was thrown during the creation of " +
                                             lexerClass.getSimpleName() + " instance", e.getCause());
         } catch (InstantiationException e) {
-            throw new LexerFactoryException("Unable to create " + lexerClass.getSimpleName() + " instance.", e);
+            throw new LexerFactoryException("Unable to create " + lexerClass.getSimpleName() + " instance", e);
         } catch (IllegalAccessException e) {
             throw new LexerFactoryException("No access to the definition of " + lexerClass.getSimpleName() +
-                                            " implementation or constructor.", e);
+                                            " implementation or constructor", e);
         }
     }
 }
