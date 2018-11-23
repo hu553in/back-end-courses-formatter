@@ -1,6 +1,7 @@
 package it.sevenbits.homework.io.reader;
 
 import java.io.BufferedReader;
+import java.io.Closeable;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -10,7 +11,7 @@ import java.nio.file.Paths;
 /**
  * Implementation of {@link IReader} interface that performs reading from file that is encoded with UTF-8.
  */
-public class FileReader implements IReader {
+public class FileReader implements IReader, Closeable {
     private BufferedReader bufferedReader;
     private int charBuffer;
 

@@ -4,10 +4,8 @@ import it.sevenbits.homework.formatter.Formatter;
 import it.sevenbits.homework.formatter.FormatterException;
 import it.sevenbits.homework.formatter.IFormatter;
 import it.sevenbits.homework.io.reader.FileReader;
-import it.sevenbits.homework.io.reader.IReader;
 import it.sevenbits.homework.io.reader.ReaderException;
 import it.sevenbits.homework.io.writer.FileWriter;
-import it.sevenbits.homework.io.writer.IWriter;
 import it.sevenbits.homework.io.writer.WriterException;
 
 /**
@@ -31,8 +29,8 @@ public final class Main {
         final IFormatter formatter = new Formatter();
 
         try (
-                IReader reader = new FileReader(args[0]);
-                IWriter writer = new FileWriter(args[1])
+                FileReader reader = new FileReader(args[0]);
+                FileWriter writer = new FileWriter(args[1])
         ) {
             formatter.format(reader, writer);
         } catch (ReaderException | WriterException | FormatterException e) {

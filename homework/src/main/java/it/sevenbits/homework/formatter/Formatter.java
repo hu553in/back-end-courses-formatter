@@ -132,10 +132,12 @@ public class Formatter implements IFormatter {
                         lastWrittenLexeme = token.getLexeme();
                     }
                 } else if (Objects.equals(token.getName(), "WHITESPACE")) {
-                    if (!Objects.equals(lastWrittenLexeme, token.getLexeme()) &&
-                        !Objects.equals(lastWrittenLexeme, "\n") &&
-                        lastWrittenLexeme != null &&
-                        !lastWrittenLexeme.endsWith(token.getLexeme())) {
+                    if (
+                            !Objects.equals(lastWrittenLexeme, token.getLexeme()) &&
+                            !Objects.equals(lastWrittenLexeme, "\n") &&
+                            lastWrittenLexeme != null &&
+                            !lastWrittenLexeme.endsWith(token.getLexeme())
+                    ) {
                         writer.write(token.getLexeme());
                         lastWrittenLexeme = token.getLexeme();
                     }

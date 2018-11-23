@@ -1,6 +1,7 @@
 package it.sevenbits.homework.io.writer;
 
 import java.io.BufferedWriter;
+import java.io.Closeable;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -10,7 +11,7 @@ import java.nio.file.Paths;
 /**
  * Implementation of {@link IWriter} interface that performs writing to file in UTF-8 encoding.
  */
-public class FileWriter implements IWriter {
+public class FileWriter implements IWriter, Closeable {
     private BufferedWriter bufferedWriter;
 
     /**

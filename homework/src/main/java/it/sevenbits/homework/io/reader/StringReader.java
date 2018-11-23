@@ -42,7 +42,7 @@ public class StringReader implements IReader {
     @Override
     public int read() throws ReaderException {
         if (sourceString == null) {
-            throw new ReaderException("Stream is closed or null is passed to constructor as argument");
+            throw new ReaderException("Source string is null");
         }
 
         if (!hasNext()) {
@@ -52,21 +52,5 @@ public class StringReader implements IReader {
         final char currentChar = sourceString.charAt(currentIndex);
         currentIndex++;
         return currentChar;
-    }
-
-    /**
-     * Method that performs {@link StringReader} closing.
-     *
-     * @throws ReaderException Exception that can be thrown during the method work.
-     */
-    @Override
-    public void close() throws ReaderException {
-        if (currentIndex != 0) {
-            currentIndex = 0;
-        }
-
-        if (sourceString != null) {
-            sourceString = null;
-        }
     }
 }

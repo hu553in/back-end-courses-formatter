@@ -1,11 +1,9 @@
 package it.sevenbits.homework.io.writer;
 
-import java.io.Closeable;
-
 /**
  * Interface that declares a functionality for output character stream.
  */
-public interface IWriter extends Closeable {
+public interface IWriter {
     /**
      * Overload of method that writes to stream a single character represented by Unicode code.
      *
@@ -32,12 +30,4 @@ public interface IWriter extends Closeable {
      * @throws WriterException Exception that can be thrown during the method work.
      */
     void write(char[] charArray) throws WriterException;
-
-    /**
-     * Method that performs {@link IWriter} closing.
-     *
-     * @throws WriterException Exception that can be thrown during the method work.
-     */
-    @Override
-    void close() throws WriterException;
 }

@@ -44,10 +44,6 @@ public class LexerFactoryTest {
             public int read() throws ReaderException {
                 return 0;
             }
-
-            @Override
-            public void close() throws ReaderException {
-            }
         });
     }
 

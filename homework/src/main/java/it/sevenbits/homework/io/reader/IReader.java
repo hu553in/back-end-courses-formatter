@@ -1,11 +1,9 @@
 package it.sevenbits.homework.io.reader;
 
-import java.io.Closeable;
-
 /**
  * Interface that declares a functionality for input character stream.
  */
-public interface IReader extends Closeable {
+public interface IReader {
     /**
      * Method that reports whether character is available for reading.
      *
@@ -21,12 +19,4 @@ public interface IReader extends Closeable {
      * @throws ReaderException Exception that can be thrown during the method work.
      */
     int read() throws ReaderException;
-
-    /**
-     * Method that performs {@link IReader} closing.
-     *
-     * @throws ReaderException Exception that can be thrown during the method work.
-     */
-    @Override
-    void close() throws ReaderException;
 }

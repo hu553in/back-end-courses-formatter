@@ -28,9 +28,6 @@ public class FormatterTest {
         formatter.format(reader, writer);
 
         Assert.assertEquals("{\n    {\n        {\n        }\n    }\n}", writer.toString());
-
-        reader.close();
-        writer.close();
     }
 
     @Test
@@ -51,9 +48,6 @@ public class FormatterTest {
                     "}",
                 writer.toString()
         );
-
-        reader.close();
-        writer.close();
     }
 
     @Test (expected = FormatterException.class)

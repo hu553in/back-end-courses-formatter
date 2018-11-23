@@ -75,12 +75,6 @@ public class CommonLexerTest {
         Assert.assertEquals("\n", token.getLexeme());
         Assert.assertEquals("NEWLINE", token.getName());
         Assert.assertFalse(lexer.hasMoreTokens());
-
-        try {
-            reader.close();
-        } catch (ReaderException e) {
-            throw new LexerException("ReaderException", e);
-        }
     }
 
     @Test (expected = LexerException.class)
