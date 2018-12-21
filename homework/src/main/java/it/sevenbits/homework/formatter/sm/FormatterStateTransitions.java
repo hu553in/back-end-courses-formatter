@@ -16,4 +16,8 @@ public final class FormatterStateTransitions {
     public FormatterState getStartState() {
         return formatterStateMap.getStartState();
     }
+
+    public FormatterState getErrorState() {
+        return formatterStateMap.getErrorState();
+    }
 }

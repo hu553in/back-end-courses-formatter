@@ -5,19 +5,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 class FormatterStateMap {
-    private final FormatterState defaultFormatterState;
+    private final FormatterState defaultState;
+    private final FormatterState errorState;
     private final Map<Pair<FormatterState, String>, FormatterState> stateMap;
 
     FormatterStateMap() {
         stateMap = new HashMap<>();
-        defaultFormatterState = new FormatterState("");
+        defaultState = new FormatterState("DEFAULT");
+        errorState = new FormatterState("ERROR");
     }
 
     FormatterState getStartState() {
-        return defaultFormatterState;
+        return defaultState;
     }
 
-    FormatterState getNextState(final FormatterState formatterState, final String signal) {
-        return stateMap.getOrDefault(new Pair<>(formatterState, signal), defaultFormatterState);
+    FormatterState getErrorState() {
+        return errorState;
+    }
+
+    FormatterState getNextState(final FormatterState formatterState, final String tokenType) {
+        return stateMap.getOrDefault(new Pair<>(formatterState, tokenType), errorState);
     }
 }

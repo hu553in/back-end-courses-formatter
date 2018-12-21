@@ -21,15 +21,9 @@ import it.sevenbits.homework.lexer.token.IToken;
 public class StateMachineFormatter implements IFormatter {
     private static final String SINGLE_INDENT = "    ";
     private final ILexerFactory lexerFactory;
-    private final FormatterStateTransitions formatterStateTransitions;
-    private final IFormatterCommandFactory commandFactory;
-    private final IFormatterCommandArgs commandArgs;
 
     public StateMachineFormatter() {
         lexerFactory = new LexerFactory();
-        formatterStateTransitions = new FormatterStateTransitions();
-        commandArgs = new FormatterCommandArgs();
-        commandFactory = new FormatterCommandFactory(commandArgs);
     }
 
     private String getIndent(final short nestingLevel) {
@@ -64,9 +58,18 @@ public class StateMachineFormatter implements IFormatter {
             throw new FormatterException("Unable to create ILexer instance", e);
         }
 
+        final FormatterStateTransitions formatterStateTransitions = new FormatterStateTransitions();
+        final FormatterState errorFormatterState = formatterStateTransitions.getErrorState();
+        final IFormatterCommandArgs commandArgs = new FormatterCommandArgs();
+        final IFormatterCommandFactory commandFactory = new FormatterCommandFactory(commandArgs);
+
+        commandArgs.setWriter(writer);
+        commandArgs.setNestingLevel(0);
+        commandArgs.setLastWrittenLexeme("");
+
         FormatterState currentFormatterState = formatterStateTransitions.getStartState();
 
-        while (lexer.hasMoreTokens()) {
+        while (lexer.hasMoreTokens() ) {
             final IToken currentToken;
 
             try {
@@ -75,6 +78,8 @@ public class StateMachineFormatter implements IFormatter {
                 throw new FormatterException("Unable to read token from ILexer instance", e);
             }
 
+            commandArgs.setCurrentLexeme(currentToken.getLexeme());
+
             try {
                 commandFactory.getCommand(currentFormatterState, currentToken).execute();
             } catch (FormatterCommandFactoryException e) {
@@ -82,6 +87,10 @@ public class StateMachineFormatter implements IFormatter {
             }
 
             currentFormatterState = formatterStateTransitions.nextState(currentFormatterState, currentToken);
+
+            if (currentFormatterState.equals(errorFormatterState)) {
+                throw new FormatterException("Unable to get next state basing on current state and token");
+            }
         }
     }
 }
