@@ -11,10 +11,13 @@ import it.sevenbits.homework.lexer.factory.LexerFactoryException;
 import it.sevenbits.homework.lexer.token.IToken;
 import java.util.Objects;
 
+// TODO(hu553in): remove warning suppression
+
 /**
  * Class that formats Java source code. Input is performed using {@link IWriter} and {@link ILexer} instances,
  * output is performed using {@link IWriter} instance.
  */
+@SuppressWarnings("Duplicates")
 public class Formatter implements IFormatter {
     private static final String SINGLE_INDENT = "    ";
     private final ILexerFactory lexerFactory;
@@ -39,13 +42,13 @@ public class Formatter implements IFormatter {
             return "";
         }
 
-        StringBuilder resultIndent = new StringBuilder();
+        StringBuilder resultingIndent = new StringBuilder();
 
         for (short iterator = 0; iterator < nestingLevel; iterator++) {
-            resultIndent.append(SINGLE_INDENT);
+            resultingIndent.append(SINGLE_INDENT);
         }
 
-        return resultIndent.toString();
+        return resultingIndent.toString();
     }
 
     /**

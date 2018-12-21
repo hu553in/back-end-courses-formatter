@@ -7,11 +7,15 @@ import it.sevenbits.homework.io.reader.FileReader;
 import it.sevenbits.homework.io.reader.ReaderException;
 import it.sevenbits.homework.io.writer.FileWriter;
 import it.sevenbits.homework.io.writer.WriterException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Main class of application.
  */
 public final class Main {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
+
     /**
      * Main entry point of application.
      *
@@ -19,10 +23,7 @@ public final class Main {
      */
     public static void main(final String[] args) {
         if (args.length != 2) {
-            System.err.println("Incorrect number of command-line arguments!\n\n" +
-                               "Expected 2 arguments:\n\n" +
-                               "1) Path to input file\n" +
-                               "2) Path to output file");
+            LOGGER.error("Incorrect number of command-line args (expected 2: input file path, output file path)");
             return;
         }
 
@@ -34,7 +35,7 @@ public final class Main {
         ) {
             formatter.format(reader, writer);
         } catch (ReaderException | WriterException | FormatterException e) {
-            System.err.println(e.getClass().getSimpleName() + " - " + e.getMessage());
+            LOGGER.error(String.format("%s - %s", e.getClass().getSimpleName(), e.getMessage()));
         }
     }
 
