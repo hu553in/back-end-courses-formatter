@@ -4,7 +4,7 @@ import it.sevenbits.homework.io.reader.FileReader;
 import it.sevenbits.homework.io.reader.IReader;
 import it.sevenbits.homework.io.reader.StringReader;
 import it.sevenbits.homework.lexer.ILexer;
-import it.sevenbits.homework.lexer.CommonLexer;
+import it.sevenbits.homework.lexer.fsm.FSMLexer;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
@@ -23,8 +23,8 @@ public class LexerFactory implements ILexerFactory {
      */
     public LexerFactory() {
         lexerForReader = new HashMap<>();
-        lexerForReader.put(StringReader.class, CommonLexer.class);
-        lexerForReader.put(FileReader.class, CommonLexer.class);
+        lexerForReader.put(StringReader.class, FSMLexer.class);
+        lexerForReader.put(FileReader.class, FSMLexer.class);
     }
 
     /**
@@ -46,28 +46,42 @@ public class LexerFactory implements ILexerFactory {
 
         final Class<? extends ILexer> lexerClass = lexerForReader.get(reader.getClass());
         if (lexerClass == null) {
-            throw new LexerFactoryException("There are no ILexer interface implementations that " +
-                                            "match the passed IReader interface implementation");
+            throw new LexerFactoryException(
+                    "There are no ILexer interface implementations that " +
+                    "match the passed IReader interface implementation"
+            );
         }
 
         final Constructor<? extends ILexer> lexerConstructor;
         try {
             lexerConstructor = lexerClass.getDeclaredConstructor(IReader.class);
         } catch (NoSuchMethodException e) {
-            throw new LexerFactoryException("Invoked " + lexerClass.getSimpleName() +
-                                            " constructor does not exist", e);
+            throw new LexerFactoryException(
+                    "Invoked " +
+                    lexerClass.getSimpleName() +
+                    " constructor does not exist",
+                    e
+            );
         }
 
         try {
             return lexerConstructor.newInstance(reader);
         } catch (InvocationTargetException e) {
-            throw new LexerFactoryException("An exception was thrown during the creation of " +
-                                            lexerClass.getSimpleName() + " instance", e.getCause());
+            throw new LexerFactoryException(
+                    "An exception was thrown during the creation of " +
+                    lexerClass.getSimpleName() +
+                    " instance",
+                    e.getCause()
+            );
         } catch (InstantiationException e) {
             throw new LexerFactoryException("Unable to create " + lexerClass.getSimpleName() + " instance", e);
         } catch (IllegalAccessException e) {
-            throw new LexerFactoryException("No access to the definition of " + lexerClass.getSimpleName() +
-                                            " implementation or constructor", e);
+            throw new LexerFactoryException(
+                    "No access to the definition of " +
+                    lexerClass.getSimpleName() +
+                    " implementation or constructor",
+                    e
+            );
         }
     }
 }
