@@ -15,8 +15,8 @@ import it.sevenbits.homework.lexer.fsm.command.factory.CommandFactoryException;
 import it.sevenbits.homework.lexer.fsm.command.factory.ICommandFactory;
 import it.sevenbits.homework.lexer.fsm.state.StateTransitions;
 import it.sevenbits.homework.lexer.token.IToken;
-import it.sevenbits.homework.util.Pair;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 public class FSMLexer implements ILexer {
@@ -37,27 +37,24 @@ public class FSMLexer implements ILexer {
 
     private void nameToken(final ITokenBuilder tokenBuilder) {
         final String lexeme = tokenBuilder.getLexeme();
-        final ArrayList<Pair<Pattern, String>> tokenTypesForPatterns = new ArrayList<>();
+        final HashMap<Pattern, String> tokenNamesForPatterns = new HashMap<>();
 
-        tokenTypesForPatterns.add(new Pair<>(Pattern.compile("\\{"), "OPENING_CURLY_BRACE"));
-        tokenTypesForPatterns.add(new Pair<>(Pattern.compile("}"), "CLOSING_CURLY_BRACE"));
-        tokenTypesForPatterns.add(new Pair<>(Pattern.compile(";"), "SEMICOLON"));
-        tokenTypesForPatterns.add(new Pair<>(Pattern.compile("\n"), "NEWLINE"));
-        tokenTypesForPatterns.add(new Pair<>(Pattern.compile("\t"), "TAB"));
-        tokenTypesForPatterns.add(new Pair<>(Pattern.compile(" "), "WHITESPACE"));
-        tokenTypesForPatterns.add(new Pair<>(Pattern.compile("//.*"), "SINGLE_LINE_COMMENT"));
-        tokenTypesForPatterns.add(new Pair<>(Pattern.compile("/\\*[\\d\\D]*\\*/"), "MULTILINE_COMMENT"));
-        tokenTypesForPatterns.add(new Pair<>(Pattern.compile("'[\\d\\D]*'"), "CHARACTER_LITERAL"));
-        tokenTypesForPatterns.add(new Pair<>(Pattern.compile("\"[\\d\\D]*\""), "STRING_LITERAL"));
+        tokenNamesForPatterns.put(Pattern.compile("\\{"), "OPENING_CURLY_BRACE");
+        tokenNamesForPatterns.put(Pattern.compile("}"), "CLOSING_CURLY_BRACE");
+        tokenNamesForPatterns.put(Pattern.compile(";"), "SEMICOLON");
+        tokenNamesForPatterns.put(Pattern.compile("\n"), "NEWLINE");
+        tokenNamesForPatterns.put(Pattern.compile("\t"), "TAB");
+        tokenNamesForPatterns.put(Pattern.compile(" "), "WHITESPACE");
+        tokenNamesForPatterns.put(Pattern.compile("//.*"), "SINGLE_LINE_COMMENT");
+        tokenNamesForPatterns.put(Pattern.compile("/\\*[\\d\\D]*\\*/"), "MULTILINE_COMMENT");
+        tokenNamesForPatterns.put(Pattern.compile("'[\\d\\D]*'"), "CHARACTER_LITERAL");
+        tokenNamesForPatterns.put(Pattern.compile("\"[\\d\\D]*\""), "STRING_LITERAL");
 
-        for (Pair<Pattern, String> tokenTypeForPattern : tokenTypesForPatterns) {
-            if (tokenTypeForPattern.getFirst().matcher(lexeme).matches()) {
-                tokenBuilder.setName(tokenTypeForPattern.getSecond());
-                return;
-            }
-        }
-
-        tokenBuilder.setName("OTHER");
+        tokenBuilder.setName(
+                tokenNamesForPatterns.entrySet().stream().filter(
+                        mapEntry -> mapEntry.getKey().matcher(lexeme).matches()
+                ).findAny().map(Map.Entry::getValue).orElse("OTHER")
+        );
     }
 
     @Override
