@@ -1,9 +1,9 @@
 package it.sevenbits.homework.lexer.fsm.command.factory;
 
 import it.sevenbits.homework.fsm.command.ICommand;
+import it.sevenbits.homework.fsm.command.StayIdleCommand;
 import it.sevenbits.homework.fsm.state.State;
 import it.sevenbits.homework.lexer.fsm.command.AddCharacterToTokenBuilderCommand;
-import it.sevenbits.homework.lexer.fsm.command.StayIdleCommand;
 import it.sevenbits.homework.lexer.fsm.command.args.ICommandArgs;
 import it.sevenbits.homework.util.Pair;
 import java.util.HashMap;

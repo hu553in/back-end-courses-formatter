@@ -6,10 +6,10 @@ import it.sevenbits.homework.fsm.command.ICommand;
 import it.sevenbits.homework.io.writer.IWriter;
 import it.sevenbits.homework.io.writer.WriterException;
 
-public class WriteLexemeCommand implements ICommand {
+public class WriteCommand implements ICommand {
     private final ICommandArgs commandArgs;
 
-    public WriteLexemeCommand(final ICommandArgs commandArgs) {
+    public WriteCommand(final ICommandArgs commandArgs) {
         this.commandArgs = commandArgs;
     }
 

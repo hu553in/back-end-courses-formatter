@@ -2,14 +2,13 @@ package it.sevenbits.homework.formatter.simple;
 
 import it.sevenbits.homework.formatter.FormatterException;
 import it.sevenbits.homework.formatter.IFormatter;
+import it.sevenbits.homework.formatter.util.IndentProvider;
 import it.sevenbits.homework.io.reader.IReader;
 import it.sevenbits.homework.io.writer.IWriter;
 import it.sevenbits.homework.io.writer.WriterException;
 import it.sevenbits.homework.lexer.ILexer;
 import it.sevenbits.homework.lexer.LexerException;
-import it.sevenbits.homework.lexer.factory.ILexerFactory;
-import it.sevenbits.homework.lexer.factory.LexerFactory;
-import it.sevenbits.homework.lexer.factory.LexerFactoryException;
+import it.sevenbits.homework.lexer.simple.SimpleLexer;
 import it.sevenbits.homework.lexer.token.IToken;
 import java.util.Objects;
 
@@ -19,44 +18,11 @@ import java.util.Objects;
  */
 
 public class SimpleFormatter implements IFormatter {
-    private static final String SINGLE_INDENT = "    ";
-    private final ILexerFactory lexerFactory;
-
-    /**
-     * Class constructor that initializes {@link #lexerFactory} with new {@link LexerFactory} instance.
-     */
-    public SimpleFormatter() {
-        lexerFactory = new LexerFactory();
-    }
-
-    /**
-     * Method that returns {@link String} instance which contains required indent
-     * in accordance with current nesting level.
-     *
-     * @param nestingLevel Level of nesting in source code.
-     *
-     * @return {@link String} instance that contains (4 * nesting level) spaces.
-     */
-    private String getIndent(final short nestingLevel) {
-        if (nestingLevel == 0) {
-            return "";
-        }
-
-        StringBuilder resultingIndent = new StringBuilder();
-
-        for (short iterator = 0; iterator < nestingLevel; iterator++) {
-            resultingIndent.append(SINGLE_INDENT);
-        }
-
-        return resultingIndent.toString();
-    }
-
     /**
      * Method that performs formatting of Java source code that is stored in lexical tokens
-     * which are provided by ILexer instance.
+     * which are provided by {@link ILexer} instance.
      *
-     * @param reader {@link IReader} instance that is passed to {@link #lexerFactory}
-     *               as an argument for ILexer instance creation.
+     * @param reader {@link IReader} instance that provides data reading.
      * @param writer {@link IWriter} instance that provides data writing.
      *
      * @throws FormatterException Exception that can be thrown during the method work.
@@ -71,10 +37,11 @@ public class SimpleFormatter implements IFormatter {
             throw new FormatterException("\"writer\" argument is null");
         }
 
-        ILexer lexer;
+        final ILexer lexer;
+
         try {
-            lexer = lexerFactory.createLexer(reader);
-        } catch (LexerFactoryException e) {
+            lexer = new SimpleLexer(reader);
+        } catch (LexerException e) {
             throw new FormatterException("Unable to create lexer instance", e);
         }
 
@@ -92,7 +59,7 @@ public class SimpleFormatter implements IFormatter {
             try {
                 if (Objects.equals(token.getName(), "OPENING_CURLY_BRACE")) {
                     if (Objects.equals(lastWrittenLexeme, "\n") || lastWrittenLexeme == null) {
-                        writer.write(getIndent(nestingLevel));
+                        writer.write(IndentProvider.getFourSpacesIndent(nestingLevel));
                     } else if (!Objects.equals(lastWrittenLexeme, " ")) {
                         writer.write(" ");
                     }
@@ -113,7 +80,7 @@ public class SimpleFormatter implements IFormatter {
                         writer.write("\n");
                     }
 
-                    writer.write(getIndent(nestingLevel));
+                    writer.write(IndentProvider.getFourSpacesIndent(nestingLevel));
                     writer.write(token.getLexeme());
                     lastWrittenLexeme = token.getLexeme();
 
@@ -146,7 +113,7 @@ public class SimpleFormatter implements IFormatter {
                     }
                 } else if (Objects.equals(token.getName(), "OTHER")) {
                     if (Objects.equals(lastWrittenLexeme, "\n")) {
-                        writer.write(getIndent(nestingLevel));
+                        writer.write(IndentProvider.getFourSpacesIndent(nestingLevel));
                     }
 
                     writer.write(token.getLexeme());

@@ -3,4 +3,4 @@
  *
  * @author hu553in
  */
-package it.sevenbits.homework.formatter.fsm.util;
+package it.sevenbits.homework.formatter.util;

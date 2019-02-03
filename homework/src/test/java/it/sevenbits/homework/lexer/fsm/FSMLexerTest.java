@@ -9,9 +9,7 @@ import it.sevenbits.homework.lexer.simple.SimpleLexer;
 import it.sevenbits.homework.lexer.token.IToken;
 import org.junit.Assert;
 import org.junit.Test;
-
 import java.io.IOException;
-
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
@@ -22,7 +20,7 @@ public class FSMLexerTest {
 
     @Test
     public void shouldReturnTokensCorrectly() throws LexerException {
-        reader = new StringReader("other{ \n{{\nother}))\n//  slc\n\"sl\"'cl'/* mlc\n\n*/");
+        reader = new StringReader("other{ \n{{\nother}))\n//  slc\n\"sl\"'c'/* mlc\n\n*/");
         lexer = new FSMLexer(reader);
 
         Assert.assertTrue(lexer.hasMoreTokens());
@@ -97,7 +95,7 @@ public class FSMLexerTest {
         Assert.assertTrue(lexer.hasMoreTokens());
 
         token = lexer.readToken();
-        Assert.assertEquals("'cl'", token.getLexeme());
+        Assert.assertEquals("'c'", token.getLexeme());
         Assert.assertEquals("CHARACTER_LITERAL", token.getName());
         Assert.assertTrue(lexer.hasMoreTokens());
 

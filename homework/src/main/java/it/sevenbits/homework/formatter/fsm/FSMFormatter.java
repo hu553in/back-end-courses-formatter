@@ -18,6 +18,7 @@ import it.sevenbits.homework.lexer.factory.ILexerFactory;
 import it.sevenbits.homework.lexer.factory.LexerFactory;
 import it.sevenbits.homework.lexer.factory.LexerFactoryException;
 import it.sevenbits.homework.lexer.token.IToken;
+import org.slf4j.LoggerFactory;
 
 public class FSMFormatter implements IFormatter {
     private final ILexerFactory lexerFactory;

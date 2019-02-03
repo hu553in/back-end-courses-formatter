@@ -4,6 +4,7 @@ import it.sevenbits.homework.io.reader.FileReader;
 import it.sevenbits.homework.io.reader.IReader;
 import it.sevenbits.homework.io.reader.ReaderException;
 import it.sevenbits.homework.io.reader.StringReader;
+import it.sevenbits.homework.lexer.fsm.FSMLexer;
 import it.sevenbits.homework.lexer.simple.SimpleLexer;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,16 +22,16 @@ public class LexerFactoryTest {
     @Test
     public void shouldReturnCommonLexerAtFirst() throws LexerFactoryException {
         Assert.assertEquals(
-                lexerFactory.createLexer(new StringReader("")).getClass(),
-                SimpleLexer.class
+                FSMLexer.class,
+                lexerFactory.createLexer(new StringReader("")).getClass()
         );
     }
 
     @Test
     public void shouldReturnCommonLexerAtSecond() throws LexerFactoryException, ReaderException {
         Assert.assertEquals(
-                lexerFactory.createLexer(new FileReader("/dev/null")).getClass(),
-                SimpleLexer.class
+                FSMLexer.class,
+                lexerFactory.createLexer(new FileReader("/dev/null")).getClass()
         );
     }
 

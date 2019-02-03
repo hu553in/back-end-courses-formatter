@@ -1,4 +1,4 @@
-package it.sevenbits.homework.formatter.fsm.util;
+package it.sevenbits.homework.formatter.util;
 
 public final class IndentProvider {
     private static final String FOUR_SPACES_INDENT = "    ";

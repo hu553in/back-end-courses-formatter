@@ -8,8 +8,7 @@ import java.util.Map;
 class StateMap {
     private final Map<Pair<State, Character>, State> stateMap;
     private final Map<State, State> defaultStateMap;
-    private final State startState;
-    private final State endState;
+    private final State startState, endState;
 
     StateMap() {
         stateMap = new HashMap<>();
@@ -19,19 +18,19 @@ class StateMap {
 
         final State otherState = new State("OTHER");
         final State singleCharacterState = new State("SINGLE_CHARACTER");
-        final State singleLineCommentState = new State("SINGLE_LINE_COMMENT");
-        final State multilineCommentState = new State("MULTILINE_COMMENT");
-        final State endOfMultilineCommentState = new State("END_OF_MULTILINE_COMMENT");
-        final State stringLiteralState = new State("STRING_LITERAL");
-        final State endOfStringLiteralState = new State("END_OF_STRING_LITERAL");
-        final State characterLiteralState = new State("CHARACTER_LITERAL");
-        final State endOfCharacterLiteralState = new State("END_OF_CHARACTER_LITERAL");
 
         final State probablyStartOfUnknownTypeCommentState = new State(
                 "PROBABLY_START_OF_UNKNOWN_TYPE_COMMENT"
         );
 
+        final State singleLineCommentState = new State("SINGLE_LINE_COMMENT");
+        final State multilineCommentState = new State("MULTILINE_COMMENT");
         final State probablyEndOfMultilineCommentState = new State("PROBABLY_END_OF_MULTILINE_COMMENT");
+        final State endOfMultilineCommentState = new State("END_OF_MULTILINE_COMMENT");
+        final State stringLiteralState = new State("STRING_LITERAL");
+        final State endOfStringLiteralState = new State("END_OF_STRING_LITERAL");
+        final State characterLiteralState = new State("CHARACTER_LITERAL");
+        final State endOfCharacterLiteralState = new State("END_OF_CHARACTER_LITERAL");
 
         stateMap.put(new Pair<>(startState, '{'), singleCharacterState);
         stateMap.put(new Pair<>(startState, '}'), singleCharacterState);

@@ -75,7 +75,6 @@ public class FSMLexer implements ILexer {
         final ICommandFactory commandFactory = new CommandFactory(commandArgs);
 
         commandArgs.setTokenBuilder(tokenBuilder);
-
         State currentState = stateTransitions.getStartState();
 
         while (charBuffer != -1) {
