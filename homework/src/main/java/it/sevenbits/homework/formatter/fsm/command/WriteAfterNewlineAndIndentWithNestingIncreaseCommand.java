@@ -2,8 +2,6 @@ package it.sevenbits.homework.formatter.fsm.command;
 
 import it.sevenbits.homework.formatter.fsm.command.args.ICommandArgs;
 import it.sevenbits.homework.formatter.util.IndentProvider;
-import it.sevenbits.homework.fsm.command.CommandException;
-import it.sevenbits.homework.fsm.command.ICommand;
 import it.sevenbits.homework.io.writer.IWriter;
 import it.sevenbits.homework.io.writer.WriterException;
 

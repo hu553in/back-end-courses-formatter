@@ -31,8 +31,11 @@ public class FSMFormatterTest {
     @Test
     public void shouldFormatCorrectlyAtSecond() throws FormatterException {
         reader = new StringReader(
-                "public class     HelloWorld{\n// just a single line comment\npublic static void main(final String[] " +
-                 "args){System.out.println(\"Hello, World!\");\n/*\n * just\n * a\n * multiline\n * comment\n */}}\n\n'c''l'"
+                "public         class     HelloWorld{     \n" +
+                 "// just a single line comment\n" +
+                 "public static void main(final String[] " +
+                 "args){System.out.println(\"Hello, World!\");\n\n\n\n" +
+                 "/*\n * just\n * a\n * multiline\n * comment\n */}}\n\n'c''l'"
         );
 
         writer = new StringWriter();

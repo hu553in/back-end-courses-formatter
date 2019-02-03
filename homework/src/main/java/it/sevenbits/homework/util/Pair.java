@@ -9,8 +9,8 @@ import java.util.Objects;
  * @param <U> Second object type.
  */
 public final class Pair<T, U> {
-    private T first;
-    private U second;
+    private final T first;
+    private final U second;
 
     /**
      * Class constructor that initializes {@link Pair#first} and {@link Pair#second} fields with passed objects.
@@ -52,13 +52,5 @@ public final class Pair<T, U> {
     @Override
     public int hashCode() {
         return Objects.hash(first, second);
-    }
-
-    public T getFirst() {
-        return first;
-    }
-
-    public U getSecond() {
-        return second;
     }
 }

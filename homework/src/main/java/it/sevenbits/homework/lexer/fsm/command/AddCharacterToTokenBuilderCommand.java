@@ -1,7 +1,5 @@
 package it.sevenbits.homework.lexer.fsm.command;
 
-import it.sevenbits.homework.fsm.command.CommandException;
-import it.sevenbits.homework.fsm.command.ICommand;
 import it.sevenbits.homework.lexer.fsm.command.args.ICommandArgs;
 
 public class AddCharacterToTokenBuilderCommand implements ICommand {
@@ -12,7 +10,7 @@ public class AddCharacterToTokenBuilderCommand implements ICommand {
     }
 
     @Override
-    public void execute() throws CommandException {
+    public void execute() {
         commandArgs.getTokenBuilder().appendToLexeme(commandArgs.getCharBuffer());
     }
 }

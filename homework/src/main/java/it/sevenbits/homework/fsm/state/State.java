@@ -3,15 +3,15 @@ package it.sevenbits.homework.fsm.state;
 import java.util.Objects;
 
 public class State {
-    private final String currentState;
+    private final String name;
 
     public State(final String currentState) {
-        this.currentState = currentState;
+        this.name = currentState;
     }
 
     @Override
     public String toString() {
-        return currentState;
+        return name;
     }
 
     @Override
@@ -25,11 +25,11 @@ public class State {
         }
 
         final State otherState = (State) otherObject;
-        return Objects.equals(currentState, otherState.currentState);
+        return Objects.equals(name, otherState.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(currentState);
+        return Objects.hash(name);
     }
 }

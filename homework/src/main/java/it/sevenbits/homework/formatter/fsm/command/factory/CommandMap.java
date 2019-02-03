@@ -7,8 +7,8 @@ import it.sevenbits.homework.formatter.fsm.command.WriteAfterNewlineCommand;
 import it.sevenbits.homework.formatter.fsm.command.WriteAfterWhitespaceCommand;
 import it.sevenbits.homework.formatter.fsm.command.WriteAfterWhitespaceWithNestingIncreaseCommand;
 import it.sevenbits.homework.formatter.fsm.command.WriteWithNestingIncreaseCommand;
-import it.sevenbits.homework.fsm.command.ICommand;
-import it.sevenbits.homework.fsm.command.StayIdleCommand;
+import it.sevenbits.homework.formatter.fsm.command.ICommand;
+import it.sevenbits.homework.formatter.fsm.command.StayIdleCommand;
 import it.sevenbits.homework.formatter.fsm.command.WriteCommand;
 import it.sevenbits.homework.formatter.fsm.command.args.ICommandArgs;
 import it.sevenbits.homework.fsm.state.State;
@@ -19,10 +19,11 @@ import java.util.Map;
 
 class CommandMap {
     private final Map<Pair<State, String>, ICommand> commandMap;
-    private final ICommand stayIdle = new StayIdleCommand();
+    private final ICommand stayIdle;
 
     CommandMap(final ICommandArgs commandArgs) {
         commandMap = new HashMap<>();
+        stayIdle = new StayIdleCommand();
 
         final State startState = new State("START");
         final State otherState = new State("OTHER");
@@ -49,7 +50,6 @@ class CommandMap {
         final ICommand writeAfterNewlineAndIndentWithNestingIncrease = (
                 new WriteAfterNewlineAndIndentWithNestingIncreaseCommand(commandArgs)
         );
-
 
         final ICommand writeAfterWhitespaceWithNestingIncrease = (
                 new WriteAfterWhitespaceWithNestingIncreaseCommand(commandArgs)
@@ -82,7 +82,12 @@ class CommandMap {
         commandMap.put(new Pair<>(newLineState, "STRING_LITERAL"), writeAfterNewlineAndIndent);
 
         commandMap.put(new Pair<>(whitespaceState, "OPENING_CURLY_BRACE"), writeAfterWhitespace);
-        commandMap.put(new Pair<>(whitespaceState, "CLOSING_CURLY_BRACE"), writeAfterNewlineAndIndentWithNestingDecrease);
+
+        commandMap.put(
+                new Pair<>(whitespaceState, "CLOSING_CURLY_BRACE"),
+                writeAfterNewlineAndIndentWithNestingDecrease
+        );
+
         commandMap.put(new Pair<>(whitespaceState, "SEMICOLON"), write);
         commandMap.put(new Pair<>(whitespaceState, "OTHER"), writeAfterWhitespace);
         commandMap.put(new Pair<>(whitespaceState, "SINGLE_LINE_COMMENT"), writeAfterWhitespace);
@@ -90,8 +95,16 @@ class CommandMap {
         commandMap.put(new Pair<>(whitespaceState, "CHARACTER_LITERAL"), writeAfterWhitespace);
         commandMap.put(new Pair<>(whitespaceState, "STRING_LITERAL"), writeAfterWhitespace);
 
-        commandMap.put(new Pair<>(openingCurlyBraceState, "OPENING_CURLY_BRACE"), writeAfterNewlineAndIndentWithNestingIncrease);
-        commandMap.put(new Pair<>(openingCurlyBraceState, "CLOSING_CURLY_BRACE"), writeAfterNewlineAndIndentWithNestingDecrease);
+        commandMap.put(
+                new Pair<>(openingCurlyBraceState, "OPENING_CURLY_BRACE"),
+                writeAfterNewlineAndIndentWithNestingIncrease
+        );
+
+        commandMap.put(
+                new Pair<>(openingCurlyBraceState, "CLOSING_CURLY_BRACE"),
+                writeAfterNewlineAndIndentWithNestingDecrease
+        );
+
         commandMap.put(new Pair<>(openingCurlyBraceState, "SEMICOLON"), writeAfterNewlineAndIndent);
         commandMap.put(new Pair<>(openingCurlyBraceState, "OTHER"), writeAfterNewlineAndIndent);
         commandMap.put(new Pair<>(openingCurlyBraceState, "SINGLE_LINE_COMMENT"), write);
@@ -99,8 +112,16 @@ class CommandMap {
         commandMap.put(new Pair<>(openingCurlyBraceState, "CHARACTER_LITERAL"), writeAfterNewlineAndIndent);
         commandMap.put(new Pair<>(openingCurlyBraceState, "STRING_LITERAL"), writeAfterNewlineAndIndent);
 
-        commandMap.put(new Pair<>(closingCurlyBraceState, "OPENING_CURLY_BRACE"), writeAfterNewlineAndIndentWithNestingIncrease);
-        commandMap.put(new Pair<>(closingCurlyBraceState, "CLOSING_CURLY_BRACE"), writeAfterNewlineAndIndentWithNestingDecrease);
+        commandMap.put(
+                new Pair<>(closingCurlyBraceState, "OPENING_CURLY_BRACE"),
+                writeAfterNewlineAndIndentWithNestingIncrease
+        );
+
+        commandMap.put(new Pair<>(
+                closingCurlyBraceState, "CLOSING_CURLY_BRACE"),
+                writeAfterNewlineAndIndentWithNestingDecrease
+        );
+
         commandMap.put(new Pair<>(closingCurlyBraceState, "SEMICOLON"), writeAfterNewlineAndIndent);
         commandMap.put(new Pair<>(closingCurlyBraceState, "OTHER"), writeAfterNewlineAndIndent);
         commandMap.put(new Pair<>(closingCurlyBraceState, "SINGLE_LINE_COMMENT"), write);
@@ -108,8 +129,16 @@ class CommandMap {
         commandMap.put(new Pair<>(closingCurlyBraceState, "CHARACTER_LITERAL"), writeAfterNewlineAndIndent);
         commandMap.put(new Pair<>(closingCurlyBraceState, "STRING_LITERAL"), writeAfterNewlineAndIndent);
 
-        commandMap.put(new Pair<>(semicolonState, "OPENING_CURLY_BRACE"), writeAfterNewlineAndIndentWithNestingIncrease);
-        commandMap.put(new Pair<>(semicolonState, "CLOSING_CURLY_BRACE"), writeAfterNewlineAndIndentWithNestingDecrease);
+        commandMap.put(
+                new Pair<>(semicolonState, "OPENING_CURLY_BRACE"),
+                writeAfterNewlineAndIndentWithNestingIncrease
+        );
+
+        commandMap.put(
+                new Pair<>(semicolonState, "CLOSING_CURLY_BRACE"),
+                writeAfterNewlineAndIndentWithNestingDecrease
+        );
+
         commandMap.put(new Pair<>(semicolonState, "SEMICOLON"), writeAfterNewlineAndIndent);
         commandMap.put(new Pair<>(semicolonState, "OTHER"), writeAfterNewlineAndIndent);
         commandMap.put(new Pair<>(semicolonState, "SINGLE_LINE_COMMENT"), write);
@@ -117,8 +146,16 @@ class CommandMap {
         commandMap.put(new Pair<>(semicolonState, "CHARACTER_LITERAL"), writeAfterNewlineAndIndent);
         commandMap.put(new Pair<>(semicolonState, "STRING_LITERAL"), writeAfterNewlineAndIndent);
 
-        commandMap.put(new Pair<>(singleLineCommentState, "OPENING_CURLY_BRACE"), writeAfterNewlineAndIndentWithNestingIncrease);
-        commandMap.put(new Pair<>(singleLineCommentState, "CLOSING_CURLY_BRACE"), writeAfterNewlineAndIndentWithNestingDecrease);
+        commandMap.put(
+                new Pair<>(singleLineCommentState, "OPENING_CURLY_BRACE"),
+                writeAfterNewlineAndIndentWithNestingIncrease
+        );
+
+        commandMap.put(
+                new Pair<>(singleLineCommentState, "CLOSING_CURLY_BRACE"),
+                writeAfterNewlineAndIndentWithNestingDecrease
+        );
+
         commandMap.put(new Pair<>(singleLineCommentState, "SEMICOLON"), writeAfterNewlineAndIndent);
         commandMap.put(new Pair<>(singleLineCommentState, "OTHER"), writeAfterNewlineAndIndent);
         commandMap.put(new Pair<>(singleLineCommentState, "SINGLE_LINE_COMMENT"), writeAfterNewline);
@@ -126,8 +163,16 @@ class CommandMap {
         commandMap.put(new Pair<>(singleLineCommentState, "CHARACTER_LITERAL"), writeAfterNewlineAndIndent);
         commandMap.put(new Pair<>(singleLineCommentState, "STRING_LITERAL"), writeAfterNewlineAndIndent);
 
-        commandMap.put(new Pair<>(multilineCommentState, "OPENING_CURLY_BRACE"), writeAfterWhitespaceWithNestingIncrease);
-        commandMap.put(new Pair<>(multilineCommentState, "CLOSING_CURLY_BRACE"), writeAfterNewlineAndIndentWithNestingDecrease);
+        commandMap.put(
+                new Pair<>(multilineCommentState, "OPENING_CURLY_BRACE"),
+                writeAfterWhitespaceWithNestingIncrease
+        );
+
+        commandMap.put(
+                new Pair<>(multilineCommentState, "CLOSING_CURLY_BRACE"),
+                writeAfterNewlineAndIndentWithNestingDecrease
+        );
+
         commandMap.put(new Pair<>(multilineCommentState, "SEMICOLON"), write);
         commandMap.put(new Pair<>(multilineCommentState, "OTHER"), write);
         commandMap.put(new Pair<>(multilineCommentState, "SINGLE_LINE_COMMENT"), write);
@@ -135,8 +180,16 @@ class CommandMap {
         commandMap.put(new Pair<>(multilineCommentState, "CHARACTER_LITERAL"), write);
         commandMap.put(new Pair<>(multilineCommentState, "STRING_LITERAL"), write);
 
-        commandMap.put(new Pair<>(characterLiteralState, "OPENING_CURLY_BRACE"), writeAfterWhitespaceWithNestingIncrease);
-        commandMap.put(new Pair<>(characterLiteralState, "CLOSING_CURLY_BRACE"), writeAfterNewlineAndIndentWithNestingDecrease);
+        commandMap.put(
+                new Pair<>(characterLiteralState, "OPENING_CURLY_BRACE"),
+                writeAfterWhitespaceWithNestingIncrease
+        );
+
+        commandMap.put(
+                new Pair<>(characterLiteralState, "CLOSING_CURLY_BRACE"),
+                writeAfterNewlineAndIndentWithNestingDecrease
+        );
+
         commandMap.put(new Pair<>(characterLiteralState, "SEMICOLON"), write);
         commandMap.put(new Pair<>(characterLiteralState, "OTHER"), write);
         commandMap.put(new Pair<>(characterLiteralState, "SINGLE_LINE_COMMENT"), write);
@@ -144,8 +197,16 @@ class CommandMap {
         commandMap.put(new Pair<>(characterLiteralState, "CHARACTER_LITERAL"), writeAfterWhitespace);
         commandMap.put(new Pair<>(characterLiteralState, "STRING_LITERAL"), writeAfterWhitespace);
 
-        commandMap.put(new Pair<>(stringLiteralState, "OPENING_CURLY_BRACE"), writeAfterWhitespaceWithNestingIncrease);
-        commandMap.put(new Pair<>(stringLiteralState, "CLOSING_CURLY_BRACE"), writeAfterNewlineAndIndentWithNestingDecrease);
+        commandMap.put(
+                new Pair<>(stringLiteralState, "OPENING_CURLY_BRACE"),
+                writeAfterWhitespaceWithNestingIncrease
+        );
+
+        commandMap.put(
+                new Pair<>(stringLiteralState, "CLOSING_CURLY_BRACE"),
+                writeAfterNewlineAndIndentWithNestingDecrease
+        );
+
         commandMap.put(new Pair<>(stringLiteralState, "SEMICOLON"), write);
         commandMap.put(new Pair<>(stringLiteralState, "OTHER"), write);
         commandMap.put(new Pair<>(stringLiteralState, "SINGLE_LINE_COMMENT"), write);

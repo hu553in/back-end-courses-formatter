@@ -12,7 +12,7 @@ import java.nio.file.Paths;
  * Implementation of {@link IWriter} interface that performs writing to file in UTF-8 encoding.
  */
 public class FileWriter implements IWriter, Closeable {
-    private BufferedWriter bufferedWriter;
+    private final BufferedWriter bufferedWriter;
 
     /**
      * Overload of constructor that initializes {@link #bufferedWriter} using {@link Path} instance.
@@ -118,8 +118,6 @@ public class FileWriter implements IWriter, Closeable {
                 bufferedWriter.close();
             } catch (IOException e) {
                 throw new WriterException("Unable to close the stream.", e);
-            } finally {
-                bufferedWriter = null;
             }
         }
     }

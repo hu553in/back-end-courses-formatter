@@ -5,7 +5,7 @@ package it.sevenbits.homework.io.writer;
  * represented by {@link StringBuffer} instance.
  */
 public class StringWriter implements IWriter {
-    private StringBuffer buffer;
+    private final StringBuffer buffer;
 
     /**
      * Class constructor that initializes buffer with a new {@link StringBuffer} instance.
@@ -18,11 +18,9 @@ public class StringWriter implements IWriter {
      * Overload of method that writes a single character represented by Unicode code to {@link #buffer}.
      *
      * @param character Unicode character code to be written.
-     *
-     * @throws WriterException Exception that may be thrown during the method work.
      */
     @Override
-    public void write(final int character) throws WriterException {
+    public void write(final int character) {
         buffer.append((char) character);
     }
 
@@ -30,11 +28,9 @@ public class StringWriter implements IWriter {
      * Overload of method that writes a {@link String} instance to {@link #buffer}.
      *
      * @param string {@link String} instance to be written.
-     *
-     * @throws WriterException Exception that may be thrown during the method work.
      */
     @Override
-    public void write(final String string) throws WriterException {
+    public void write(final String string) {
         buffer.append(string);
     }
 
@@ -42,11 +38,9 @@ public class StringWriter implements IWriter {
      * Overload of method that writes an array of characters to {@link #buffer}.
      *
      * @param charArray Array of characters to be written.
-     *
-     * @throws WriterException Exception that may be thrown during the method work.
      */
     @Override
-    public void write(final char[] charArray) throws WriterException {
+    public void write(final char[] charArray) {
         buffer.append(charArray);
     }
 

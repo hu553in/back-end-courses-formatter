@@ -4,7 +4,7 @@ package it.sevenbits.homework.io.reader;
  * Implementation of {@link IReader} interface that performs reading from {@link String} instance.
  */
 public class StringReader implements IReader {
-    private String sourceString;
+    private final String sourceString;
     private int currentIndex;
 
     /**

@@ -12,7 +12,7 @@ import java.nio.file.Paths;
  * Implementation of {@link IReader} interface that performs reading from file that is encoded with UTF-8.
  */
 public class FileReader implements IReader, Closeable {
-    private BufferedReader bufferedReader;
+    private final BufferedReader bufferedReader;
     private int charBuffer;
 
     /**
@@ -111,8 +111,6 @@ public class FileReader implements IReader, Closeable {
                 bufferedReader.close();
             } catch (IOException e) {
                 throw new ReaderException("Unable to close stream", e);
-            } finally {
-                bufferedReader = null;
             }
         }
     }

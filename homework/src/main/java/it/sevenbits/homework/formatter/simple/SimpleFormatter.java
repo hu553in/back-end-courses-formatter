@@ -50,6 +50,7 @@ public class SimpleFormatter implements IFormatter {
 
         while (lexer.hasMoreTokens()) {
             IToken token;
+
             try {
                 token = lexer.readToken();
             } catch (LexerException e) {
@@ -65,7 +66,6 @@ public class SimpleFormatter implements IFormatter {
                     }
 
                     nestingLevel++;
-
                     writer.write(token.getLexeme());
                     lastWrittenLexeme = token.getLexeme();
 

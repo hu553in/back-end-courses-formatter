@@ -1,4 +1,4 @@
-package it.sevenbits.homework.fsm.command;
+package it.sevenbits.homework.formatter.fsm.command;
 
 public interface ICommand {
     void execute() throws CommandException;

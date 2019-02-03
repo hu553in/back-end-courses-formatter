@@ -1,7 +1,5 @@
 package it.sevenbits.homework.lexer.token;
 
-import java.util.Objects;
-
 /**
  * Implementation of {@link IToken} interface that represents a lexical token.
  */
@@ -49,36 +47,5 @@ public class Token implements IToken {
     @Override
     public String getLexeme() {
         return lexeme;
-    }
-
-    /**
-     * Override of {@link Object#equals(Object)} method.
-     *
-     * @param other Object to compare with.
-     *
-     * @return Boolean value that represents comparison result.
-     */
-    @Override
-    public boolean equals(final Object other) {
-        if (this == other) {
-            return true;
-        }
-
-        if (other == null || getClass() != other.getClass()) {
-            return false;
-        }
-
-        final Token otherToken = (Token) other;
-        return Objects.equals(name, otherToken.name) && Objects.equals(lexeme, otherToken.lexeme);
-    }
-
-    /**
-     * Override of {@link Object#hashCode()} method.
-     *
-     * @return Hash code of {@link Token} instance.
-     */
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, lexeme);
     }
 }

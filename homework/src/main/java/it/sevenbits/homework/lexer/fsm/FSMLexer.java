@@ -1,6 +1,5 @@
 package it.sevenbits.homework.lexer.fsm;
 
-import it.sevenbits.homework.fsm.command.CommandException;
 import it.sevenbits.homework.fsm.state.State;
 import it.sevenbits.homework.io.reader.IReader;
 import it.sevenbits.homework.io.reader.ReaderException;
@@ -84,8 +83,6 @@ public class FSMLexer implements ILexer {
                 commandFactory.getCommand(currentState, (char) charBuffer).execute();
             } catch (CommandFactoryException e) {
                 throw new LexerException("Unable to get command from factory", e);
-            } catch (CommandException e) {
-                throw new LexerException("Unable to execute command", e);
             }
 
             currentState = stateTransitions.nextState(currentState, (char) charBuffer);

@@ -5,11 +5,9 @@ import it.sevenbits.homework.io.reader.IReader;
 import it.sevenbits.homework.io.reader.ReaderException;
 import it.sevenbits.homework.io.reader.StringReader;
 import it.sevenbits.homework.lexer.fsm.FSMLexer;
-import it.sevenbits.homework.lexer.simple.SimpleLexer;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;
-import static org.mockito.Mockito.mock;
 
 public class LexerFactoryTest {
     private ILexerFactory lexerFactory;
