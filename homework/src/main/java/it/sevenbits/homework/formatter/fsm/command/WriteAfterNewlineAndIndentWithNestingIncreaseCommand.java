@@ -5,13 +5,27 @@ import it.sevenbits.homework.formatter.util.IndentProvider;
 import it.sevenbits.homework.io.writer.IWriter;
 import it.sevenbits.homework.io.writer.WriterException;
 
+/**
+ * {@link ICommand} interface implementation that presents one of the commands.
+ */
 public class WriteAfterNewlineAndIndentWithNestingIncreaseCommand implements ICommand {
     private final ICommandArgs commandArgs;
 
+    /**
+     * Class constructor that initializes private {@link #commandArgs} field with passed
+     * {@link ICommandArgs} instance that presents command arguments container.
+     *
+     * @param commandArgs {@link ICommandArgs} instance that presents command arguments container.
+     */
     public WriteAfterNewlineAndIndentWithNestingIncreaseCommand(final ICommandArgs commandArgs) {
         this.commandArgs = commandArgs;
     }
 
+    /**
+     * Method that performs command execution.
+     *
+     * @throws CommandException Exception that can be thrown during the method work.
+     */
     @Override
     public void execute() throws CommandException {
         final IWriter writer = commandArgs.getWriter();

@@ -1,15 +1,30 @@
 package it.sevenbits.homework.formatter.fsm.state;
 
-import it.sevenbits.homework.fsm.state.State;
 import it.sevenbits.homework.util.Pair;
 import it.sevenbits.homework.lexer.token.IToken;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class that provides a mapping of {@link Pair} instances (that contain {@link State} instance / {@link String}
+ * instance pairs) to {@link State} instances.
+ *
+ * This mapping is used for providing transitions between FSM states.
+ * Transition choice performs using information about current FSM state and other input signals.
+ * Other input signals are actually presented by {@link String} instances.
+ */
 class StateMap {
     private final State startState, errorState;
     private final Map<Pair<State, String>, State> stateMap;
 
+    /**
+     * Class constructor that initializes private {@link #stateMap} field and fills it with a pairs of
+     * {@link Pair} instances (that contain {@link State} instance / {@link String} instance pairs)
+     * and {@link State} instances.
+     *
+     * Also this method initializes private {@link #startState} and {@link #errorState} fields
+     * with new {@link State} instances.
+     */
     StateMap() {
         stateMap = new HashMap<>();
 
@@ -150,14 +165,35 @@ class StateMap {
         stateMap.put(new Pair<>(stringLiteralState, "STRING_LITERAL"), stringLiteralState);
     }
 
+    /**
+     * Method that returns {@link State} instance that presents start FSM state.
+     *
+     * @return {@link State} instance that presents start FSM state.
+     */
     State getStartState() {
         return startState;
     }
 
+    /**
+     * Method that returns {@link State} instance that presents error FSM state.
+     *
+     * @return {@link State} instance that presents error FSM state.
+     */
     State getErrorState() {
         return errorState;
     }
 
+    /**
+     * Method that returns {@link State} instance that presents target FSM state
+     * corresponding to current FSM state and currently being processed lexical token
+     * (or default if there are no matches).
+     *
+     * @param state {@link State} instance that presents current FSM state.
+     * @param token {@link IToken} instance that presents currently being processed lexical token.
+     *
+     * @return {@link State} instance that presents target FSM state
+     *         (or default if there are no matches with passed args).
+     */
     State getNextState(final State state, final IToken token) {
         return stateMap.getOrDefault(new Pair<>(state, token.getName()), errorState);
     }

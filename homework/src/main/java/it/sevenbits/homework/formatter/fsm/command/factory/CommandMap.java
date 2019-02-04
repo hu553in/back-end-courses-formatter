@@ -1,26 +1,40 @@
 package it.sevenbits.homework.formatter.fsm.command.factory;
 
+import it.sevenbits.homework.lexer.token.IToken;
+import it.sevenbits.homework.formatter.fsm.command.args.ICommandArgs;
+import it.sevenbits.homework.formatter.fsm.command.ICommand;
+import it.sevenbits.homework.formatter.fsm.command.StayIdleCommand;
 import it.sevenbits.homework.formatter.fsm.command.WriteAfterNewlineAndIndentCommand;
 import it.sevenbits.homework.formatter.fsm.command.WriteAfterNewlineAndIndentWithNestingDecreaseCommand;
 import it.sevenbits.homework.formatter.fsm.command.WriteAfterNewlineAndIndentWithNestingIncreaseCommand;
 import it.sevenbits.homework.formatter.fsm.command.WriteAfterNewlineCommand;
 import it.sevenbits.homework.formatter.fsm.command.WriteAfterWhitespaceCommand;
 import it.sevenbits.homework.formatter.fsm.command.WriteAfterWhitespaceWithNestingIncreaseCommand;
-import it.sevenbits.homework.formatter.fsm.command.WriteWithNestingIncreaseCommand;
-import it.sevenbits.homework.formatter.fsm.command.ICommand;
-import it.sevenbits.homework.formatter.fsm.command.StayIdleCommand;
 import it.sevenbits.homework.formatter.fsm.command.WriteCommand;
-import it.sevenbits.homework.formatter.fsm.command.args.ICommandArgs;
-import it.sevenbits.homework.fsm.state.State;
-import it.sevenbits.homework.lexer.token.IToken;
+import it.sevenbits.homework.formatter.fsm.command.WriteWithNestingIncreaseCommand;
+import it.sevenbits.homework.formatter.fsm.state.State;
 import it.sevenbits.homework.util.Pair;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class that provides a mapping of {@link Pair} instances (that contain {@link State} instance / {@link String}
+ * instance pairs) to {@link ICommand} instances.
+ */
 class CommandMap {
     private final Map<Pair<State, String>, ICommand> commandMap;
     private final ICommand stayIdle;
 
+    /**
+     * Class constructor that initializes private {@link #commandMap} field and fills it with a pairs of
+     * {@link Pair} instances (that contain {@link State} instance / {@link String} instance pairs)
+     * and {@link ICommand} instances.
+     *
+     * Method creates instances of these commands and then initializing some of them
+     * with the passed {@link ICommandArgs} instance.
+     *
+     * @param commandArgs {@link ICommandArgs} instance that presents a command arguments container.
+     */
     CommandMap(final ICommandArgs commandArgs) {
         commandMap = new HashMap<>();
         stayIdle = new StayIdleCommand();
@@ -215,6 +229,15 @@ class CommandMap {
         commandMap.put(new Pair<>(stringLiteralState, "STRING_LITERAL"), writeAfterWhitespace);
     }
 
+    /**
+     * Method that performs an issuing of {@link ICommand} instance that matches passed args
+     * (or default if there are no matches).
+     *
+     * @param currentState {@link State} instance that presents a current FSM state.
+     * @param token {@link IToken} instance that presents currently being processed lexical token.
+     *
+     * @return {@link ICommand} instance that matches passed args (or default if there are no matches).
+     */
     ICommand getCommand(final State currentState, final IToken token) {
         return commandMap.getOrDefault(new Pair<>(currentState, token.getName()), stayIdle);
     }

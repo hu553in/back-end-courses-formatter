@@ -3,22 +3,12 @@ package it.sevenbits.homework.formatter.fsm.state;
 import it.sevenbits.homework.lexer.token.IToken;
 
 /**
- * {@link IStateTransitions} interface implementation that provides transitions between FSM states.
+ * Interface that describes functionality for class that provides mapping of transitions between FSM states.
  * Transition choice performs using information about current FSM state and other input signals.
  *
- * Also this class can return start and error FSM states.
+ * Also this interface describes functionality for return start and error FSM states.
  */
-public final class StateTransitions implements IStateTransitions {
-    private final StateMap stateMap;
-
-    /**
-     * Class constructor that initializes private {@link #stateMap} field with new {@link StateMap} instance.
-     * That field contains information about mapping between FSM states and input signals.
-     */
-    public StateTransitions() {
-        stateMap = new StateMap();
-    }
-
+public interface IStateTransitions {
     /**
      * Method that returns {@link State} instance that presents target FSM state
      * corresponding to current FSM state and currently being processed lexical token
@@ -30,28 +20,19 @@ public final class StateTransitions implements IStateTransitions {
      * @return {@link State} instance that presents target FSM state
      *         (or default if there are no matches with passed args).
      */
-    @Override
-    public State nextState(final State currentState, final IToken token) {
-        return stateMap.getNextState(currentState, token);
-    }
+    State nextState(State currentState, IToken token);
 
     /**
      * Method that returns {@link State} instance that presents start FSM state.
      *
      * @return {@link State} instance that presents start FSM state.
      */
-    @Override
-    public State getStartState() {
-        return stateMap.getStartState();
-    }
+    State getStartState();
 
     /**
      * Method that returns {@link State} instance that presents error FSM state.
      *
      * @return {@link State} instance that presents error FSM state.
      */
-    @Override
-    public State getErrorState() {
-        return stateMap.getErrorState();
-    }
+    State getErrorState();
 }

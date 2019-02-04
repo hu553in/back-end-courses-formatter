@@ -1,4 +1,4 @@
-package it.sevenbits.homework.fsm.state;
+package it.sevenbits.homework.formatter.fsm.state;
 
 import org.junit.Assert;
 import org.junit.Test;

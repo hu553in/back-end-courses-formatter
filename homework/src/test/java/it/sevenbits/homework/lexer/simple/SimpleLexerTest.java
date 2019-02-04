@@ -5,6 +5,7 @@ import it.sevenbits.homework.io.reader.ReaderException;
 import it.sevenbits.homework.io.reader.StringReader;
 import it.sevenbits.homework.lexer.ILexer;
 import it.sevenbits.homework.lexer.LexerException;
+import it.sevenbits.homework.lexer.SimpleLexer;
 import it.sevenbits.homework.lexer.token.IToken;
 import org.junit.Test;
 import org.junit.Assert;

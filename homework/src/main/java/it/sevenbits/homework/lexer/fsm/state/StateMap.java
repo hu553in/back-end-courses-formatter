@@ -1,15 +1,37 @@
 package it.sevenbits.homework.lexer.fsm.state;
 
-import it.sevenbits.homework.fsm.state.State;
 import it.sevenbits.homework.util.Pair;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class that provides a mapping of {@link Pair} instances (that contain {@link State} instance / character pairs)
+ * to {@link State} instances.
+ *
+ * This mapping is used for providing transitions between FSM states.
+ * Transition choice performs using information about current FSM state and other input signals.
+ * Other input signals are actually presented by characters.
+ */
 class StateMap {
     private final Map<Pair<State, Character>, State> stateMap;
     private final Map<State, State> defaultStateMap;
     private final State startState, endState;
 
+    /**
+     * Class constructor that initializes private {@link #stateMap} field and fills it with a pairs of
+     * {@link Pair} instances (that contain {@link State} instance / character pairs) and {@link State} instances.
+     *
+     * Also this method initializes private {@link #startState} and {@link #endState} fields
+     * with new {@link State} instances.
+     *
+     * Besides all of the above this constructor initializes private {@link #defaultStateMap} field and fills it
+     * with a pairs of {@link State} / {@link State} instances. That mapping is required for specifying of
+     * different default values for different {@link State} instances.
+     *
+     * Default value is {@link State} instance that returns only if there are no mapping
+     * for passed {@link State} instance / character pair.
+     *
+     */
     StateMap() {
         stateMap = new HashMap<>();
 
@@ -141,14 +163,35 @@ class StateMap {
         defaultStateMap.put(singleCharacterState, endState);
     }
 
+    /**
+     * Method that returns {@link State} instance that presents start FSM state.
+     *
+     * @return {@link State} instance that presents start FSM state.
+     */
     State getStartState() {
         return startState;
     }
 
+    /**
+     * Method that returns {@link State} instance that presents end FSM state.
+     *
+     * @return {@link State} instance that presents end FSM state.
+     */
     State getEndState() {
         return endState;
     }
 
+    /**
+     * Method that returns {@link State} instance that presents target FSM state
+     * corresponding to current FSM state and currently being processed character
+     * (or default if there are no matches).
+     *
+     * @param state {@link State} instance that presents current FSM state.
+     * @param character Currently being processed character.
+     *
+     * @return {@link State} instance that presents target FSM state
+     *         (or default if there are no matches with passed args).
+     */
     State getNextState(final State state, final char character) {
         return stateMap.getOrDefault(new Pair<>(state, character), defaultStateMap.get(state));
     }

@@ -8,7 +8,8 @@ import it.sevenbits.homework.formatter.fsm.command.factory.CommandFactoryExcepti
 import it.sevenbits.homework.formatter.fsm.command.factory.ICommandFactory;
 import it.sevenbits.homework.formatter.fsm.command.args.CommandArgs;
 import it.sevenbits.homework.formatter.fsm.command.args.ICommandArgs;
-import it.sevenbits.homework.fsm.state.State;
+import it.sevenbits.homework.formatter.fsm.state.IStateTransitions;
+import it.sevenbits.homework.formatter.fsm.state.State;
 import it.sevenbits.homework.formatter.fsm.state.StateTransitions;
 import it.sevenbits.homework.io.reader.IReader;
 import it.sevenbits.homework.io.writer.IWriter;
@@ -19,13 +20,31 @@ import it.sevenbits.homework.lexer.factory.LexerFactory;
 import it.sevenbits.homework.lexer.factory.LexerFactoryException;
 import it.sevenbits.homework.lexer.token.IToken;
 
+/**
+ * Class that formats Java source code. Input is performed using {@link IWriter} and {@link ILexer} instances,
+ * output is performed using {@link IWriter} instance.
+ *
+ * This {@link IFormatter} implementation is based on finite-state machine and "Command" design pattern.
+ */
 public class FSMFormatter implements IFormatter {
     private final ILexerFactory lexerFactory;
 
+    /**
+     * Class constructor that initializes {@link #lexerFactory} with new {@link LexerFactory} instance.
+     */
     public FSMFormatter() {
         lexerFactory = new LexerFactory();
     }
 
+    /**
+     * Method that performs formatting of Java source code that is stored in lexical tokens
+     * which are provided by {@link ILexer} instance.
+     *
+     * @param reader {@link IReader} instance that provides data reading.
+     * @param writer {@link IWriter} instance that provides data writing.
+     *
+     * @throws FormatterException Exception that can be thrown during the method work.
+     */
     @Override
     public void format(final IReader reader, final IWriter writer) throws FormatterException {
         if (reader == null) {
@@ -44,7 +63,7 @@ public class FSMFormatter implements IFormatter {
             throw new FormatterException("Unable to create lexer instance", e);
         }
 
-        final StateTransitions stateTransitions = new StateTransitions();
+        final IStateTransitions stateTransitions = new StateTransitions();
         final State errorState = stateTransitions.getErrorState();
         final ICommandArgs commandArgs = new CommandArgs();
         final ICommandFactory commandFactory = new CommandFactory(commandArgs);

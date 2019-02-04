@@ -2,6 +2,7 @@ package it.sevenbits.homework.formatter.simple;
 
 import it.sevenbits.homework.formatter.FormatterException;
 import it.sevenbits.homework.formatter.IFormatter;
+import it.sevenbits.homework.formatter.SimpleFormatter;
 import it.sevenbits.homework.io.reader.IReader;
 import it.sevenbits.homework.io.reader.StringReader;
 import it.sevenbits.homework.io.writer.IWriter;

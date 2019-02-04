@@ -26,9 +26,9 @@ public final class Pair<T, U> {
     /**
      * Override of {@link Object#equals(Object)} method.
      *
-     * @param other Object to compare with.
+     * @param other {@link Object} instance to check equality with.
      *
-     * @return Boolean value that represents comparison result.
+     * @return Boolean value that presents result of checking.
      */
     @Override
     public boolean equals(final Object other) {
@@ -47,7 +47,7 @@ public final class Pair<T, U> {
     /**
      * Override of {@link Object#hashCode()} method.
      *
-     * @return Hash code of {@link Pair} instance.
+     * @return Integer value that presents hash code of {@link Pair} instance.
      */
     @Override
     public int hashCode() {

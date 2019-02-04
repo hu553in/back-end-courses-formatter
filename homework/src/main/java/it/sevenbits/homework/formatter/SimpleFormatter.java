@@ -1,14 +1,12 @@
-package it.sevenbits.homework.formatter.simple;
+package it.sevenbits.homework.formatter;
 
-import it.sevenbits.homework.formatter.FormatterException;
-import it.sevenbits.homework.formatter.IFormatter;
 import it.sevenbits.homework.formatter.util.IndentProvider;
 import it.sevenbits.homework.io.reader.IReader;
 import it.sevenbits.homework.io.writer.IWriter;
 import it.sevenbits.homework.io.writer.WriterException;
 import it.sevenbits.homework.lexer.ILexer;
 import it.sevenbits.homework.lexer.LexerException;
-import it.sevenbits.homework.lexer.simple.SimpleLexer;
+import it.sevenbits.homework.lexer.SimpleLexer;
 import it.sevenbits.homework.lexer.token.IToken;
 import java.util.Objects;
 
@@ -16,7 +14,6 @@ import java.util.Objects;
  * Class that formats Java source code. Input is performed using {@link IWriter} and {@link ILexer} instances,
  * output is performed using {@link IWriter} instance.
  */
-
 public class SimpleFormatter implements IFormatter {
     /**
      * Method that performs formatting of Java source code that is stored in lexical tokens

@@ -1,6 +1,6 @@
 package it.sevenbits.homework;
 
-import it.sevenbits.homework.formatter.simple.SimpleFormatter;
+import it.sevenbits.homework.formatter.SimpleFormatter;
 import it.sevenbits.homework.formatter.FormatterException;
 import it.sevenbits.homework.formatter.IFormatter;
 import it.sevenbits.homework.io.reader.FileReader;

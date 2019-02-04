@@ -1,12 +1,13 @@
 package it.sevenbits.homework.lexer.fsm;
 
-import it.sevenbits.homework.fsm.state.State;
+import it.sevenbits.homework.lexer.fsm.state.State;
 import it.sevenbits.homework.io.reader.IReader;
 import it.sevenbits.homework.io.reader.ReaderException;
 import it.sevenbits.homework.lexer.ILexer;
 import it.sevenbits.homework.lexer.LexerException;
 import it.sevenbits.homework.lexer.fsm.command.args.CommandArgs;
 import it.sevenbits.homework.lexer.fsm.command.args.ICommandArgs;
+import it.sevenbits.homework.lexer.fsm.state.IStateTransitions;
 import it.sevenbits.homework.lexer.fsm.tokenbuilder.ITokenBuilder;
 import it.sevenbits.homework.lexer.fsm.tokenbuilder.TokenBuilder;
 import it.sevenbits.homework.lexer.fsm.command.factory.CommandFactory;
@@ -18,10 +19,25 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+/**
+ * {@link ILexer} interface implementation that provides lexical analysis of Java source code.
+ *
+ * This {@link ILexer} implementation is based on finite-state machine and "Command" design pattern.
+ */
 public class FSMLexer implements ILexer {
     private final IReader reader;
     private int charBuffer;
 
+    /**
+     * Class constructor that initializes private {@link #reader} field with passed
+     * {@link IReader} instance.
+     *
+     * Also this method performs initial filling of private {@link #charBuffer} field.
+     *
+     * @param reader {@link IReader} instance that provides data input process.
+     *
+     * @throws LexerException Exception that can be thrown during the method work.
+     */
     public FSMLexer(final IReader reader) throws LexerException {
         this.reader = reader;
 
@@ -34,6 +50,17 @@ public class FSMLexer implements ILexer {
         }
     }
 
+    /**
+     * Private method that performs naming of formed lexeme and then puts formed name
+     * into {@link ITokenBuilder} instance.
+     *
+     * Formed lexeme is passed in {@link ITokenBuilder} instance.
+     *
+     * Naming process is based on regular expressions. If there are no patterns
+     * that match passed lexeme, token receives name "OTHER".
+     *
+     * @param tokenBuilder {@link ITokenBuilder} instance which contains token name and lexeme.
+     */
     private void nameToken(final ITokenBuilder tokenBuilder) {
         final String lexeme = tokenBuilder.getLexeme();
         final HashMap<Pattern, String> tokenNamesForPatterns = new HashMap<>();
@@ -56,18 +83,30 @@ public class FSMLexer implements ILexer {
         );
     }
 
+    /**
+     * Method that reports whether single {@link IToken} instance is available for reading.
+     *
+     * @return Boolean value that indicates the result of method work.
+     */
     @Override
     public boolean hasMoreTokens() {
         return charBuffer != -1;
     }
 
+    /**
+     * Method that returns a single {@link IToken} instance.
+     *
+     * @return Single {@link IToken} instance.
+     *
+     * @throws LexerException Exception that can be thrown during the method work.
+     */
     @Override
     public IToken readToken() throws LexerException {
         if (!hasMoreTokens()) {
             throw new LexerException("No tokens available for reading");
         }
 
-        final StateTransitions stateTransitions = new StateTransitions();
+        final IStateTransitions stateTransitions = new StateTransitions();
         final State endState = stateTransitions.getEndState();
         final ICommandArgs commandArgs = new CommandArgs();
         final ITokenBuilder tokenBuilder = new TokenBuilder();

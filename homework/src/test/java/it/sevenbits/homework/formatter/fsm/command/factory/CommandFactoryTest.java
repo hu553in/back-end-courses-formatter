@@ -3,7 +3,7 @@ package it.sevenbits.homework.formatter.fsm.command.factory;
 import it.sevenbits.homework.formatter.fsm.command.args.CommandArgs;
 import it.sevenbits.homework.formatter.fsm.command.ICommand;
 import it.sevenbits.homework.formatter.fsm.command.StayIdleCommand;
-import it.sevenbits.homework.fsm.state.State;
+import it.sevenbits.homework.formatter.fsm.state.State;
 import it.sevenbits.homework.lexer.token.Token;
 import org.junit.Assert;
 import org.junit.Before;

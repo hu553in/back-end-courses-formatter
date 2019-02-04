@@ -1,5 +1,5 @@
 /**
- * This package contains various utilities required in the project.
+ * This package contains various utilities required in the parent package.
  *
  * @author hu553in
  */

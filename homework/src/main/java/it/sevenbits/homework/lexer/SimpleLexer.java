@@ -1,4 +1,4 @@
-package it.sevenbits.homework.lexer.simple;
+package it.sevenbits.homework.lexer;
 
 import it.sevenbits.homework.io.reader.IReader;
 import it.sevenbits.homework.io.reader.ReaderException;
@@ -20,6 +20,9 @@ public class SimpleLexer implements ILexer {
     /**
      * Class constructor that initializes {@link #lexemeForName} and puts in it
      * all known pairs of lexemes and token names.
+     *
+     * Also this method initializes private {@link #reader} field with passed {@link IReader} instance
+     * and performs initial filling of private {@link #charBuffer} field.
      *
      * @param reader {@link IReader} instance that provides data input process.
      *
