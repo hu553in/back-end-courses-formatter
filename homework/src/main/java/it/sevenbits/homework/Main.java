@@ -1,6 +1,6 @@
 package it.sevenbits.homework;
 
-import it.sevenbits.homework.formatter.SimpleFormatter;
+import it.sevenbits.homework.formatter.fsm.FSMFormatter;
 import it.sevenbits.homework.formatter.FormatterException;
 import it.sevenbits.homework.formatter.IFormatter;
 import it.sevenbits.homework.io.reader.FileReader;
@@ -27,7 +27,7 @@ public final class Main {
             return;
         }
 
-        final IFormatter formatter = new SimpleFormatter();
+        final IFormatter formatter = new FSMFormatter();
 
         try (
                 FileReader reader = new FileReader(args[0]);
