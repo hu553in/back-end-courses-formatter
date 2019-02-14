@@ -1,3 +1,3 @@
-## back-end-courses-formatter
+## formatter
 
-This repository is designed to store files related to studying at back-end courses.
+_Information will be there soon._
