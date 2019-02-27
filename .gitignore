@@ -40,8 +40,8 @@
 
 **/.idea/
 **/cmake-build-*/
-**/*.iws
-**/*.iml
+*.iws
+*.iml
 **/out/
 **/.idea_modules/
 **/atlassian-ide-plugin.xml
