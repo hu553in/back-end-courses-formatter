@@ -95,7 +95,7 @@ class CommandMap {
         commandMap.put(new Pair<>(newLineState, "CHARACTER_LITERAL"), writeAfterNewlineAndIndent);
         commandMap.put(new Pair<>(newLineState, "STRING_LITERAL"), writeAfterNewlineAndIndent);
 
-        commandMap.put(new Pair<>(whitespaceState, "OPENING_CURLY_BRACE"), writeAfterWhitespace);
+        commandMap.put(new Pair<>(whitespaceState, "OPENING_CURLY_BRACE"), writeAfterWhitespaceWithNestingIncrease);
 
         commandMap.put(
                 new Pair<>(whitespaceState, "CLOSING_CURLY_BRACE"),

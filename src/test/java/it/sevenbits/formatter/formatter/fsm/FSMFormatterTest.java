@@ -54,6 +54,32 @@ public class FSMFormatterTest {
         );
     }
 
+    @Test
+    public void shouldFormatCorrectlyAtThird() throws FormatterException {
+        reader = new StringReader(
+                "public         class     HelloWorld {     \n" +
+                 "// just a single line comment\n" +
+                 "public static void main(final String[] " +
+                 "args){System.out.println(\"Hello, World!\");\n\n\n\n" +
+                 "/*\n * just\n * a\n * multiline\n * comment\n */}}\n\n'c''l'"
+        );
+
+        writer = new StringWriter();
+        formatter.format(reader, writer);
+
+        Assert.assertEquals(
+                "public class HelloWorld {\n" +
+                "// just a single line comment\n" +
+                "    public static void main(final String[] args) {\n" +
+                "        System.out.println(\"Hello, World!\");\n" +
+                "/*\n * just\n * a\n * multiline\n * comment\n */\n" +
+                "    }\n" +
+                "}\n" +
+                "'c' 'l'",
+                writer.toString()
+        );
+    }
+
     @Test (expected = FormatterException.class)
     public void shouldThrowException() throws FormatterException {
         formatter.format(null, null);
