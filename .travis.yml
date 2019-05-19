@@ -4,7 +4,7 @@ sudo: false
 jdk:
 - oraclejdk8
 
-script: "mvn cobertura:cobertura"
+script: "mvn clean compile test"
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
