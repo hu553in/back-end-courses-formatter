@@ -5,4 +5,4 @@
 
 Java source code formatter.
 
-_Information will be there soon._
+_Details will be there soon._
