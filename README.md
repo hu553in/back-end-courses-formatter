@@ -5,8 +5,4 @@
 
 Java source code formatter.
 
-### Code coverage graph
-
-[![codecov](https://codecov.io/gh/hu553in/formatter/branch/master/graphs/tree.svg)](https://codecov.io/gh/hu553in/formatter)
-
-_Another details will be there soon._
+_Details will be there soon._
