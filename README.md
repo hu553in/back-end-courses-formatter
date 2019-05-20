@@ -9,4 +9,4 @@ Java source code formatter.
 
 [![codecov](https://codecov.io/gh/hu553in/formatter/branch/master/graphs/tree.svg)](https://codecov.io/gh/hu553in/formatter)
 
-_Details will be there soon._
+_Another details will be there soon._
