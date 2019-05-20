@@ -40,7 +40,7 @@ public final class Pair<T, U> {
             return false;
         }
 
-        Pair<?, ?> otherPair = (Pair<?, ?>) other;
+        final Pair<?, ?> otherPair = (Pair<?, ?>) other;
         return Objects.equals(first, otherPair.first) && Objects.equals(second, otherPair.second);
     }
 
