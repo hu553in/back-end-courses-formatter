@@ -1,8 +1,8 @@
 package it.sevenbits.formatter;
 
-import it.sevenbits.formatter.formatter.fsm.FSMFormatter;
 import it.sevenbits.formatter.formatter.FormatterException;
 import it.sevenbits.formatter.formatter.IFormatter;
+import it.sevenbits.formatter.formatter.fsm.FSMFormatter;
 import it.sevenbits.formatter.io.reader.FileReader;
 import it.sevenbits.formatter.io.reader.ReaderException;
 import it.sevenbits.formatter.io.writer.FileWriter;
@@ -15,6 +15,12 @@ import org.slf4j.LoggerFactory;
  */
 public final class Main {
     private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
+
+    /**
+     * A private constructor created to exclude the possibility of creating instances of this class.
+     */
+    private Main() {
+    }
 
     /**
      * Main entry point of application.
@@ -37,11 +43,5 @@ public final class Main {
         } catch (ReaderException | WriterException | FormatterException e) {
             LOGGER.error(String.format("%s - %s", e.getClass().getSimpleName(), e.getMessage()));
         }
-    }
-
-    /**
-     * A private constructor created to exclude the possibility of creating instances of this class.
-     */
-    private Main() {
     }
 }

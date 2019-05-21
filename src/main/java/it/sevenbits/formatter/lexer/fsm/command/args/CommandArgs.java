@@ -10,16 +10,6 @@ public class CommandArgs implements ICommandArgs {
     private char charBuffer;
 
     /**
-     * Method that performs containing of {@link ITokenBuilder} instance.
-     *
-     * @param tokenBuilder {@link ITokenBuilder} instance.
-     */
-    @Override
-    public void setTokenBuilder(final ITokenBuilder tokenBuilder) {
-        this.tokenBuilder = tokenBuilder;
-    }
-
-    /**
      * Method that performs extraction of {@link ITokenBuilder} instance.
      *
      * @return {@link ITokenBuilder} instance.
@@ -27,6 +17,16 @@ public class CommandArgs implements ICommandArgs {
     @Override
     public ITokenBuilder getTokenBuilder() {
         return tokenBuilder;
+    }
+
+    /**
+     * Method that performs containing of {@link ITokenBuilder} instance.
+     *
+     * @param tokenBuilder {@link ITokenBuilder} instance.
+     */
+    @Override
+    public void setTokenBuilder(final ITokenBuilder tokenBuilder) {
+        this.tokenBuilder = tokenBuilder;
     }
 
     /**

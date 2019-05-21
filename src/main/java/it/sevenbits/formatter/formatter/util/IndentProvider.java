@@ -3,17 +3,19 @@ package it.sevenbits.formatter.formatter.util;
 /**
  * Utility class that provides necessary indent (based on four spaces)
  * corresponding to passed code nesting level.
- *
+ * <p>
  * Indentation is presented by {@link String} instance.
  */
 public final class IndentProvider {
     private static final String FOUR_SPACES_INDENT = "    ";
 
+    private IndentProvider() {
+    }
+
     /**
      * Static method that performs indent formation and then returns it.
      *
      * @param nestingLevel Integer value that presents code nesting level.
-     *
      * @return {@link String} instance that presents necessary indent (based on four spaces).
      */
     public static String getFourSpacesIndent(final int nestingLevel) {
@@ -24,8 +26,5 @@ public final class IndentProvider {
         }
 
         return indentBuilder.toString();
-    }
-
-    private IndentProvider() {
     }
 }

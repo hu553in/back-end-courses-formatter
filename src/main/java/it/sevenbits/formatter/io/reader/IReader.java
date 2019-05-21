@@ -15,7 +15,6 @@ public interface IReader {
      * Method that reads from stream a single character represented by Unicode code.
      *
      * @return Unicode code of read character.
-     *
      * @throws ReaderException Exception that can be thrown during the method work.
      */
     int read() throws ReaderException;

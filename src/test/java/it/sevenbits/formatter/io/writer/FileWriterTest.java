@@ -2,9 +2,10 @@ package it.sevenbits.formatter.io.writer;
 
 import it.sevenbits.formatter.io.reader.FileReader;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.Assert;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -23,11 +24,11 @@ public class FileWriterTest {
         text = "HelloWorldAndThenGoodbyeWorld";
         character = 'a';
 
-        charArray = new char[] {
+        charArray = new char[]{
                 'a', 'b', 'c'
         };
 
-        filePath = Paths.get("./" +  + ThreadLocalRandom.current().nextLong());
+        filePath = Paths.get("./" + +ThreadLocalRandom.current().nextLong());
         Files.createFile(filePath);
         fileWriter = new FileWriter(filePath.toString());
     }
@@ -59,7 +60,7 @@ public class FileWriterTest {
         );
     }
 
-    @Test (expected = WriterException.class)
+    @Test(expected = WriterException.class)
     public void shouldThrowException() throws WriterException {
         fileWriter.close();
         fileWriter.write("JUST_A_STRING");

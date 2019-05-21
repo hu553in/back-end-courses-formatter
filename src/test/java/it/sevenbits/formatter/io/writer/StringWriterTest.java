@@ -1,8 +1,9 @@
 package it.sevenbits.formatter.io.writer;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.Assert;
+
 import java.io.IOException;
 
 public class StringWriterTest {
@@ -16,7 +17,7 @@ public class StringWriterTest {
         text = "HelloWorldAndThenGoodbyeWorld";
         character = 'a';
 
-        charArray = new char[] {
+        charArray = new char[]{
                 'a', 'b', 'c'
         };
 

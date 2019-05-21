@@ -17,7 +17,6 @@ public interface ILexer {
      * Method that returns a single {@link IToken} instance.
      *
      * @return Single {@link IToken} instance.
-     *
      * @throws LexerException Exception that can be thrown during the method work.
      */
     IToken readToken() throws LexerException;

@@ -6,9 +6,11 @@ import it.sevenbits.formatter.io.reader.IReader;
 import it.sevenbits.formatter.io.reader.StringReader;
 import it.sevenbits.formatter.io.writer.IWriter;
 import it.sevenbits.formatter.io.writer.StringWriter;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.Assert;
+
+import static org.mockito.Mockito.mock;
 
 public class FSMFormatterTest {
     private IFormatter formatter;
@@ -32,10 +34,10 @@ public class FSMFormatterTest {
     public void shouldFormatCorrectlyAtSecond() throws FormatterException {
         reader = new StringReader(
                 "public         class     HelloWorld{     \n" +
-                 "// just a single line comment\n" +
-                 "public static void main(final String[] " +
-                 "args){System.out.println(\"Hello, World!\");\n\n\n\n" +
-                 "/*\n * just\n * a\n * multiline\n * comment\n */}}\n\n'c''l'"
+                        "// just a single line comment\n" +
+                        "public static void main(final String[] " +
+                        "args){System.out.println(\"Hello, World!\");\n\n\n\n" +
+                        "/*\n * just\n * a\n * multiline\n * comment\n */}}\n\n'c''l'"
         );
 
         writer = new StringWriter();
@@ -43,13 +45,13 @@ public class FSMFormatterTest {
 
         Assert.assertEquals(
                 "public class HelloWorld {\n" +
-                "// just a single line comment\n" +
-                "    public static void main(final String[] args) {\n" +
-                "        System.out.println(\"Hello, World!\");\n" +
-                "/*\n * just\n * a\n * multiline\n * comment\n */\n" +
-                "    }\n" +
-                "}\n" +
-                "'c' 'l'",
+                        "// just a single line comment\n" +
+                        "    public static void main(final String[] args) {\n" +
+                        "        System.out.println(\"Hello, World!\");\n" +
+                        "/*\n * just\n * a\n * multiline\n * comment\n */\n" +
+                        "    }\n" +
+                        "}\n" +
+                        "'c' 'l'",
                 writer.toString()
         );
     }
@@ -58,10 +60,10 @@ public class FSMFormatterTest {
     public void shouldFormatCorrectlyAtThird() throws FormatterException {
         reader = new StringReader(
                 "public         class     HelloWorld {     \n" +
-                 "// just a single line comment\n" +
-                 "public static void main(final String[] " +
-                 "args){System.out.println(\"Hello, World!\");\n\n\n\n" +
-                 "/*\n * just\n * a\n * multiline\n * comment\n */}}\n\n'c''l'"
+                        "// just a single line comment\n" +
+                        "public static void main(final String[] " +
+                        "args){System.out.println(\"Hello, World!\");\n\n\n\n" +
+                        "/*\n * just\n * a\n * multiline\n * comment\n */}}\n\n'c''l'"
         );
 
         writer = new StringWriter();
@@ -69,19 +71,29 @@ public class FSMFormatterTest {
 
         Assert.assertEquals(
                 "public class HelloWorld {\n" +
-                "// just a single line comment\n" +
-                "    public static void main(final String[] args) {\n" +
-                "        System.out.println(\"Hello, World!\");\n" +
-                "/*\n * just\n * a\n * multiline\n * comment\n */\n" +
-                "    }\n" +
-                "}\n" +
-                "'c' 'l'",
+                        "// just a single line comment\n" +
+                        "    public static void main(final String[] args) {\n" +
+                        "        System.out.println(\"Hello, World!\");\n" +
+                        "/*\n * just\n * a\n * multiline\n * comment\n */\n" +
+                        "    }\n" +
+                        "}\n" +
+                        "'c' 'l'",
                 writer.toString()
         );
     }
 
-    @Test (expected = FormatterException.class)
-    public void shouldThrowException() throws FormatterException {
-        formatter.format(null, null);
+    @Test(expected = FormatterException.class)
+    public void shouldThrowExceptionAtFirst() throws FormatterException {
+        formatter.format(null, mock(StringWriter.class));
+    }
+
+    @Test(expected = FormatterException.class)
+    public void shouldThrowExceptionAtSecond() throws FormatterException {
+        formatter.format(mock(StringReader.class), null);
+    }
+
+    @Test(expected = FormatterException.class)
+    public void shouldThrowExceptionAtThird() throws FormatterException {
+        formatter.format(mock(StringReader.class), mock(StringWriter.class));
     }
 }

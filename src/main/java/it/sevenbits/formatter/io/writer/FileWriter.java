@@ -18,7 +18,6 @@ public class FileWriter implements IWriter, Closeable {
      * Overload of constructor that initializes {@link #bufferedWriter} using {@link Path} instance.
      *
      * @param filePath {@link Path} instance that represents a path to output file.
-     *
      * @throws WriterException Exception that can be thrown during the method work.
      */
     public FileWriter(final Path filePath) throws WriterException {
@@ -34,7 +33,6 @@ public class FileWriter implements IWriter, Closeable {
      * using return value of {@link Paths#get(String, String...)} method.
      *
      * @param filePath {@link String} instance that represents a path to input file.
-     *
      * @throws WriterException Exception that can be thrown during the method work.
      */
     public FileWriter(final String filePath) throws WriterException {
@@ -56,7 +54,6 @@ public class FileWriter implements IWriter, Closeable {
      * Overload of method that writes to {@link #bufferedWriter} a single character represented by Unicode code.
      *
      * @param character Unicode character code to be written.
-     *
      * @throws WriterException Exception that can be thrown during the method work.
      */
     @Override
@@ -74,7 +71,6 @@ public class FileWriter implements IWriter, Closeable {
      * Overload of method that writes to {@link #bufferedWriter} a {@link String} instance.
      *
      * @param string {@link String} instance to be written.
-     *
      * @throws WriterException Exception that can be thrown during the method work.
      */
     @Override
@@ -92,7 +88,6 @@ public class FileWriter implements IWriter, Closeable {
      * Overload of method that writes to {@link #bufferedWriter} an array of characters.
      *
      * @param charArray Array of characters to be written.
-     *
      * @throws WriterException Exception that can be thrown during the method work.
      */
     @Override

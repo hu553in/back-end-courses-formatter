@@ -1,13 +1,14 @@
 package it.sevenbits.formatter.lexer.fsm.state;
 
 import it.sevenbits.formatter.util.Pair;
+
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Class that provides a mapping of {@link Pair} instances (that contain {@link State} instance / character pairs)
  * to {@link State} instances.
- *
+ * <p>
  * This mapping is used for providing transitions between FSM states.
  * Transition choice performs using information about current FSM state and other input signals.
  * Other input signals are actually presented by characters.
@@ -20,17 +21,16 @@ class StateMap {
     /**
      * Class constructor that initializes private {@link #stateMap} field and fills it with a pairs of
      * {@link Pair} instances (that contain {@link State} instance / character pairs) and {@link State} instances.
-     *
+     * <p>
      * Also this method initializes private {@link #startState} and {@link #endState} fields
      * with new {@link State} instances.
-     *
+     * <p>
      * Besides all of the above this constructor initializes private {@link #defaultStateMap} field and fills it
      * with a pairs of {@link State} / {@link State} instances. That mapping is required for specifying of
      * different default values for different {@link State} instances.
-     *
+     * <p>
      * Default value is {@link State} instance that returns only if there are no mapping
      * for passed {@link State} instance / character pair.
-     *
      */
     StateMap() {
         stateMap = new HashMap<>();
@@ -186,11 +186,10 @@ class StateMap {
      * corresponding to current FSM state and currently being processed character
      * (or default if there are no matches).
      *
-     * @param state {@link State} instance that presents current FSM state.
+     * @param state     {@link State} instance that presents current FSM state.
      * @param character Currently being processed character.
-     *
      * @return {@link State} instance that presents target FSM state
-     *         (or default if there are no matches with passed args).
+     * (or default if there are no matches with passed args).
      */
     State getNextState(final State state, final char character) {
         return stateMap.getOrDefault(new Pair<>(state, character), defaultStateMap.get(state));

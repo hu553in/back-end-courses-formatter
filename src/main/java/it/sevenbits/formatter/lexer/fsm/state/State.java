@@ -32,7 +32,6 @@ public class State {
      * Override of {@link Object#equals(Object)} method.
      *
      * @param otherObject {@link Object} instance to check equality with.
-     *
      * @return Boolean value that presents result of checking.
      */
     @Override

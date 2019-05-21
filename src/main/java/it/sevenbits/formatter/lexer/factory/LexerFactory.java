@@ -5,6 +5,7 @@ import it.sevenbits.formatter.io.reader.IReader;
 import it.sevenbits.formatter.io.reader.StringReader;
 import it.sevenbits.formatter.lexer.ILexer;
 import it.sevenbits.formatter.lexer.fsm.FSMLexer;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
@@ -33,10 +34,8 @@ public class LexerFactory implements ILexerFactory {
      *
      * @param reader Instance of {@link IReader} which is used to select, create, and initialize
      *               one of the implementations of {@link ILexer} interface.
-     *
-     * @throws LexerFactoryException Exception that can be thrown during the method work.
-     *
      * @return New {@link ILexer} instance.
+     * @throws LexerFactoryException Exception that can be thrown during the method work.
      */
     @Override
     public ILexer createLexer(final IReader reader) throws LexerFactoryException {
@@ -48,7 +47,7 @@ public class LexerFactory implements ILexerFactory {
         if (lexerClass == null) {
             throw new LexerFactoryException(
                     "There are no ILexer interface implementations that " +
-                    "match the passed IReader interface implementation"
+                            "match the passed IReader interface implementation"
             );
         }
 
@@ -58,8 +57,8 @@ public class LexerFactory implements ILexerFactory {
         } catch (NoSuchMethodException e) {
             throw new LexerFactoryException(
                     "Invoked " +
-                    lexerClass.getSimpleName() +
-                    " constructor does not exist",
+                            lexerClass.getSimpleName() +
+                            " constructor does not exist",
                     e
             );
         }
@@ -69,8 +68,8 @@ public class LexerFactory implements ILexerFactory {
         } catch (InvocationTargetException e) {
             throw new LexerFactoryException(
                     "An exception was thrown during the creation of " +
-                    lexerClass.getSimpleName() +
-                    " instance",
+                            lexerClass.getSimpleName() +
+                            " instance",
                     e.getCause()
             );
         } catch (InstantiationException e) {
@@ -78,8 +77,8 @@ public class LexerFactory implements ILexerFactory {
         } catch (IllegalAccessException e) {
             throw new LexerFactoryException(
                     "No access to the definition of " +
-                    lexerClass.getSimpleName() +
-                    " implementation or constructor",
+                            lexerClass.getSimpleName() +
+                            " implementation or constructor",
                     e
             );
         }

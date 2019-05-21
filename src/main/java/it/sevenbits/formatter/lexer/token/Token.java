@@ -10,7 +10,7 @@ public class Token implements IToken {
     /**
      * Overload of constructor that initializes {@link #lexeme} with passed {@link String} instance.
      *
-     * @param name {@link String} instance that represents name of token.
+     * @param name   {@link String} instance that represents name of token.
      * @param lexeme {@link String} instance that represents lexeme.
      */
     public Token(final String name, final String lexeme) {
@@ -22,7 +22,7 @@ public class Token implements IToken {
      * Overload of constructor that initializes {@link #lexeme} with passed single character
      * using {@link Character#toString()} method call.
      *
-     * @param name {@link String} instance that represents name of token.
+     * @param name   {@link String} instance that represents name of token.
      * @param lexeme Single character that represents lexeme.
      */
     public Token(final String name, final char lexeme) {

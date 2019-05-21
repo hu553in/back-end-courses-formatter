@@ -7,18 +7,18 @@ import it.sevenbits.formatter.lexer.fsm.tokenbuilder.ITokenBuilder;
  */
 public interface ICommandArgs {
     /**
-     * Method that performs containing of {@link ITokenBuilder} instance.
-     *
-     * @param tokenBuilder {@link ITokenBuilder} instance.
-     */
-    void setTokenBuilder(ITokenBuilder tokenBuilder);
-
-    /**
      * Method that performs extraction of {@link ITokenBuilder} instance.
      *
      * @return {@link ITokenBuilder} instance.
      */
     ITokenBuilder getTokenBuilder();
+
+    /**
+     * Method that performs containing of {@link ITokenBuilder} instance.
+     *
+     * @param tokenBuilder {@link ITokenBuilder} instance.
+     */
+    void setTokenBuilder(ITokenBuilder tokenBuilder);
 
     /**
      * Method that performs extraction of a character that is stored in a char buffer.

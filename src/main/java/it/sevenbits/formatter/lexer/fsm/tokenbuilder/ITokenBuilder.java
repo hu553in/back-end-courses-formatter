@@ -30,7 +30,7 @@ public interface ITokenBuilder {
     /**
      * Method that performs instantiation of {@link IToken} instance (pre-passed name and lexeme
      * are passed to the constructor) and then returns it.
-     *
+     * <p>
      * Note that if name or lexeme is not passed to builder in advance, you will receive
      * corresponding empty fields in {@link IToken} instance.
      *

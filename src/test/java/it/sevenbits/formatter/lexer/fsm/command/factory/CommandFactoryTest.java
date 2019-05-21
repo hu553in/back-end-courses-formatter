@@ -12,7 +12,7 @@ public class CommandFactoryTest {
         commandFactory = new CommandFactory(new CommandArgs());
     }
 
-    @Test (expected = CommandFactoryException.class)
+    @Test(expected = CommandFactoryException.class)
     public void shouldThrowException() throws CommandFactoryException {
         commandFactory.getCommand(null, 'c');
     }

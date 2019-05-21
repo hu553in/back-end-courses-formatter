@@ -3,7 +3,7 @@ package it.sevenbits.formatter.lexer.fsm.state;
 /**
  * {@link IStateTransitions} interface implementation that provides transitions between FSM states.
  * Transition choice performs using information about current FSM state and other input signals.
- *
+ * <p>
  * Also this class can return start and end FSM states.
  */
 public final class StateTransitions implements IStateTransitions {
@@ -23,10 +23,9 @@ public final class StateTransitions implements IStateTransitions {
      * (or default if there are no matches).
      *
      * @param currentState {@link State} instance that presents current FSM state.
-     * @param character Currently being processed character.
-     *
+     * @param character    Currently being processed character.
      * @return {@link State} instance that presents target FSM state
-     *         (or default if there are no matches with passed args).
+     * (or default if there are no matches with passed args).
      */
     @Override
     public State nextState(final State currentState, final char character) {

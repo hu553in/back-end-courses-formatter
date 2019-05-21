@@ -36,7 +36,6 @@ public class StringReader implements IReader {
      * Method that reads a single character represented by Unicode code from {@link #sourceString}.
      *
      * @return Unicode code of read character.
-     *
      * @throws ReaderException Exception that can be thrown during the method work.
      */
     @Override

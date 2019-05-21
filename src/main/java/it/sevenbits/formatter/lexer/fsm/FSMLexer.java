@@ -1,27 +1,28 @@
 package it.sevenbits.formatter.lexer.fsm;
 
-import it.sevenbits.formatter.lexer.fsm.state.State;
 import it.sevenbits.formatter.io.reader.IReader;
 import it.sevenbits.formatter.io.reader.ReaderException;
 import it.sevenbits.formatter.lexer.ILexer;
 import it.sevenbits.formatter.lexer.LexerException;
 import it.sevenbits.formatter.lexer.fsm.command.args.CommandArgs;
 import it.sevenbits.formatter.lexer.fsm.command.args.ICommandArgs;
-import it.sevenbits.formatter.lexer.fsm.state.IStateTransitions;
-import it.sevenbits.formatter.lexer.fsm.tokenbuilder.ITokenBuilder;
-import it.sevenbits.formatter.lexer.fsm.tokenbuilder.TokenBuilder;
 import it.sevenbits.formatter.lexer.fsm.command.factory.CommandFactory;
 import it.sevenbits.formatter.lexer.fsm.command.factory.CommandFactoryException;
 import it.sevenbits.formatter.lexer.fsm.command.factory.ICommandFactory;
+import it.sevenbits.formatter.lexer.fsm.state.IStateTransitions;
+import it.sevenbits.formatter.lexer.fsm.state.State;
 import it.sevenbits.formatter.lexer.fsm.state.StateTransitions;
+import it.sevenbits.formatter.lexer.fsm.tokenbuilder.ITokenBuilder;
+import it.sevenbits.formatter.lexer.fsm.tokenbuilder.TokenBuilder;
 import it.sevenbits.formatter.lexer.token.IToken;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
 /**
  * {@link ILexer} interface implementation that provides lexical analysis of Java source code.
- *
+ * <p>
  * This {@link ILexer} implementation is based on finite-state machine and "Command" design pattern.
  */
 public class FSMLexer implements ILexer {
@@ -31,11 +32,10 @@ public class FSMLexer implements ILexer {
     /**
      * Class constructor that initializes private {@link #reader} field with passed
      * {@link IReader} instance.
-     *
+     * <p>
      * Also this method performs initial filling of private {@link #charBuffer} field.
      *
      * @param reader {@link IReader} instance that provides data input process.
-     *
      * @throws LexerException Exception that can be thrown during the method work.
      */
     public FSMLexer(final IReader reader) throws LexerException {
@@ -53,9 +53,9 @@ public class FSMLexer implements ILexer {
     /**
      * Private method that performs naming of formed lexeme and then puts formed name
      * into {@link ITokenBuilder} instance.
-     *
+     * <p>
      * Formed lexeme is passed in {@link ITokenBuilder} instance.
-     *
+     * <p>
      * Naming process is based on regular expressions. If there are no patterns
      * that match passed lexeme, token receives name "OTHER".
      *
@@ -97,7 +97,6 @@ public class FSMLexer implements ILexer {
      * Method that returns a single {@link IToken} instance.
      *
      * @return Single {@link IToken} instance.
-     *
      * @throws LexerException Exception that can be thrown during the method work.
      */
     @Override

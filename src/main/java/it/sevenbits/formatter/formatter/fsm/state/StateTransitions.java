@@ -5,7 +5,7 @@ import it.sevenbits.formatter.lexer.token.IToken;
 /**
  * {@link IStateTransitions} interface implementation that provides transitions between FSM states.
  * Transition choice performs using information about current FSM state and other input signals.
- *
+ * <p>
  * Also this class can return start and error FSM states.
  */
 public final class StateTransitions implements IStateTransitions {
@@ -25,10 +25,9 @@ public final class StateTransitions implements IStateTransitions {
      * (or default if there are no matches).
      *
      * @param currentState {@link State} instance that presents current FSM state.
-     * @param token {@link IToken} instance that presents currently being processed lexical token.
-     *
+     * @param token        {@link IToken} instance that presents currently being processed lexical token.
      * @return {@link State} instance that presents target FSM state
-     *         (or default if there are no matches with passed args).
+     * (or default if there are no matches with passed args).
      */
     @Override
     public State nextState(final State currentState, final IToken token) {

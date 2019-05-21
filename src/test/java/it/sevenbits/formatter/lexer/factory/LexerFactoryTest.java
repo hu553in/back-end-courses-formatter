@@ -5,9 +5,9 @@ import it.sevenbits.formatter.io.reader.IReader;
 import it.sevenbits.formatter.io.reader.ReaderException;
 import it.sevenbits.formatter.io.reader.StringReader;
 import it.sevenbits.formatter.lexer.fsm.FSMLexer;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.Assert;
 
 public class LexerFactoryTest {
     private ILexerFactory lexerFactory;
@@ -33,7 +33,7 @@ public class LexerFactoryTest {
         );
     }
 
-    @Test (expected = LexerFactoryException.class)
+    @Test(expected = LexerFactoryException.class)
     public void shouldThrowExceptionAtFirst() throws LexerFactoryException {
         lexerFactory.createLexer(new IReader() {
             @Override
@@ -48,7 +48,7 @@ public class LexerFactoryTest {
         });
     }
 
-    @Test (expected = LexerFactoryException.class)
+    @Test(expected = LexerFactoryException.class)
     public void shouldThrowExceptionAtSecond() throws LexerFactoryException {
         lexerFactory.createLexer(null);
     }

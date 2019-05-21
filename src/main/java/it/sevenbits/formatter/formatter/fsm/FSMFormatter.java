@@ -3,11 +3,11 @@ package it.sevenbits.formatter.formatter.fsm;
 import it.sevenbits.formatter.formatter.FormatterException;
 import it.sevenbits.formatter.formatter.IFormatter;
 import it.sevenbits.formatter.formatter.fsm.command.CommandException;
+import it.sevenbits.formatter.formatter.fsm.command.args.CommandArgs;
+import it.sevenbits.formatter.formatter.fsm.command.args.ICommandArgs;
 import it.sevenbits.formatter.formatter.fsm.command.factory.CommandFactory;
 import it.sevenbits.formatter.formatter.fsm.command.factory.CommandFactoryException;
 import it.sevenbits.formatter.formatter.fsm.command.factory.ICommandFactory;
-import it.sevenbits.formatter.formatter.fsm.command.args.CommandArgs;
-import it.sevenbits.formatter.formatter.fsm.command.args.ICommandArgs;
 import it.sevenbits.formatter.formatter.fsm.state.IStateTransitions;
 import it.sevenbits.formatter.formatter.fsm.state.State;
 import it.sevenbits.formatter.formatter.fsm.state.StateTransitions;
@@ -23,7 +23,7 @@ import it.sevenbits.formatter.lexer.token.IToken;
 /**
  * Class that formats Java source code. Input is performed using {@link IWriter} and {@link ILexer} instances,
  * output is performed using {@link IWriter} instance.
- *
+ * <p>
  * This {@link IFormatter} implementation is based on finite-state machine and "Command" design pattern.
  */
 public class FSMFormatter implements IFormatter {
@@ -42,7 +42,6 @@ public class FSMFormatter implements IFormatter {
      *
      * @param reader {@link IReader} instance that provides data reading.
      * @param writer {@link IWriter} instance that provides data writing.
-     *
      * @throws FormatterException Exception that can be thrown during the method work.
      */
     @Override

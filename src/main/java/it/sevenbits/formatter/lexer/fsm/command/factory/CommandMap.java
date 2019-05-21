@@ -1,11 +1,12 @@
 package it.sevenbits.formatter.lexer.fsm.command.factory;
 
-import it.sevenbits.formatter.lexer.fsm.state.State;
 import it.sevenbits.formatter.lexer.fsm.command.AddCharacterToTokenBuilderCommand;
-import it.sevenbits.formatter.lexer.fsm.command.args.ICommandArgs;
 import it.sevenbits.formatter.lexer.fsm.command.ICommand;
 import it.sevenbits.formatter.lexer.fsm.command.StayIdleCommand;
+import it.sevenbits.formatter.lexer.fsm.command.args.ICommandArgs;
+import it.sevenbits.formatter.lexer.fsm.state.State;
 import it.sevenbits.formatter.util.Pair;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,14 +22,14 @@ class CommandMap {
     /**
      * Class constructor that initializes private {@link #commandMap} field and fills it with a pairs of
      * {@link Pair} instances (that contain {@link State} instance / character pairs) and {@link ICommand} instances.
-     *
+     * <p>
      * Method creates instances of these commands and then initializing some of them
      * with the passed {@link ICommandArgs} instance.
-     *
+     * <p>
      * Also method initializes private {@link #defaultCommandMap} field and fills it with a pairs of
      * {@link State} instances and {@link ICommand} instances. That mapping is required for
      * specifying of different default values for different {@link State} instances.
-     *
+     * <p>
      * Default value is {@link ICommand} instance that returns only if there are no mapping
      * for passed {@link State} instance / character pair.
      *
@@ -72,8 +73,7 @@ class CommandMap {
      * (or default if there are no matches).
      *
      * @param currentState {@link State} instance that presents a current FSM state.
-     * @param character Currently being processed character.
-     *
+     * @param character    Currently being processed character.
      * @return {@link ICommand} instance that matches passed args (or default if there are no matches).
      */
     ICommand getCommand(final State currentState, final char character) {

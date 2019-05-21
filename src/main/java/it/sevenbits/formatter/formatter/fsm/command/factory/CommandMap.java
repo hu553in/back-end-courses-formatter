@@ -1,7 +1,5 @@
 package it.sevenbits.formatter.formatter.fsm.command.factory;
 
-import it.sevenbits.formatter.lexer.token.IToken;
-import it.sevenbits.formatter.formatter.fsm.command.args.ICommandArgs;
 import it.sevenbits.formatter.formatter.fsm.command.ICommand;
 import it.sevenbits.formatter.formatter.fsm.command.StayIdleCommand;
 import it.sevenbits.formatter.formatter.fsm.command.WriteAfterNewlineAndIndentCommand;
@@ -12,8 +10,11 @@ import it.sevenbits.formatter.formatter.fsm.command.WriteAfterWhitespaceCommand;
 import it.sevenbits.formatter.formatter.fsm.command.WriteAfterWhitespaceWithNestingIncreaseCommand;
 import it.sevenbits.formatter.formatter.fsm.command.WriteCommand;
 import it.sevenbits.formatter.formatter.fsm.command.WriteWithNestingIncreaseCommand;
+import it.sevenbits.formatter.formatter.fsm.command.args.ICommandArgs;
 import it.sevenbits.formatter.formatter.fsm.state.State;
+import it.sevenbits.formatter.lexer.token.IToken;
 import it.sevenbits.formatter.util.Pair;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,7 +30,7 @@ class CommandMap {
      * Class constructor that initializes private {@link #commandMap} field and fills it with a pairs of
      * {@link Pair} instances (that contain {@link State} instance / {@link String} instance pairs)
      * and {@link ICommand} instances.
-     *
+     * <p>
      * Method creates instances of these commands and then initializing some of them
      * with the passed {@link ICommandArgs} instance.
      *
@@ -132,7 +133,7 @@ class CommandMap {
         );
 
         commandMap.put(new Pair<>(
-                closingCurlyBraceState, "CLOSING_CURLY_BRACE"),
+                        closingCurlyBraceState, "CLOSING_CURLY_BRACE"),
                 writeAfterNewlineAndIndentWithNestingDecrease
         );
 
@@ -234,8 +235,7 @@ class CommandMap {
      * (or default if there are no matches).
      *
      * @param currentState {@link State} instance that presents a current FSM state.
-     * @param token {@link IToken} instance that presents currently being processed lexical token.
-     *
+     * @param token        {@link IToken} instance that presents currently being processed lexical token.
      * @return {@link ICommand} instance that matches passed args (or default if there are no matches).
      */
     ICommand getCommand(final State currentState, final IToken token) {

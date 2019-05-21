@@ -8,6 +8,7 @@ import it.sevenbits.formatter.lexer.ILexer;
 import it.sevenbits.formatter.lexer.LexerException;
 import it.sevenbits.formatter.lexer.SimpleLexer;
 import it.sevenbits.formatter.lexer.token.IToken;
+
 import java.util.Objects;
 
 /**
@@ -21,7 +22,6 @@ public class SimpleFormatter implements IFormatter {
      *
      * @param reader {@link IReader} instance that provides data reading.
      * @param writer {@link IWriter} instance that provides data writing.
-     *
      * @throws FormatterException Exception that can be thrown during the method work.
      */
     @Override
@@ -101,9 +101,9 @@ public class SimpleFormatter implements IFormatter {
                 } else if (Objects.equals(token.getName(), "WHITESPACE")) {
                     if (
                             !Objects.equals(lastWrittenLexeme, token.getLexeme()) &&
-                            !Objects.equals(lastWrittenLexeme, "\n") &&
-                            lastWrittenLexeme != null &&
-                            !lastWrittenLexeme.endsWith(token.getLexeme())
+                                    !Objects.equals(lastWrittenLexeme, "\n") &&
+                                    lastWrittenLexeme != null &&
+                                    !lastWrittenLexeme.endsWith(token.getLexeme())
                     ) {
                         writer.write(token.getLexeme());
                         lastWrittenLexeme = token.getLexeme();

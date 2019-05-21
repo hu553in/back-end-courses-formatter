@@ -20,7 +20,6 @@ public class FileReader implements IReader, Closeable {
      * and then calls {@link #prepareCharBuffer()} method.
      *
      * @param filePath {@link Path} instance that represents a path to input file.
-     *
      * @throws ReaderException Exception that can be thrown during the method work.
      */
     public FileReader(final Path filePath) throws ReaderException {
@@ -38,7 +37,6 @@ public class FileReader implements IReader, Closeable {
      * using return value of {@link Paths#get(String, String...)} method.
      *
      * @param filePath {@link String} instance that represents a path to input file.
-     *
      * @throws ReaderException Exception that can be thrown during the method work.
      */
     public FileReader(final String filePath) throws ReaderException {
@@ -77,7 +75,6 @@ public class FileReader implements IReader, Closeable {
      * calls {@link #prepareCharBuffer()} method and then returns memorized character code.
      *
      * @return Unicode code of read character.
-     *
      * @throws ReaderException Exception that can be thrown during the method work.
      */
     @Override

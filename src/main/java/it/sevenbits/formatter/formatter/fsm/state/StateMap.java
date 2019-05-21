@@ -1,14 +1,15 @@
 package it.sevenbits.formatter.formatter.fsm.state;
 
-import it.sevenbits.formatter.util.Pair;
 import it.sevenbits.formatter.lexer.token.IToken;
+import it.sevenbits.formatter.util.Pair;
+
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Class that provides a mapping of {@link Pair} instances (that contain {@link State} instance / {@link String}
  * instance pairs) to {@link State} instances.
- *
+ * <p>
  * This mapping is used for providing transitions between FSM states.
  * Transition choice performs using information about current FSM state and other input signals.
  * Other input signals are actually presented by {@link String} instances.
@@ -21,7 +22,7 @@ class StateMap {
      * Class constructor that initializes private {@link #stateMap} field and fills it with a pairs of
      * {@link Pair} instances (that contain {@link State} instance / {@link String} instance pairs)
      * and {@link State} instances.
-     *
+     * <p>
      * Also this method initializes private {@link #startState} and {@link #errorState} fields
      * with new {@link State} instances.
      */
@@ -190,9 +191,8 @@ class StateMap {
      *
      * @param state {@link State} instance that presents current FSM state.
      * @param token {@link IToken} instance that presents currently being processed lexical token.
-     *
      * @return {@link State} instance that presents target FSM state
-     *         (or default if there are no matches with passed args).
+     * (or default if there are no matches with passed args).
      */
     State getNextState(final State state, final IToken token) {
         return stateMap.getOrDefault(new Pair<>(state, token.getName()), errorState);

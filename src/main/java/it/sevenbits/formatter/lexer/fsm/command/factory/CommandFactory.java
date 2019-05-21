@@ -1,8 +1,8 @@
 package it.sevenbits.formatter.lexer.fsm.command.factory;
 
-import it.sevenbits.formatter.lexer.fsm.state.State;
 import it.sevenbits.formatter.lexer.fsm.command.ICommand;
 import it.sevenbits.formatter.lexer.fsm.command.args.ICommandArgs;
+import it.sevenbits.formatter.lexer.fsm.state.State;
 
 /**
  * {@link ICommandFactory} interface implementation that presents command factory.
@@ -23,10 +23,8 @@ public class CommandFactory implements ICommandFactory {
      * Method that performs issue of {@link ICommand} instance corresponding to passed arguments.
      *
      * @param currentState {@link State} instance that presents current FSM state.
-     * @param character Read character.
-     *
+     * @param character    Read character.
      * @return {@link ICommand} instance that presents a command to execute.
-     *
      * @throws CommandFactoryException Exception that can be thrown during the method work.
      */
     @Override

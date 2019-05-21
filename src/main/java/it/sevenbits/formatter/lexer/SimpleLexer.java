@@ -4,6 +4,7 @@ import it.sevenbits.formatter.io.reader.IReader;
 import it.sevenbits.formatter.io.reader.ReaderException;
 import it.sevenbits.formatter.lexer.token.IToken;
 import it.sevenbits.formatter.lexer.token.Token;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,12 +19,11 @@ public class SimpleLexer implements ILexer {
     /**
      * Class constructor that initializes {@link #lexemeForName} and puts in it
      * all known pairs of lexemes and token names.
-     *
+     * <p>
      * Also this method initializes private {@link #reader} field with passed {@link IReader} instance
      * and performs initial filling of private {@link #charBuffer} field.
      *
      * @param reader {@link IReader} instance that provides data input process.
-     *
      * @throws LexerException Exception that can be thrown during the method work.
      */
     public SimpleLexer(final IReader reader) throws LexerException {
@@ -60,7 +60,6 @@ public class SimpleLexer implements ILexer {
      * Method that returns a single {@link IToken} instance.
      *
      * @return Single {@link IToken} instance.
-     *
      * @throws LexerException Exception that can be thrown during the method work.
      */
     @Override

@@ -7,9 +7,11 @@ import it.sevenbits.formatter.lexer.ILexer;
 import it.sevenbits.formatter.lexer.LexerException;
 import it.sevenbits.formatter.lexer.SimpleLexer;
 import it.sevenbits.formatter.lexer.token.IToken;
-import org.junit.Test;
 import org.junit.Assert;
+import org.junit.Test;
+
 import java.io.IOException;
+
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
@@ -80,7 +82,7 @@ public class SimpleLexerTest {
         Assert.assertFalse(lexer.hasMoreTokens());
     }
 
-    @Test (expected = LexerException.class)
+    @Test(expected = LexerException.class)
     public void shouldThrowException() throws ReaderException, LexerException {
         reader = mock(StringReader.class);
         doReturn(true).when(reader).hasNext();

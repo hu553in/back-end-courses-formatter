@@ -13,7 +13,6 @@ public interface IFormatter {
      *
      * @param reader {@link IReader} instance that provides data reading.
      * @param writer {@link IWriter} instance that provides data writing.
-     *
      * @throws FormatterException Exception that can be thrown during the method work.
      */
     void format(IReader reader, IWriter writer) throws FormatterException;
