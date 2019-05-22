@@ -5,69 +5,67 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class FileWriterTest {
-    private Path filePath;
-    private FileWriter fileWriter;
-    private String text;
-    private char character;
-    private char[] charArray;
+    private TemporaryFolder temporaryFolder;
 
     @Before
     public void setUp() throws IOException {
-        text = "HelloWorldAndThenGoodbyeWorld";
-        character = 'a';
-
-        charArray = new char[]{
-                'a', 'b', 'c'
-        };
-
-        filePath = Paths.get("./" + +ThreadLocalRandom.current().nextLong());
-        Files.createFile(filePath);
-        fileWriter = new FileWriter(filePath.toString());
+        temporaryFolder = new TemporaryFolder();
+        temporaryFolder.create();
     }
 
     @Test
     public void shouldWriteDataCorrectly() throws IOException {
-        fileWriter.write(text);
-        fileWriter.write((int) character);
-        fileWriter.write(charArray);
-        fileWriter.close();
+        final char character = 'a';
+        final String text = "TEST_TEXT";
 
-        final FileReader fileReader = new FileReader(filePath);
-        final StringBuilder actualStringBuilder = new StringBuilder();
+        final char[] charArray = new char[] {
+                'a', 'b', 'c'
+        };
 
-        while (fileReader.hasNext()) {
-            actualStringBuilder.append((char) fileReader.read());
+        final Path filePath = temporaryFolder.newFile().toPath();
+
+        try (FileWriter fileWriter = new FileWriter(filePath.toString())) {
+            fileWriter.write(text);
+            fileWriter.write((int) character);
+            fileWriter.write(charArray);
         }
 
-        final StringBuilder expectedStringBuilder = new StringBuilder();
-        expectedStringBuilder.append(text).append(character);
+        try (FileReader fileReader = new FileReader(filePath)) {
+            final StringBuilder actualStringBuilder = new StringBuilder();
 
-        for (char c : charArray) {
-            expectedStringBuilder.append(c);
+            while (fileReader.hasNext()) {
+                actualStringBuilder.append((char) fileReader.read());
+            }
+
+            final StringBuilder expectedStringBuilder = new StringBuilder();
+            expectedStringBuilder.append(text).append(character);
+
+            for (char c : charArray) {
+                expectedStringBuilder.append(c);
+            }
+
+            Assert.assertEquals(
+                    expectedStringBuilder.toString(),
+                    actualStringBuilder.toString()
+            );
         }
-
-        Assert.assertEquals(
-                expectedStringBuilder.toString(),
-                actualStringBuilder.toString()
-        );
     }
 
     @Test(expected = WriterException.class)
-    public void shouldThrowException() throws WriterException {
+    public void shouldThrowException() throws IOException {
+        final FileWriter fileWriter = new FileWriter(temporaryFolder.newFile().toPath().toString());
         fileWriter.close();
-        fileWriter.write("JUST_A_STRING");
+        fileWriter.write("");
     }
 
     @After
-    public void tearDown() throws IOException {
-        Files.delete(filePath);
+    public void tearDown() {
+        temporaryFolder.delete();
     }
 }
