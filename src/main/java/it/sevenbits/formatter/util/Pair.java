@@ -46,7 +46,7 @@ public final class Pair<T, U> {
     /**
      * Override of {@link Object#hashCode()} method.
      *
-     * @return Integer value that presents hash code of {@link Pair} instance.
+     * @return Integer value that represents hash code of {@link Pair} instance.
      */
     @Override
     public int hashCode() {
