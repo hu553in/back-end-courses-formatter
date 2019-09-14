@@ -21,7 +21,7 @@ import it.sevenbits.formatter.lexer.factory.LexerFactoryException;
 import it.sevenbits.formatter.lexer.token.IToken;
 
 /**
- * Class that formats Java source code. Input is performed using {@link IWriter} and {@link ILexer} instances,
+ * Class that formats Java source code. Input is performed using {@link IReader} and {@link ILexer} instances,
  * output is performed using {@link IWriter} instance.
  * <p>
  * This {@link IFormatter} implementation is based on finite-state machine and "Command" design pattern.
