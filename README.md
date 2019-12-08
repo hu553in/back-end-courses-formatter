@@ -30,4 +30,4 @@ $ mvn package
 $ java -jar ./target/formatter-1.0-RELEASE-jar-with-dependencies.jar %INPUT_FILE_PATH% %OUTPUT_FILE_PATH%
 ```
 
-**Note:** you must replace `%INPUT_FILE_PATH%` and `%OUTPUT_FILE_PATH%` stubs with your own paths to corresponding files.
+**Note:** you must replace `%INPUT_FILE_PATH%` and `%OUTPUT_FILE_PATH%` with your own paths to corresponding files.
