@@ -24,7 +24,7 @@ $ mvn package
 
 ## How to use
 
-1) Run following command in the project root folder:
+Run following command in the project root folder:
 
 ```console
 $ java -jar ./target/formatter-1.0-RELEASE-jar-with-dependencies.jar %INPUT_FILE_PATH% %OUTPUT_FILE_PATH%
