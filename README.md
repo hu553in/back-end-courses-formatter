@@ -1,6 +1,6 @@
 # formatter
 
-[![Actions Status](https://github.com/hu553in/formatter/workflows/Java%20CI/badge.svg)](https://github.com/hu553in/formatter/actions)
+[![Actions Status](https://github.com/hu553in/formatter/workflows/Maven%20CI/badge.svg)](https://github.com/hu553in/formatter/actions)
 
 ## Table of contents
 
