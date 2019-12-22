@@ -3,7 +3,7 @@
 *.class
 *.log
 *.ctxt
-**/.mtj.tmp/
+**/.mtj.tmp
 *.jar
 *.war
 *.nar
@@ -20,7 +20,7 @@
 **/ehthumbs_vista.db
 *.stackdump
 **/[Dd]esktop.ini
-**/$RECYCLE.BIN/
+**/$RECYCLE.BIN
 *.cab
 *.msi
 *.msix
@@ -39,11 +39,11 @@
 # JetBrains
 
 **/.idea/
-**/cmake-build-*/
+**/cmake-build-*
 *.iws
 *.iml
 **/out/
-**/.idea_modules/
+**/.idea_modules
 **/atlassian-ide-plugin.xml
 **/com_crashlytics_export_strings.xml
 **/crashlytics.properties
@@ -52,7 +52,7 @@
 
 # Maven
 
-**/target/
+**/target
 **/pom.xml.tag
 **/pom.xml.releaseBackup
 **/pom.xml.versionsBackup
