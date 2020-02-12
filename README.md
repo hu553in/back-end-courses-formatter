@@ -1,7 +1,5 @@
 # formatter
 
-[![Actions Status](https://github.com/hu553in/formatter/workflows/Maven%20CI/badge.svg)](https://github.com/hu553in/formatter/actions)
-
 ## Table of contents
 
 * [Description](#description)
@@ -11,15 +9,21 @@
 
 Java source code formatter based on [finite-state machine](https://en.wikipedia.org/wiki/Finite-state_machine).
 
+## Technology stack
+
+* [OpenJDK](https://openjdk.java.net) 1.8.0
+* [Gradle](https://gradle.org) 6.1.1
+
 ## How to use
 
 1) Install [OpenJDK](https://openjdk.java.net) (≥ 1.8.0)
-2) Install [Apache Maven](https://maven.apache.org)
+2) Install [Make](https://www.gnu.org/software/make)
 3) Run following command in the project root folder:
 
 ```console
-$ mvn package
-$ java -jar ./target/formatter-1.0-RELEASE-jar-with-dependencies.jar %INPUT_FILE_PATH% %OUTPUT_FILE_PATH%
+$ make IN=%INPUT_FILE_PATH% OUT=%OUTPUT_FILE_PATH%
 ```
 
 **Note:** you must replace `%INPUT_FILE_PATH%` and `%OUTPUT_FILE_PATH%` with your own paths to corresponding files.
+
+For additional info see [Makefile](./Makefile) contents.

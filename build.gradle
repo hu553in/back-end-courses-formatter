@@ -1,0 +1,32 @@
+plugins {
+    id "java"
+    id "checkstyle"
+}
+
+group = "it.sevenbits"
+version = "1.0-RELEASE"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: "org.slf4j", name: "slf4j-api", version: "1.7.30"
+    implementation group: "org.slf4j", name: "slf4j-simple", version: "1.7.30"
+    testImplementation group: "junit", name: "junit", version: "4.13"
+    testImplementation group: "org.mockito", name: "mockito-core", version: "3.2.4"
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "it.sevenbits.formatter.Main"
+    }
+
+    from {
+        configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+checkstyle {
+    configFile file("${project.rootDir}/7bits-checkstyle.xml")
+}
