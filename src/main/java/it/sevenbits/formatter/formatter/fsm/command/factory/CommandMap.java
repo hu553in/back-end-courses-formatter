@@ -132,8 +132,8 @@ class CommandMap {
                 writeAfterNewlineAndIndentWithNestingIncrease
         );
 
-        commandMap.put(new Pair<>(
-                        closingCurlyBraceState, "CLOSING_CURLY_BRACE"),
+        commandMap.put(
+                new Pair<>(closingCurlyBraceState, "CLOSING_CURLY_BRACE"),
                 writeAfterNewlineAndIndentWithNestingDecrease
         );
 
