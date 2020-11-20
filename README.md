@@ -9,7 +9,7 @@ This project is the Java source code formatter based on
 
 * Java
 
-## How to use
+## How to run
 
 1) Install `GNU Make`, `OpenJDK` (≥ 11)
 2) Run `make IN=%INPUT_FILE_PATH% OUT=%OUTPUT_FILE_PATH%` (you must replace
